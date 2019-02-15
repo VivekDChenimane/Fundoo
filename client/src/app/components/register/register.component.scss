@@ -1,0 +1,24 @@
+.card {
+    width: 40%;
+    height: 70%;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+}
+#registration{
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10%;
+    padding-bottom: 0;
+}
