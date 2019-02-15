@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="space-evenly center">
     <mat-card class="card">
-        <mat-card-header id="registration">
+        <mat-card-header id="createAccount">
             Create your Fundoo Account
         </mat-card-header>
         <mat-card-content>
@@ -12,10 +12,10 @@
                         <mat-error *ngIf="firstName.invalid">{{firstNameErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="container">
+                <div class="container"> 
                     <mat-form-field appearance="outline">
                         <mat-label>Last name</mat-label>
-                        <input matInput placeholder="Enter your last name" name="secondName" [formControl]="lastName"
+                        <input matInput name="secondName" [formControl]="lastName"
                             required>
                         <mat-error *ngIf="lastName.invalid">{{lastNameErrorMessage()}}</mat-error>
                     </mat-form-field>
