@@ -13,6 +13,11 @@
     flex-direction: column;
     padding: 5%;
 }
+.rowContainer{
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
+}
 #createAccount{
     font-size: 20px;
     text-align: center;
@@ -21,4 +26,25 @@
     padding-right: 10%;
     padding-top: 10%;
     padding-bottom: 0;
+}
+.fundoo{
+    font-weight: normal;
+    .f{
+        color: blue;
+    }
+    .u{
+        color: red;
+    }
+    .n{
+        color: rgb(209, 209, 54);
+    }
+    .d{
+        color: blueviolet;
+    }
+    .o1{
+        color: green;
+    }
+    .o2{
+        color: orangered;
+    }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {  HttpService} from '../../service/http/http.service';
 import { Router } from '@angular/router';
+import { log } from 'util';
 
 @Component({
   selector: 'app-register',
@@ -89,19 +90,28 @@ export class RegisterComponent implements OnInit {
     '';
   }
   
-  getValues ( firstName,lastName,email,phone,password,repeatPassword){
+  getValues ( ){
     var user = {
-      "firstName":firstName,
-      "lastName":lastName,
-      "phoneNumber":phone,
+      "firstName":this.firstName.value,
+      "lastName":this.lastName.value,
+      "phoneNumber":this.phone.value,
       "imageUrl":"",
-      "service":"",
-      "email":email,
-      "password":password
+      "service": "basic",
+      "email":this.email.value,
+      "emailVerified": true,
+      "createdDate": "",
+      "modifiedDate": "",
+      "password":this.password.value
     }
     console.log(user);
-    if(password == repeatPassword){
-      this.service.postRequest("user/userSignUp",user);
+    if(this.password.value == this.repeatPassword.value){
+      this.service.postRequest("user/userSignUp",user).subscribe(data => {
+        console.log(data);
+      },
+      err => {
+        console.log(err);
+        
+      })
     }
   }
 }

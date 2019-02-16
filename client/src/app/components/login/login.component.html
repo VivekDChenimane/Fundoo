@@ -1,4 +1,12 @@
 <mat-card class="card">
+    <h3><div class="fundoo">
+        <span class="f">F</span>
+        <span class="u">u</span>
+        <span class="n">n</span>
+        <span class="d">d</span>
+        <span class="o1">o</span>
+        <span class="o2">o</span>
+    </div></h3>
     <mat-card-header id="loginName">
            Sign in
     </mat-card-header>
@@ -22,6 +30,6 @@
     <mat-card-actions>
       <div id="signButton"><button mat-button (click) = "secureLogin(email.value, password.value)" >Sign In</button>
       <button mat-button (click) = "register()" >Sign Up</button></div>
-      <div id="forgotLink"> <a routerLink="." (click) = "forgot()" >Forgot password</a></div>
+      <div id="forgotLink"> <a routerLink="" (click) = "forgot()" >Forgot password</a></div>
     </mat-card-actions>
   </mat-card>
