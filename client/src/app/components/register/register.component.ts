@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
   }
   
   getValues ( ){
-    var user = {
+    var user = { 
       "firstName":this.firstName.value,
       "lastName":this.lastName.value,
       "phoneNumber":this.phone.value,
@@ -107,10 +107,10 @@ export class RegisterComponent implements OnInit {
     if(this.password.value == this.repeatPassword.value){
       this.service.postRequest("user/userSignUp",user).subscribe(data => {
         console.log(data);
+        this.router.navigate(['login']);
       },
       err => {
         console.log(err);
-        
       })
     }
   }

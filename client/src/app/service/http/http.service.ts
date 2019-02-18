@@ -8,16 +8,11 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
   link = 'http://34.213.106.173/api/'
-  postRequest(user, url) {
-    var data = { 
-      "data": user
-    }
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        // 'Authorization': 'my-auth-token'
-      })
-    }
-    return this.http.post("http://34.213.106.173/api/user/userSignUp",user);
+  postRequest(url, user) {
+    let headers = new HttpHeaders({
+      'Accept': 'application/json',
+    });
+    console.log("service");
+    return this.http.post(this.link + url, user, { headers: headers });
   }
 }

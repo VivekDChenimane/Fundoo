@@ -47,14 +47,14 @@
                 <div class="container">
                     <mat-form-field appearance="outline">
                         <mat-label>password</mat-label>
-                        <input matInput name="password" [formControl]="password" required>
+                        <input type="password" matInput name="password" [formControl]="password" required>
                         <mat-error *ngIf="password.invalid">{{passwordErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="container">
                     <mat-form-field appearance="outline">
                         <mat-label>Confirm password</mat-label>
-                        <input matInput name="repeatPassword" [formControl]="repeatPassword" required>
+                        <input type="password" matInput name="repeatPassword" [formControl]="repeatPassword" required>
                         <mat-error *ngIf="repeatPassword.invalid">{{repeatPasswordErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>

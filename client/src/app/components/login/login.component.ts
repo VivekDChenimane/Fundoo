@@ -48,12 +48,24 @@ export class LoginComponent implements OnInit {
    * @param email 
    * @param password 
    */
-  secureLogin(email, password) {
+  secureLogin(email, password) { 
     var user = {
       "email": email,
       "password": password
     }
     console.log(user);
+    this.service.postRequest('user/login',user).subscribe((data: any)  =>  {
+      localStorage.setItem('token', data.token);
+      console.log(data);
+      
+      if (data != 'undefined') {
+        if (data.id) {
+           this.router.navigate(['home']);
+        } else {
+          alert("Something went wrong")
+        }
+      }
+    });
   }
 
 /**
@@ -67,6 +79,6 @@ export class LoginComponent implements OnInit {
  * @description Navigates to forgot password page
  */
   forgot() {
-    console.log("Redirect to forget")
+    this.router.navigate(['forgot']);
   }
 }
