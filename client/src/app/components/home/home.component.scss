@@ -1,0 +1,186 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+  
+  .example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+  
+  
+  
+  .my-tooltip {
+    white-space: pre-line;
+  }
+  .sear{
+    align-self: center
+  }
+  .search{
+    margin-left: 1%;
+    width: 100%;
+    border: none;
+    outline: none;
+    user-select: none;
+  }
+  
+  .example-toolbar{
+    box-shadow: 0px 3px lightgray;
+    // width: 150%;
+  }
+  
+  .example-app-name{
+    padding-left: 5%
+  }
+  
+  #searchbtn{
+    background-color: rgb(206, 193, 193);
+  }
+  
+  .searchText{
+    margin-left: 10px;
+    margin-bottom: 4px;
+  }
+  
+  .settingbtn{
+    margin-left: 15%;
+  }
+  
+  .account{
+  margin-left: 10px; 
+  }
+  
+  #grid{
+    margin-left: 15px;
+  }
+  
+  #setting{
+    margin-left: 15px;
+  }
+  
+  #apps{
+    margin-left: 15px;
+  }
+  #notification{
+    margin-right: 30px;
+  }
+  
+  #rema{
+    font-size: 20px;
+    font-family: sans-serif;   
+  }
+  mat-sidenav{
+    width: 250px;
+  }
+  
+  .search{
+    margin-left: 25%;
+  
+    border: 1px;
+  }
+  #img1{
+    margin-right: 10%;
+  }
+  #img2{
+    margin-right: 10%;
+  }
+  #edit{
+    margin-right:10%;
+  }
+  #img4{
+    margin-right: 10%;
+  }
+  #img5{
+    margin-right:10%;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 2%;
+    
+  }
+  
+  
+  .example-is-mobile .example-sidenav-container {
+    
+    flex: 1 0 auto;
+    
+  }
+   
+  #para{
+      margin-left: 9%;
+  }
+  
+  .settings{
+    display: flex;
+    flex-direction: row;
+     float: right;
+  }
+  .apps{
+    display: flex;
+    flex-direction: row;
+    width: 4%;
+  }
+  
+  
+  .example-toolbar{
+    display: flex;
+    flex-direction: row;
+   
+  }
+  
+  #username{
+      font: bold;
+      margin-left: 40%;
+  }
+  
+  .matMenu{
+    width: 10px;
+  }
+  
+  .mat-raised-button:not([class*=mat-elevation-z]) {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    margin-left: 36%;
+  }
+  
+  .mat-stroked-button:not([class*=mat-elevation-z]) {
+    box-shadow: 0 0 0 0 rgba(0,0,0,.2), 0 0 0 0 rgba(0,0,0,.14), 0 0 0 0 rgba(0,0,0,.12);
+    width: 140px;
+  }

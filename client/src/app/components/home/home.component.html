@@ -1,0 +1,90 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar class="example-toolbar">
+      <div fxFlex="5">
+        <button mat-icon-button matTooltip="menu-bar" (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div fxFlex="10" fxLayout.gt-xs="row" fxFlex.gt="500px" fxHide.xs>
+            <img id="img1" src="../../../assets/images/logo.png" />
+          <!-- <h3 class="example-app-name">Keep</h3> -->
+        </div>
+      </div>
+      <div fxFlex="50">
+        <mat-form-field appearance="outline" [style.fontSize.px]="2" class="search">
+          <button mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+          <input fxFlex="90" [(ngModel)]="value" matInput placeholder="search"
+            [style.fontSize.px]="18" class="searchText" autocomplete="off">
+  
+        </mat-form-field>
+      </div>
+      <div fxFlex="25" class="settingbtn">
+        <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
+          <mat-icon>refresh</mat-icon>
+        </button>
+  
+        <button mat-icon-button color="basic" id="grid" fxHide.xs matTooltip="grid">
+          <mat-icon>border_all</mat-icon>
+        </button>
+        <div class="settings">
+          <button mat-icon-button colour="basic" matTooltip="settings">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </div>
+        <button mat-icon-button color="basic" fxHide.xs matTooltip="Notification">
+          <mat-icon>notification_important </mat-icon>
+        </button>
+      </div>
+  
+  
+      <button mat-icon-button color="basic" matTooltip="Apps">
+        <mat-icon>apps</mat-icon>
+      </button>
+  
+      <button mat-icon-button colour="basic" matTooltip="ACCOUNT " [matTooltipClass]="'my-tooltip'">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+  
+  
+  
+      <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+          <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56">
+            <mat-nav-list>
+              <mat-list role="List">
+      
+      
+                <mat-list-item role="listitem" id="note">
+                  <img id="img1" src="../../../assets/images/bulb.svg" />
+                  Note</mat-list-item>
+      
+                <mat-list-item role="listitem" id="rem">
+                  <img id="img2" src="../../../assets/images/bell.svg" />
+                  Remainder</mat-list-item>
+      
+                <mat-divider></mat-divider>
+                <p id="para">labels</p>
+                <mat-list-item role="listitem" id="lable">
+                  <mat-icon id="edit">edit</mat-icon>
+                  Edit label
+                </mat-list-item>
+      
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" id="arch" >
+                  <img id="img4" src="../../../assets/images/archive.svg" />
+                  Archive</mat-list-item>
+      
+                <mat-list-item role="listitem" id="bin">
+                  <img id="img5" src="../../../assets/images/trash.svg" />
+                  Trash</mat-list-item>
+      
+              </mat-list>
+            </mat-nav-list>
+          </mat-sidenav>
+          <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+   

@@ -11,14 +11,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { NoteComponent } from './components/note/note.component';
+import { NoteIconsComponent } from './components/note-icons/note-icons.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    HomeComponent
+    HomeComponent,
+    NoteComponent,
+    NoteIconsComponent
   ],
   imports: [
     BrowserModule,

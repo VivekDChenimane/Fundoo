@@ -1,0 +1,81 @@
+.matcard{
+   
+    margin-top: 20px;
+  }
+  .Border{
+    border-color: white;
+    border: none;
+    outline: none;
+    user-select: none;
+    
+  }
+  
+  
+  [contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+  }
+  
+  .maincard{
+    width: 60%;
+    color: rgb(173, 166, 166);
+    border: none;
+    outline: none;
+    user-select: none;
+    //margin-top: 30px;
+  }
+  
+  .addnote{
+    width: 10px;
+    margin-left: 0%
+  }
+  .textArea{
+    background: transparent;
+  }
+  
+  
+  
+  
+  .matcard{
+    margin-top: 30px;
+  }
+  .Border :focus{
+    outline: white;
+  }
+  element.style {
+    border-color: white;
+  
+  }
+  
+  [contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+  }
+  
+  .title{
+    margin-bottom: 20px;
+    color: rgb(173, 166, 166);
+    border: none;
+    outline: none;
+    user-select: none;
+  
+    
+  }
+  
+  .textArea{
+    border: none;
+    outline: none;
+    user-select: none;
+  } 
+  
+  .takenote{
+    margin-bottom: 10px;
+    color: rgb(173, 166, 166);
+    border: none;
+    outline: none;
+    user-select: none;
+  }
+  .barpin{
+    border: none;
+    outline: none;
+    user-select: none;
+  }
+  

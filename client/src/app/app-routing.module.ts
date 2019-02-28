@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component'
+import { NoteComponent} from './components/note/note.component'
 const routes: Routes = [
   { 
     path: '',
@@ -25,7 +26,18 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    children:[
+      {
+        path:'',
+        redirectTo:'note',
+        pathMatch:'full'
+      },
+      {
+        path:'note',
+        component:NoteComponent
+      }
+  ]
   }
 ];
 @NgModule({
