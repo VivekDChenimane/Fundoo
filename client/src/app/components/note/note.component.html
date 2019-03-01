@@ -1,53 +1,46 @@
-<div *ngIf="flag===true"   (click)="addNote()" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
-  <mat-card fxFlex="50" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center"  >
-  
-     <div data-text="Take a note.." class="Border" id="noteTitle" fxLayout="column" contenteditable="true" class="maincard">
+<div *ngIf="flag===true" (click)="addNote()" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
+  <mat-card fxFlex="50" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center">
+
+    <div data-text="Take a note.." class="Border" id="noteTitle" fxLayout="column" contenteditable="true"
+      class="maincard">
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end start" fxFlex.xs="100">
-      <mat-icon class="check" matTooltip="New List">check_box</mat-icon>
-
-      <mat-icon class="brush" matTooltip="Drawing is not available">brush</mat-icon>
-
+      <mat-icon class="check" fill="white" matTooltip="New List">check_box</mat-icon>
+      <mat-icon class="brush" fill="white" matTooltip="New note with drawing">brush</mat-icon>
       <mat-icon class="insert" matTooltip="New note with image">insert_photo</mat-icon>
-      
     </div>
-
   </mat-card>
-</div> 
-
-
-
+</div>
 <div *ngIf="flag===false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
 
-  <mat-card fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97' [style.backgroundColor]="color">
-    <div fxLayout="row" fxLayoutAlign="end start" >
-    <button  mat-icon-button color="basic" (click)="pinned()">
-      <div class="barpin" *ngIf="flag1==true"   >
-        
-            <img src="../../../assets/images/bell.svg" />
-        
-      </div>
-      <div class="barpin"  *ngIf="flag1==false"  >
-         
-          <img  src="../../../assets/images/bell.svg" />
-      </div>
-    </button>
-  </div>
-    <div contenteditable="true" data-text="Title" fxFlex="30" id="noteContent" [formControl]="noteTitle" fxLayout="column" class="title" >   
-    </div>
-     <div class="Border" fxLayout="column" class="takenote">
-      <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent" class="textArea"></textarea>
-    </div>
-      <div >
-        <div fxFlex='90'>
-     <app-note-icons ></app-note-icons>
+  <mat-card fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
+    [style.backgroundColor]="color">
+    <div fxLayout="row" fxLayoutAlign="end start">
+      <button mat-icon-button color="basic" (click)="pinned()">
+        <div class="barpin" *ngIf="flag1==true">
+
+          <img src="../../../assets/images/bell.svg" />
 
         </div>
-     <div fxFlex='10' fxLayoutAlign="end end">
-     <button class="addnote" mat-button (click)="addNote()" >close</button>
+        <div class="barpin" *ngIf="flag1==false">
+
+          <img src="../../../assets/images/bell.svg" />
+        </div>
+      </button>
     </div>
-  </div>
- 
+    <div contenteditable="true" data-text="Title" fxFlex="30" id="noteContent" [formControl]="noteTitle"
+      fxLayout="column" class="title">
+    </div>
+    <div class="Border" fxLayout="column" class="takenote">
+      <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
+        class="textArea"></textarea>
+    </div>
+    <div fxFlex='100'>
+      <app-note-icons> </app-note-icons>
+    </div>
+    <div fxFlex='10' fxLayoutAlign="end end">
+      <button class="addnote" mat-button (click)="addNote()">close</button>
+    </div>
   </mat-card>
-</div> 
+</div>
