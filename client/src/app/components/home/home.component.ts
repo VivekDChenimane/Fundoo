@@ -1,3 +1,19 @@
+/******************************************************************************
+ *
+ *  Purpose         : this program is to display the dashboard.
+ *  @description    
+ * 
+ *  @file           : home.component.ts
+ *  @overview       : To display the dashboard.
+ *  @module         : home.ts - This is optional if expeclictly its an npm or local package
+ *  @author         : Vivek D Chenimane <vivekdchenimane.com>
+ *  @version        : 1.0
+ *  @since          : 02-03-2019
+ *
+ ******************************************************************************/
+/**
+ * importing all the file from various module
+ */
 import { ChangeDetectorRef,Component, OnInit,OnDestroy } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 

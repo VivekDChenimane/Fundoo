@@ -1,3 +1,19 @@
+/******************************************************************************
+ *
+ *  Purpose         : this program is to register the user.
+ *  @description    
+ * 
+ *  @file           : register.component.ts
+ *  @overview       : To the user.
+ *  @module         : register.ts - This is optional if expeclictly its an npm or local package
+ *  @author         : Vivek D Chenimane <vivekdchenimane.com>
+ *  @version        : 1.0
+ *  @since          : 02-03-2019
+ *
+ ******************************************************************************/
+/**
+ * importing all thhe file from various module
+ */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {  HttpService} from '../../service/http/http.service';

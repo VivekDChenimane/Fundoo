@@ -1,3 +1,19 @@
+/******************************************************************************
+ *
+ *  Purpose         : this program is to redirect the valid user to the dashboard 
+ *  @description    
+ * 
+ *  @file           : login.component.ts
+ *  @overview       : to show the dashboard to an user.
+ *  @module         : login.component.ts - This is optional if expeclictly its an npm or local package
+ *  @author         : Vivek D Chenimane <vivekdchenimane.com>
+ *  @version        : 1.0
+ *  @since          : 02-03-2019
+ *
+ ******************************************************************************/
+/**
+ * importing all the file from various module
+ */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {  HttpService} from '../../service/http/http.service';

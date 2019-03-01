@@ -1,3 +1,6 @@
+/**
+ * @description: imporing all the angular material api from angular.material.io
+ */
 import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
@@ -38,6 +41,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//both import and export the material class.
 @NgModule({
   declarations: [],
   imports: [
