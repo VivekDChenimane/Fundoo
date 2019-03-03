@@ -3,9 +3,9 @@
  *  Purpose         : this program is to display the note in dashboard.
  *  @description    
  * 
- *  @file           : note.component.ts
+ *  @file           : add-notes.component.ts
  *  @overview       : To display the note in dashboard.
- *  @module         : note.ts - This is optional if expeclictly its an npm or local package
+ *  @module         : add-notes.ts - This is optional if expeclictly its an npm or local package
  *  @author         : Vivek D Chenimane <vivekdchenimane.com>
  *  @version        : 1.0
  *  @since          : 02-03-2019
@@ -17,17 +17,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  selector: 'app-add-notes',
+  templateUrl: './add-notes.component.html',
+  styleUrls: ['./add-notes.component.scss']
 })
-export class NoteComponent implements OnInit {
-  flag = true;
+export class AddNotesComponent implements OnInit {
+  flag=true;
   constructor() { }
 
   ngOnInit() {
   }
-
   addNote(){
     this.flag = !this.flag;
    }

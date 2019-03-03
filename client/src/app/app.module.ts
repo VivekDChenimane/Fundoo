@@ -14,8 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component';
-import { NoteComponent } from './components/note/note.component';
 import { NoteIconsComponent } from './components/note-icons/note-icons.component';
+import { AddNotesComponent } from './components/add-notes/add-notes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +23,8 @@ import { NoteIconsComponent } from './components/note-icons/note-icons.component
     RegisterComponent,
     ForgotPasswordComponent,
     HomeComponent,
-    NoteComponent,
-    NoteIconsComponent
+    NoteIconsComponent,
+    AddNotesComponent
   ],
   imports: [
     BrowserModule,
