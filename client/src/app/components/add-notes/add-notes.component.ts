@@ -15,6 +15,9 @@
  * importing all the file from various module
  */
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { HttpService} from '../../service/http/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-notes',
@@ -23,11 +26,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNotesComponent implements OnInit {
   flag=true;
-  constructor() { }
+  constructor(private httpService:HttpService ,private router : Router) { }
 
   ngOnInit() {
   }
+
+  noteTitle=new FormControl('', [Validators.required]);
+  noteContent=new FormControl('',[Validators.required]);
   addNote(){
     this.flag = !this.flag;
+    if(this.flag){
+    console.log(localStorage.getItem('token'));
+    if(this.noteTitle.value==''||this.noteContent.value==''){
+    }
+    else{
+      var note = {
+        "title":this.noteTitle.value,
+        "description":this.noteContent,
+        "labelIdList":[],
+        "checklist":"",
+        "isPined":"",
+        "isArchived":"",
+        "color":"",
+        "reminder":[],
+        "collaberators":""
+      }
+      this.httpService.postUrlEncoded('notes/addNotes',note).subscribe(data=>{
+        console.log(data);
+      })
+    }
    }
+  }
 }

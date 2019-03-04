@@ -16,6 +16,9 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { HomeComponent } from './components/home/home.component';
 import { NoteIconsComponent } from './components/note-icons/note-icons.component';
 import { AddNotesComponent } from './components/add-notes/add-notes.component';
+import { DisplayNotesComponent } from './components/display-notes/display-notes.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { RemindersComponent } from './components/reminders/reminders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,10 @@ import { AddNotesComponent } from './components/add-notes/add-notes.component';
     ForgotPasswordComponent,
     HomeComponent,
     NoteIconsComponent,
-    AddNotesComponent
+    AddNotesComponent,
+    DisplayNotesComponent,
+    NotesComponent,
+    RemindersComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component'
-import { AddNotesComponent } from './components/add-notes/add-notes.component'
+import { NotesComponent } from './components/notes/notes.component'
+
 const routes: Routes = [
   { 
     path: '',
@@ -33,12 +34,12 @@ const routes: Routes = [
     children:[
       {
         path:'',
-        redirectTo:'add-notes',
+        redirectTo:'notes',
         pathMatch:'full'
       },
       {
-        path:'add-notes',
-        component:AddNotesComponent
+        path:'notes',
+        component:NotesComponent
       }
   ]
   }
