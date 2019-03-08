@@ -44,7 +44,7 @@ export class AddNotesComponent implements OnInit {
         "title":this.noteTitle.value,
         "description":this.noteContent.value,
         "labelIdList":[],
-        "checklist":"",
+        "checklist":"",                 
         "isPined":"",
         "isArchived":"",
         "color":"",
