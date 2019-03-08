@@ -32,17 +32,17 @@ export class AddNotesComponent implements OnInit {
   }
 
   noteTitle=new FormControl('', [Validators.required]);
-  noteContent=new FormControl('',[Validators.required]);
+  noteContent=new FormControl('');
   addNote(){
     this.flag = !this.flag;
     if(this.flag){
     console.log(localStorage.getItem('token'));
-    if(this.noteTitle.value==''||this.noteContent.value==''){
+    if(this.noteTitle.value==''){
     }
     else{
       var note = {
         "title":this.noteTitle.value,
-        "description":this.noteContent,
+        "description":this.noteContent.value,
         "labelIdList":[],
         "checklist":"",
         "isPined":"",

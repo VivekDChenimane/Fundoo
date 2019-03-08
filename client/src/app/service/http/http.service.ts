@@ -9,7 +9,7 @@ export class HttpService {
   public httpOptions;
   constructor(private http: HttpClient) { }
   API_URL = environment.baseUrl;
-  postRequest(url, user) {
+  postRequest(url, user) {  
     let headers = new HttpHeaders({
       'Accept': 'application/json',
     });
@@ -34,5 +34,13 @@ export class HttpService {
       })
     };
     return this.http.post(this.API_URL+url,this.encode(notes),this.httpOptions);
+  }
+  httpGetData(url){
+    let headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Authorization':localStorage.getItem('token')
+    });
+    console.log("service");
+    return this.http.get(this.API_URL+url,{headers});
   }
 } 

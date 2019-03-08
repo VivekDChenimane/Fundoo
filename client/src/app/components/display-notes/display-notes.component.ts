@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-display-notes',
@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./display-notes.component.scss']
 })
 export class DisplayNotesComponent implements OnInit {
-
+  @Input() childMessage : string;
+  @Input() message:any;
   constructor() { }
 
   ngOnInit() {
-  }
+    console.log(this.message);
+  } 
+  isHovering = false;
+
+mouseHovering() {
+    this.isHovering = true;
+}
+mouseLeaving() {
+    this.isHovering = false;
+}
 
 }
