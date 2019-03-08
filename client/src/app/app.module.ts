@@ -19,6 +19,7 @@ import { AddNotesComponent } from './components/add-notes/add-notes.component';
 import { DisplayNotesComponent } from './components/display-notes/display-notes.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
+import { NoteDialogComponent } from './components/note-dialog/note-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { RemindersComponent } from './components/reminders/reminders.component';
     AddNotesComponent,
     DisplayNotesComponent,
     NotesComponent,
-    RemindersComponent
+    RemindersComponent,
+    NoteDialogComponent
   ],
   imports: [
     BrowserModule,

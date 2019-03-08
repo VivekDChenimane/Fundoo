@@ -39,13 +39,14 @@
     <i class="material-icons">color_lens</i>
   </button>
   <mat-menu #selectTheme="matMenu" class="matmenu">
-    <div fxLayout="row" fxLayoutAlign="space-around start">
-      <button mat-menu-item>
-          <button mat-mini-fab color="primary">Primary</button>
-          <button mat-mini-fab color="accent">Accent</button>
-          <button mat-mini-fab color="warn">Warn</button>
-      </button>
-    </div>
+    <ng-template matMenuContent>
+        <div fxLayout=row fxLayoutGap=10px style="margin-top:5px" *ngFor='let row of colorArray'>
+          <div *ngFor='let color of row'>
+            <button [ngStyle]="{'background-color': color.color }" (click)='changeColor(color.color)'
+              matTooltip="{{color.name}}" mat-mini-fab></button>
+          </div>
+        </div>
+    </ng-template>
   </mat-menu>
   <button mat-button><i class="material-icons">image</i></button>
   <button mat-button><i class="material-icons">archive</i></button>

@@ -14,7 +14,7 @@
 </div>
 <div *ngIf="flag===false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
 
-  <mat-card fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
+  <mat-card [style.background]=message fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
     [style.backgroundColor]="color">
     <div fxLayout="row" fxLayoutAlign="end start">
       <button mat-icon-button color="basic" (click)="pinned()">
@@ -29,16 +29,16 @@
         </div>
       </button>
     </div>
-    <div >
-      <input contenteditable="true" data-text="Title" fxFlex="30" id="noteContent" [formControl]="noteTitle"
-      fxLayout="column" class="title">
+    <div class="Border" fxLayout="column" class="takenote">
+      <textarea class="textArea" matTextareaAutosize placeholder="Title " [formControl]="noteTitle"
+        class="textArea"></textarea>
     </div>
     <div class="Border" fxLayout="column" class="takenote">
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
     <div fxFlex='100'>
-      <app-note-icons> </app-note-icons>
+      <app-note-icons (messageEvent)="changeColor($event)"> </app-note-icons>
     </div>
     <div fxFlex='10' fxLayoutAlign="end end">
       <button class="addnote" mat-button (click)="addNote()">close</button>
