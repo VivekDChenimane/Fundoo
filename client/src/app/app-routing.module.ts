@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component'
 import { NotesComponent } from './components/notes/notes.component'
+import { NoteDialogComponent } from './components/note-dialog/note-dialog.component'
 
 const routes: Routes = [
   { 
@@ -42,6 +43,10 @@ const routes: Routes = [
         component:NotesComponent
       }
   ]
+  },
+  {
+      path:'update-note',
+      component:NoteDialogComponent
   }
 ];
 @NgModule({

@@ -40,7 +40,6 @@ export class HttpService {
       'Accept': 'application/json',
       'Authorization':localStorage.getItem('token')
     });
-    console.log("service");
     return this.http.get(this.API_URL+url,{headers});
   }
 } 

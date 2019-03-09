@@ -14,7 +14,13 @@
 /**
  * importing all the file from various module
  */
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Inject } from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {NoteDialogComponent} from '../note-dialog/note-dialog.component';
+
+export interface matdialog{
+  array:[];
+}
 
 @Component({
   selector: 'app-display-notes',
@@ -25,10 +31,19 @@ export class DisplayNotesComponent implements OnInit {
   
   @Input() message:any;
   message1:string;
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+  openDialog(i): void {
+    const dialogRef = this.dialog.open(NoteDialogComponent, {
+      data:{i},
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
   ngOnInit() {
-    console.log(this.message);
   } 
   isHovering = false;
   changeColor($event) {

@@ -22,7 +22,6 @@ import { NoteService } from '../../service/note/note.service'
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit,OnChanges {
-  parentMessage = "message from parent"
   constructor(private service:NoteService) { }
 
   ngOnInit() {
@@ -36,8 +35,6 @@ export class NotesComponent implements OnInit,OnChanges {
   getAllCard(){
     
     this.service.getnotes().subscribe(data=>{
-      console.log("notes=>");
-      console.log(data["data"]["data"])
       this.cardData= data["data"]["data"];
       return
     })
