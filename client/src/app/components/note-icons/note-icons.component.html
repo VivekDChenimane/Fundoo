@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="space-around start" >
+<div fxLayout="row wrap" fxLayoutAlign="space-around start" >
   <button id="Remind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remindMenu">
-    <i class="material-icons">notification_important</i>
+    <mat-icon class="material-icons">notification_important</mat-icon>
   </button>
   <mat-menu #remindMenu="matMenu" class="matmenu">
     <p>Reminder:</p>
@@ -34,7 +34,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </mat-menu>
-  <button mat-button> <i class="material-icons">person_add</i></button>
+  <button mat-button> <mat-icon class="material-icons">person_add</mat-icon></button>
   <button mat-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
     <i class="material-icons">color_lens</i>
   </button>
@@ -48,7 +48,7 @@
         </div>
     </ng-template>
   </mat-menu>
-  <button  mat-button><i  class="material-icons">image</i></button>
-  <button mat-button><i class="material-icons">archive</i></button>
-  <button mat-button><i class="material-icons">more_vert</i></button>
+  <button  mat-button><mat-icon class="material-icons">image</mat-icon></button>
+  <button mat-button><mat-icon class="material-icons">archive</mat-icon></button>
+  <button mat-button><mat-icon class="material-icons">more_vert</mat-icon></button>
 </div>
