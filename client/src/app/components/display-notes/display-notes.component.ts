@@ -30,12 +30,12 @@ export interface matdialog{
 export class DisplayNotesComponent implements OnInit {
   
   @Input() message:any;
-  message1:string;
+  color:string;
   constructor(public dialog: MatDialog) { }
-  openDialog(i): void {
+  openDialog(card): void {
     const dialogRef = this.dialog.open(NoteDialogComponent, {
-      data:{i},
-      width: '400px',
+      data:card,
+      width: '600px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -46,10 +46,6 @@ export class DisplayNotesComponent implements OnInit {
   ngOnInit() {
   } 
   isHovering = false;
-  changeColor($event) {
-    this.message1 = $event;
-    console.log(this.message1);
-  }
 mouseHovering() {
     this.isHovering = true;
 }

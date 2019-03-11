@@ -16,29 +16,27 @@
 
   <mat-card [style.background]=message fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
     [style.backgroundColor]="color">
-    <div fxLayout="row" fxLayoutAlign="end start">
-      <button mat-icon-button color="basic" (click)="pinned()">
-        <div class="barpin" *ngIf="flag1==true">
-
-          <img src="../../../assets/images/bell.svg" />
-
-        </div>
-        <div class="barpin" *ngIf="flag1==false">
-
-          <img src="../../../assets/images/bell.svg" />
-        </div>
-      </button>
-    </div>43
-    <div class="Border" fxLayout="column" class="takenote">
+    <div class="Border" fxLayout="row" class="takenote">
       <textarea class="textArea" matTextareaAutosize placeholder="Title " [formControl]="noteTitle"
         class="textArea"></textarea>
+        <!-- <button fxLayoutAlign="end start" mat-icon-button color="basic" (click)="pinned()">
+            <div class="barpin" *ngIf="flag1==true">
+    
+              <img src="../../../assets/images/bell.svg" />
+    
+            </div>
+            <div class="barpin" *ngIf="flag1==false">
+    
+              <img src="../../../assets/images/bell.svg" />
+            </div>
+          </button> -->
     </div>
     <div class="Border" fxLayout="column" class="takenote">
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
     <div fxFlex='100'>
-      <app-note-icons (messageEvent)="changeColor($event)"> </app-note-icons>
+      <app-note-icons (colorEvent)="changeColor($event)"> </app-note-icons>
     </div>
     <div fxFlex='10' fxLayoutAlign="end end">
       <button class="addnote" mat-button (click)="addNote()">close</button>

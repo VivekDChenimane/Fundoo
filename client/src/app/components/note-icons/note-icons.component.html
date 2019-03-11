@@ -1,7 +1,7 @@
-<div fxLayout="row wrap" fxLayoutAlign="space-around start" >
-  <button id="Remind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remindMenu">
-    <mat-icon class="material-icons">notification_important</mat-icon>
-  </button>
+<div fxLayout="row"  >
+  <div fxFlex='15'><button id="Remind"  matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remindMenu">
+    <mat-icon  class="material-icons">notification_important</mat-icon>
+  </button></div>
   <mat-menu #remindMenu="matMenu" class="matmenu">
     <p>Reminder:</p>
     <div>
@@ -34,21 +34,21 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </mat-menu>
-  <button mat-button> <mat-icon class="material-icons">person_add</mat-icon></button>
-  <button mat-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
-    <i class="material-icons">color_lens</i>
-  </button>
+  <div fxFlex='15'><button mat-icon-button > <mat-icon fxFlex='15' class="material-icons">person_add</mat-icon></button></div>
+  <div fxFlex='15'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
+    <mat-icon  class="material-icons">color_lens</mat-icon>
+  </button></div>
   <mat-menu #selectTheme="matMenu" class="matmenu">
     <ng-template matMenuContent>
         <div fxLayout=row fxLayoutGap=10px style="margin-top:5px" *ngFor='let row of colorArray'>
           <div *ngFor='let color of row'>
-            <button [ngStyle]="{'background-color': color.color }" (click)='changeColor(color.color)'
+            <button [ngStyle]="{'background-color': color.color }" (click)='changeColor(color.color,card)'
               matTooltip="{{color.name}}" mat-mini-fab></button>
           </div>
         </div>
     </ng-template>
   </mat-menu>
-  <button  mat-button><mat-icon class="material-icons">image</mat-icon></button>
-  <button mat-button><mat-icon class="material-icons">archive</mat-icon></button>
-  <button mat-button><mat-icon class="material-icons">more_vert</mat-icon></button>
+  <div fxFlex='15'><button  mat-icon-button ><mat-icon class="material-icons">image</mat-icon></button></div>
+  <div fxFlex='15'><button mat-icon-button ><mat-icon   class="material-icons">archive</mat-icon></button></div>
+  <div fxFlex='15'><button mat-icon-button ><mat-icon  class="material-icons">more_vert</mat-icon></button></div>
 </div>

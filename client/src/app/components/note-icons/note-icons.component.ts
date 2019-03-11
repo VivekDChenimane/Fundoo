@@ -14,7 +14,7 @@
 /**
  * importing all thhe file from various module
  */
-import { Component, OnInit ,EventEmitter, Output} from '@angular/core';
+import { Component, OnInit ,EventEmitter, Output ,Input} from '@angular/core';
 
 @Component({
   selector: 'app-note-icons',
@@ -22,7 +22,8 @@ import { Component, OnInit ,EventEmitter, Output} from '@angular/core';
   styleUrls: ['./note-icons.component.scss']
 })
 export class NoteIconsComponent implements OnInit {
-  @Output() messageEvent=new EventEmitter();
+  @Input() card : any
+  @Output() colorEvent=new EventEmitter();
   colorArray = 
     [[
       { 'color': '#B39DDB', 'name': 'purple' },
@@ -46,9 +47,13 @@ export class NoteIconsComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeColor(color){
-  this.messageEvent.emit(color);
-  // console.log(color);
+  changeColor(color,card){
+    if(card!=="undefined"){
+  this.colorEvent.emit(color);
+  console.log(card);}
+  else{
+   console.log(card);
+}
 }
 
 }

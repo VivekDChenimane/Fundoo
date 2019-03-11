@@ -31,7 +31,7 @@ export class NotesComponent implements OnInit,OnChanges {
   ngOnChanges(){
     console.log("Onchanges"); 
   }
-  cardData=[];l
+  cardData=[];
   getAllCard(){
     
     this.service.getnotes().subscribe(data=>{

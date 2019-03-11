@@ -1,5 +1,5 @@
 import { Component, OnInit ,Inject} from '@angular/core';
-import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialogRef,MAT_DIALOG_DATA, MatCard} from '@angular/material';
 import { matdialog } from '../display-notes/display-notes.component';
 
 @Component({
@@ -8,10 +8,15 @@ import { matdialog } from '../display-notes/display-notes.component';
   styleUrls: ['./note-dialog.component.scss']
 })
 export class NoteDialogComponent implements OnInit {
-
+  
   constructor(public dialogRef: MatDialogRef<NoteDialogComponent>,@Inject(MAT_DIALOG_DATA) public data:matdialog) { }
-
+ card=this.data;
+ color:string
   ngOnInit() {
+    console.log(this.data);
   }
-
+  changeColor($event) {
+    this.color = $event;
+    console.log(this.color)
+  }
 }

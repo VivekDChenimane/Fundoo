@@ -27,19 +27,18 @@ import { Router } from '@angular/router';
 export class AddNotesComponent implements OnInit {
   flag=true;
   constructor(private httpService:HttpService ,private router : Router) { }
-  message:string;
+  color:string = '#FFFFFF';
   ngOnInit() {
   }
 
   noteTitle=new FormControl('', [Validators.required]);
   noteContent=new FormControl('');
   changeColor($event) {
-    this.message = $event;
+    this.color = $event;
   }
   addNote(){
     this.flag = !this.flag;
     if(this.flag){
-    console.log(localStorage.getItem('token'));
     if(this.noteTitle.value==''){
     }
     else{
@@ -50,7 +49,7 @@ export class AddNotesComponent implements OnInit {
         "checklist":"",                 
         "isPined":"",
         "isArchived":"",
-        "color":this.message,
+        "color":this.color,
         "reminder":[],
         "collaberators":""
       }

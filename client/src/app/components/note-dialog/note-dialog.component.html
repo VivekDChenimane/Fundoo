@@ -1,13 +1,17 @@
-<mat-card >
-  <mat-card-header>
-      <mat-card-title>
-        <input matInput [(ngModel)]="i.title">
-      </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-      <mat-card-subtitle>
-          <input matInput [(ngModel)]="i.title">
-      </mat-card-subtitle>
-  </mat-card-content>
-  <app-note-icons></app-note-icons>
-</mat-card>
+<div fxFlex='100' fxLayout="column" >
+  <mat-card [style.background]="card.color">
+    <div fxLayout="column" fxFlex="100" fxFlexOffset.xl="20" fxFlex.xs='97'>
+      <div>
+        <div class="Border" fxLayout="row" class="takenote">
+          <textarea class="textArea" matTextareaAutosize placeholder="Title" [(ngModel)]="card.title" ></textarea>
+        </div>
+        <div class="Border" fxLayout="column" class="takenote">
+          <textarea class="textArea" matTextareaAutosize placeholder="Note" [(ngModel)]="card.description"></textarea>
+        </div>
+      </div>
+      <div fxFlex='100'>
+        <app-note-icons (colorEvent)="changeColor($event)" [card]=card></app-note-icons>
+      </div>
+    </div>
+  </mat-card>
+</div>
