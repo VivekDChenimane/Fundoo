@@ -28,14 +28,20 @@ export class NotesComponent implements OnInit,OnChanges {
     this.getAllCard();
   }
   
+  getNewNote($event){
+    console.log($event);
+    // console.log("i'm in parent");
+    this.cardData.push($event);
+    // console.log(this.cardData);
+    
+  }
   ngOnChanges(){
     console.log("Onchanges"); 
   }
   cardData=[];
   getAllCard(){
-    
     this.service.getnotes().subscribe(data=>{
-      this.cardData= data["data"]["data"];
+      this.cardData= data["data"]["data"];  
       return
     })
   }

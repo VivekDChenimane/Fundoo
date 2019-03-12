@@ -2,15 +2,15 @@
   <mat-card [style.background]="card.color">
     <div fxLayout="column" fxFlex="100" fxFlexOffset.xl="20" fxFlex.xs='97'>
       <div>
-        <div class="Border" fxLayout="row" class="takenote">
+        <div  fxLayout="row" class="takenote">
           <textarea class="textArea" matTextareaAutosize placeholder="Title" [(ngModel)]="card.title" ></textarea>
         </div>
-        <div class="Border" fxLayout="column" class="takenote">
+        <div  fxLayout="column" class="takenote">
           <textarea class="textArea" matTextareaAutosize placeholder="Note" [(ngModel)]="card.description"></textarea>
         </div>
       </div>
       <div fxFlex='100'>
-        <app-note-icons (colorEvent)="changeColor($event)" [card]=card></app-note-icons>
+        <app-note-icons (colorEvent)="changeColor($event,card)" [card]=card></app-note-icons>
       </div>
     </div>
   </mat-card>

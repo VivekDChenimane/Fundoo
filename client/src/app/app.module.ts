@@ -20,6 +20,7 @@ import { DisplayNotesComponent } from './components/display-notes/display-notes.
 import { NotesComponent } from './components/notes/notes.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { NoteDialogComponent } from './components/note-dialog/note-dialog.component';
+import { ArchiveComponent } from './components/archive/archive.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { NoteDialogComponent } from './components/note-dialog/note-dialog.compon
     DisplayNotesComponent,
     NotesComponent,
     RemindersComponent,
-    NoteDialogComponent
+    NoteDialogComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,

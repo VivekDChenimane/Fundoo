@@ -14,7 +14,7 @@
 /**
  * importing all the file from various module
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpService} from '../../service/http/http.service';
 import { Router } from '@angular/router';
@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
 })
 export class AddNotesComponent implements OnInit {
   flag=true;
+  @Output() newNoteEvent = new EventEmitter();
   constructor(private httpService:HttpService ,private router : Router) { }
   color:string = '#FFFFFF';
   ngOnInit() {
@@ -40,6 +41,7 @@ export class AddNotesComponent implements OnInit {
     this.flag = !this.flag;
     if(this.flag){
     if(this.noteTitle.value==''){
+      return
     }
     else{
       var note = {
@@ -53,9 +55,13 @@ export class AddNotesComponent implements OnInit {
         "reminder":[],
         "collaberators":""
       }
+      this.newNoteEvent.emit(note);
       this.httpService.postUrlEncoded('notes/addNotes',note).subscribe(data=>{
         console.log(data);
+        this.noteTitle.reset();
+        this.noteContent.reset();
       })
+      
     }
    }
   }

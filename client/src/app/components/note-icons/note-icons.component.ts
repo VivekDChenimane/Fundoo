@@ -14,17 +14,17 @@
 /**
  * importing all thhe file from various module
  */
-import { Component, OnInit ,EventEmitter, Output ,Input} from '@angular/core';
-
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { NoteService } from '../../service/note/note.service';
 @Component({
   selector: 'app-note-icons',
   templateUrl: './note-icons.component.html',
   styleUrls: ['./note-icons.component.scss']
 })
 export class NoteIconsComponent implements OnInit {
-  @Input() card : any
-  @Output() colorEvent=new EventEmitter();
-  colorArray = 
+  @Input() card: any
+  @Output() colorEvent = new EventEmitter();
+  colorArray =
     [[
       { 'color': '#B39DDB', 'name': 'purple' },
       { 'color': '#F48FB1', 'name': 'pink' },
@@ -42,18 +42,43 @@ export class NoteIconsComponent implements OnInit {
       { 'color': '#81D4FA', 'name': 'blue' },
       { 'color': '#0288D1', 'name': 'darkblue' }
     ]]
-  constructor() { }
+  constructor(private noteService:NoteService) { }
 
   ngOnInit() {
   }
 
-  changeColor(color,card){
-    if(card!=="undefined"){
-  this.colorEvent.emit(color);
-  console.log(card);}
-  else{
-   console.log(card);
-}
+  changeColor(color, card) {
+    this.colorEvent.emit(color);
+    if(card==undefined){
+      console.log("no note id");
+      return ;
+    }
+    else{
+      card.color=color;
+      this.noteService.updateColor({
+        "color": color,
+        'noteIdList': [card.id]
+      }).subscribe(data =>{
+        console.log(data, "data from update color")},
+        err=>{
+          console.log(err,"err");
+        })
+    }
+  }
+  deleteNote(card){
+    if(card==undefined){
+      console.log("no note id");
+      return ;
+    }
+    else{
+    console.log("Card need to be deleted");
+    this.noteService.deleteNote({
+      "isdeleted":true,
+      "noteIdList":[card.id]
+  }).subscribe(data=>{
+    console.log(data)
+  },err=>console.log(err))
+  }
 }
 
 }

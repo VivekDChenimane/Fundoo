@@ -50,5 +50,14 @@
   </mat-menu>
   <div fxFlex='15'><button  mat-icon-button ><mat-icon class="material-icons">image</mat-icon></button></div>
   <div fxFlex='15'><button mat-icon-button ><mat-icon   class="material-icons">archive</mat-icon></button></div>
-  <div fxFlex='15'><button mat-icon-button ><mat-icon  class="material-icons">more_vert</mat-icon></button></div>
+  <div fxFlex='15'><button mat-icon-button ><mat-icon  class="material-icons" [matMenuTriggerFor]="More">more_vert</mat-icon></button></div>
+  <mat-menu #More="matMenu" class="matmenu">
+    <div>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="deleteNote(card)">
+          Delete
+        </div>
+      </button>
+    </div>
+  </mat-menu>
 </div>

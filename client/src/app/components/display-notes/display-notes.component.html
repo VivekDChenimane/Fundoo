@@ -3,9 +3,9 @@
     <!-- <p></p> -->
     <mat-card class="display-note" [style.background]=card.color fxFlex="0 1 calc(33.3%)" fxLayout="row wrap"
       fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%">
-      <div (click)=openDialog(card) fxLayout="column">
+      <div (click)=openDialog(card) (click)="show(card)" fxLayout="column">
         <mat-card-header>
-          <mat-card-title>{{card.title}}</mat-card-title>
+          <mat-card-title >{{card.title}}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <mat-card-subtitle>{{card.description}}</mat-card-subtitle>
@@ -13,7 +13,7 @@
       </div>
       <div fxFlex='100' fxLayout="row">
         <mat-card-actions>
-          <app-note-icons (colorEvent)="changeColor($event)" [card]=card ></app-note-icons>
+          <app-note-icons (colorEvent)="changeColor($event,card)" [card]=card ></app-note-icons>
         </mat-card-actions>
       </div>
     </mat-card>

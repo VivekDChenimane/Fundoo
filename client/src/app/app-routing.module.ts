@@ -10,39 +10,17 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { HomeComponent } from './components/home/home.component'
 import { NotesComponent } from './components/notes/notes.component'
 import { NoteDialogComponent } from './components/note-dialog/note-dialog.component'
+import { ArchiveComponent } from './components/archive/archive.component';
 
 const routes: Routes = [
-  { 
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'registration',
-    component: RegisterComponent
-  },
-  {
-    path: 'forgot',
-    component: ForgotPasswordComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    children:[
-      {
-        path:'',
-        redirectTo:'notes',
-        pathMatch:'full'
-      },
-      {
-        path:'notes',
-        component:NotesComponent
-      }
-  ]
+  {path: '',redirectTo: 'login',pathMatch: 'full'},
+  {path: 'login',component: LoginComponent},
+  {path: 'registration',component: RegisterComponent},
+  {path: 'forgot',component: ForgotPasswordComponent},
+  {path: 'home',component: HomeComponent,children:[
+      {path:'',redirectTo:'notes',pathMatch:'full'},
+      {path:'notes',component:NotesComponent}
+    ]
   },
   {
       path:'update-note',

@@ -42,4 +42,25 @@ export class HttpService {
     });
     return this.http.get(this.API_URL+url,{headers});
   }
+  encodedPostForm(url: any, data: any) {
+    url = environment.baseUrl+ url;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(url, this.encode(data), httpOptions);
+  }
+  postJSON(url: string, body: any): any {
+    url=environment.baseUrl+ url;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(url, body, httpOptions)
+  }
+
 } 

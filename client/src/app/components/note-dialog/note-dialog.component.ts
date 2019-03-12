@@ -16,7 +16,8 @@ export class NoteDialogComponent implements OnInit {
     console.log(this.data);
   }
   changeColor($event) {
-    this.color = $event;
+    this.card.color = $event;
     console.log(this.color)
   }
+
 }

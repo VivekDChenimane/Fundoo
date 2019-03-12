@@ -17,9 +17,13 @@
 import { Component, OnInit,Input,Inject } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {NoteDialogComponent} from '../note-dialog/note-dialog.component';
+import { NoteService } from '../../service/note/note.service';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 export interface matdialog{
-  array:[];
+  title:string;
+  description:string;
+  color:any;
 }
 
 @Component({
@@ -31,8 +35,17 @@ export class DisplayNotesComponent implements OnInit {
   
   @Input() message:any;
   color:string;
-  constructor(public dialog: MatDialog) { }
+  model: any;
+  title:any;
+  description:any;
+  constructor(public dialog: MatDialog , private noteService:NoteService) { }
+  show(card){
+    // console.log(card.title);
+    this.description=card.description;
+    this.title=card.title;
+  }
   openDialog(card): void {
+    
     const dialogRef = this.dialog.open(NoteDialogComponent, {
       data:card,
       width: '600px',
@@ -40,17 +53,39 @@ export class DisplayNotesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      // console.log(card["title"]);
+      // console.log(card.id);
+      // console.log(card["description"]);
+      if(card.title!=this.title||card.description!=this.description){
+        this.model={
+          noteId:card.id,
+          title:card.title,
+          description:card.description
+        }
+        this.noteService.updatenote(this.model).subscribe(message=>{
+          console.log(message);
+        })
+      }
+      else{
+        console.log("changes not needed");
+      }
+    
     });
   }
 
   ngOnInit() {
   } 
-  isHovering = false;
-mouseHovering() {
-    this.isHovering = true;
-}
-mouseLeaving() {
-    this.isHovering = false;
-}
+  changeColor($event,card) {
+    card.color = $event;
+  }
+
+
+  // isHovering = false;
+// mouseHovering() {
+//     this.isHovering = true;
+// }
+// mouseLeaving() {
+//     this.isHovering = false;
+// }
 
 }
