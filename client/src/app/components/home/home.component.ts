@@ -37,7 +37,13 @@ export class HomeComponent implements OnInit,OnDestroy {
   ngOnInit() {
   }
   navigateArchive(){
-    this.router.navigate([])
+    this.router.navigate(['archive']);
+  }
+  navigateHome(){
+    this.router.navigate(['home']);
+  }
+  navigateTrash(){
+    this.router.navigate(['trash']);
   }
   ngOnDestroy(){
     this.mobileQuery.removeListener(this._mobileQueryListener);

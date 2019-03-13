@@ -33,7 +33,7 @@
       fixedTopGap="56">
       <mat-nav-list>
         <mat-list role="List">
-          <mat-list-item role="listitem" id="note">
+          <mat-list-item role="listitem" id="note" (click)="navigateHome()">
             <img id="img1" src="../../../assets/images/bulb.svg" />
             Note</mat-list-item>
 
@@ -53,7 +53,7 @@
             <img id="img4" src="../../../assets/images/archive.svg" />
             Archive</mat-list-item>
 
-          <mat-list-item role="listitem" id="bin">
+          <mat-list-item role="listitem" id="bin" (click)="navigateTrash()">
             <img id="img5" src="../../../assets/images/trash.svg" />
             Trash</mat-list-item>
 

@@ -7,10 +7,17 @@ import { NoteService } from '../../service/note/note.service'
   styleUrls: ['./archive.component.scss']
 })
 export class ArchiveComponent implements OnInit {
-
-  constructor() { }
+  cardData:any
+  constructor(private service:NoteService) { }
 
   ngOnInit() {
-  }
+    // this.getAllArchiveCard();
 
+  }
+  // getAllArchiveCard(){
+  //   this.service.archivenotes().subscribe(data=>{
+  //     this.cardData= data["data"]["data"];  
+  //     return
+  //   })
+  // }
 }

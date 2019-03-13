@@ -16,6 +16,7 @@
  */
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { NoteService } from '../../service/note/note.service';
+
 @Component({
   selector: 'app-note-icons',
   templateUrl: './note-icons.component.html',
@@ -24,6 +25,9 @@ import { NoteService } from '../../service/note/note.service';
 export class NoteIconsComponent implements OnInit {
   @Input() card: any
   @Output() colorEvent = new EventEmitter();
+  @Output() addNoteEvent = new EventEmitter();
+  @Input() show: boolean
+  model: any;
   colorArray =
     [[
       { 'color': '#B39DDB', 'name': 'purple' },
@@ -47,17 +51,16 @@ export class NoteIconsComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeColor(color, card) {
-    this.colorEvent.emit(color);
-    if(card==undefined){
-      console.log("no note id");
+  changeColor(color) {
+    if(this.card==undefined){
+      this.colorEvent.emit(color);
       return ;
     }
     else{
-      card.color=color;
+      this.card.color=color;
       this.noteService.updateColor({
         "color": color,
-        'noteIdList': [card.id]
+        'noteIdList': [this.card.id]
       }).subscribe(data =>{
         console.log(data, "data from update color")},
         err=>{
@@ -65,8 +68,39 @@ export class NoteIconsComponent implements OnInit {
         })
     }
   }
-  deleteNote(card){
-    if(card==undefined){
+  updateNote(){
+    if(this.card==undefined){
+      this.addNoteEvent.emit();
+      return ;
+    }
+    else{ 
+      this.addNoteEvent.emit();
+      this.model={
+        noteId:this.card.id,
+        title:this.card.title,
+        description:this.card.description
+      }
+      this.noteService.updatenote(this.model).subscribe(message=>{
+        console.log(message);
+      })
+    // }
+     }
+    }
+    archiveNote(){
+      this.model={
+        noteId:this.card.id,
+        isArchived:true
+      }
+      console.log("in servi");
+      
+      this.noteService.archiveNote(this.model).subscribe(message=>{
+        console.log("archive done");
+        
+        console.log(message);
+      })
+    }
+  deleteNote(){
+    if(this.card==undefined){
       console.log("no note id");
       return ;
     }
@@ -74,7 +108,7 @@ export class NoteIconsComponent implements OnInit {
     console.log("Card need to be deleted");
     this.noteService.deleteNote({
       "isdeleted":true,
-      "noteIdList":[card.id]
+      "noteIdList":[this.card.id]
   }).subscribe(data=>{
     console.log(data)
   },err=>console.log(err))

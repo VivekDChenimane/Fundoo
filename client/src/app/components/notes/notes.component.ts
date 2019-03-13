@@ -29,10 +29,7 @@ export class NotesComponent implements OnInit,OnChanges {
   }
   
   getNewNote($event){
-    console.log($event);
-    // console.log("i'm in parent");
     this.cardData.push($event);
-    // console.log(this.cardData);
     
   }
   ngOnChanges(){

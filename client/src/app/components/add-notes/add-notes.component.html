@@ -1,8 +1,8 @@
-<div *ngIf="flag===true" (click)="addNote()" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
+<div *ngIf="flag===true" (click)="flag=false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
   <mat-card fxFlex="50" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center">
 
-    <div data-text="Take a note.." class="Border" id="noteTitle" fxLayout="column" contenteditable="true"
-      class="maincard">
+    <div class="Border" id="noteTitle" fxLayout="column"
+      class="maincard">Take a note...
     </div>
     <div fxLayout="row" fxLayoutAlign="end start" fxFlex.xs="100">
       <mat-icon class="check"  matTooltip="New List" disabled>check_box</mat-icon>
@@ -11,7 +11,7 @@
     </div>
   </mat-card>
 </div>
-<div *ngIf="flag===false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
+<div *ngIf="flag===false"  fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
 
   <mat-card [style.background]=message fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
     [style.backgroundColor]="color">
@@ -35,10 +35,10 @@
         class="textArea"></textarea>
     </div>
     <div fxFlex='100'>
-      <app-note-icons (colorEvent)="changeColor($event)"> </app-note-icons>
+      <app-note-icons [show]="true" (colorEvent)="changeColor($event)" (addNoteEvent)="addNote()"> </app-note-icons>
     </div>
-    <div fxFlex='10' fxLayoutAlign="end end">
+    <!-- <div fxFlex='10' fxHide.md fxLayoutAlign="end end">
       <button class="addnote" mat-button (click)="addNote()">close</button>
-    </div>
+    </div> -->
   </mat-card>
 </div>

@@ -35,7 +35,7 @@ export class DisplayNotesComponent implements OnInit {
   
   @Input() message:any;
   color:string;
-  model: any;
+  // model: any;
   title:any;
   description:any;
   constructor(public dialog: MatDialog , private noteService:NoteService) { }
@@ -53,31 +53,33 @@ export class DisplayNotesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // console.log(card["title"]);
-      // console.log(card.id);
-      // console.log(card["description"]);
-      if(card.title!=this.title||card.description!=this.description){
-        this.model={
-          noteId:card.id,
-          title:card.title,
-          description:card.description
-        }
-        this.noteService.updatenote(this.model).subscribe(message=>{
-          console.log(message);
-        })
-      }
-      else{
-        console.log("changes not needed");
-      }
+      // // console.log(card["title"]);
+      // // console.log(card.id);
+      // // console.log(card["description"]);
+      // if(card.title!=this.title||card.description!=this.description){
+      //   this.model={
+      //     noteId:card.id,
+      //     title:card.title,
+      //     description:card.description
+      //   }
+      //   this.noteService.updatenote(this.model).subscribe(message=>{
+      //     console.log(message);
+      //   })
+      // }
+      // else{
+      //   console.log("changes not needed");
+      // }
     
     });
   }
 
   ngOnInit() {
   } 
-  changeColor($event,card) {
-    card.color = $event;
-  }
+  // changeColor($event,card) {
+  //   // card.color = $event;
+  //   console.log("color");
+    
+  // }
 
 
   // isHovering = false;

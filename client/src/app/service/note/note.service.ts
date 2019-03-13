@@ -5,11 +5,10 @@ import { HttpService } from '../http/http.service';
   providedIn: 'root'
 })
 export class NoteService {
-
+ 
   constructor(private service:HttpService ) { }
   getnotes(){
-    let url='notes/getNotesList';
-    return this.service.httpGetData(url);
+    return this.service.httpGetData('notes/getNotesList');
   }
   updatenote(data){
     return this.service.encodedPostForm('notes/updateNotes',data)
@@ -19,5 +18,8 @@ export class NoteService {
   }
   deleteNote(data){
     return this.service.postJSON('notes/deleteForeverNotes',data)
+  }
+  archiveNote(data){
+    return this.service.postJSON('notes/archiveNote',data)
   }
 }
