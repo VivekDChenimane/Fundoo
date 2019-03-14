@@ -5,7 +5,7 @@
  * 
  *  @file           : notes.component.ts
  *  @overview       : To display the note in dashboard.
- *  @module         : notes.ts - This is optional if expeclictly its an npm or local package
+ *  @module         : notes.ts - This is optional if ex peclictly its an npm or local package
  *  @author         : Vivek D Chenimane <vivekdchenimane.com>
  *  @version        : 1.0
  *  @since          : 02-03-2019
@@ -21,24 +21,26 @@ import { NoteService } from '../../service/note/note.service'
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss']
 })
-export class NotesComponent implements OnInit,OnChanges {
-  constructor(private service:NoteService) { }
+export class NotesComponent implements OnInit, OnChanges {
+  pinNotes = [];
+  unPinNotes = [];
+  constructor(private service: NoteService) { }
 
   ngOnInit() {
     this.getAllCard();
   }
-  
-  getNewNote($event){
+
+  getNewNote($event) {
     this.cardData.push($event);
-    
+
   }
-  ngOnChanges(){
-    console.log("Onchanges"); 
+  ngOnChanges() {
+    console.log("Onchanges");
   }
-  cardData=[];
-  getAllCard(){
-    this.service.getnotes().subscribe(data=>{
-      this.cardData= data["data"]["data"];  
+  cardData = [];
+  getAllCard() {
+    this.service.getnotes().subscribe(data => {
+      this.cardData = data["data"]["data"];
       return
     })
   }

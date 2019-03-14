@@ -11,13 +11,14 @@ export class ArchiveComponent implements OnInit {
   constructor(private service:NoteService) { }
 
   ngOnInit() {
-    // this.getAllArchiveCard();
+    this.getAllArchiveCard();
 
   }
-  // getAllArchiveCard(){
-  //   this.service.archivenotes().subscribe(data=>{
-  //     this.cardData= data["data"]["data"];  
-  //     return
-  //   })
-  // }
+  getAllArchiveCard(){
+    this.service.archiveNotes().subscribe(data=>{
+      this.cardData= data["data"]["data"];  
+      console.log(data);
+      return
+    })
+  }
 }

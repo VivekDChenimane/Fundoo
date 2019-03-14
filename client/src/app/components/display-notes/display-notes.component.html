@@ -1,4 +1,4 @@
-<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="14px" fxLayoutAlign="space-around center">
+<div class="note-display"fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="14px" fxLayoutAlign="space-around center">
   <div *ngFor="let card of message">
     <!-- <p></p> -->
     <mat-card class="display-note" [style.background]=card.color fxFlex="0 1 calc(33.3%)" fxLayout="row wrap"
@@ -12,9 +12,7 @@
         </mat-card-content>
       </div>
       <div fxFlex='100' fxLayout="row">
-        <mat-card-actions>
-          <app-note-icons [card]=card ></app-note-icons>
-        </mat-card-actions>
+           <app-note-icons [card]=card ></app-note-icons>
       </div>
     </mat-card>
   </div>

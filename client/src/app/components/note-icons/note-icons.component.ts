@@ -87,11 +87,16 @@ export class NoteIconsComponent implements OnInit {
      }
     }
     archiveNote(){
+      if(this.card==undefined){
+        this.addNoteEvent.emit();
+        return ;
+      }
+      else{
       this.model={
-        noteId:this.card.id,
+        noteIdList:[this.card.id],
         isArchived:true
       }
-      console.log("in servi");
+      console.log("in service");
       
       this.noteService.archiveNote(this.model).subscribe(message=>{
         console.log("archive done");
@@ -99,6 +104,7 @@ export class NoteIconsComponent implements OnInit {
         console.log(message);
       })
     }
+  }
   deleteNote(){
     if(this.card==undefined){
       console.log("no note id");

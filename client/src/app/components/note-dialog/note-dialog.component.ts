@@ -22,5 +22,5 @@ export class NoteDialogComponent implements OnInit {
   closeDialog(){
     this.dialogRef.close();
   }
-
+  
 }

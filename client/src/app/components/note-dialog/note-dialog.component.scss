@@ -12,3 +12,6 @@
     outline: none;
     user-select: none;
   } 
+  ::ng-deep .mat-dialog-container{
+    padding:0%; 
+}

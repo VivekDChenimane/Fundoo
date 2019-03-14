@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
 })
 export class AddNotesComponent implements OnInit {
   flag=true;
+  flag1=true;
   @Output() newNoteEvent = new EventEmitter();
   constructor(private httpService:HttpService ,private router : Router) { }
   color:string = '#FFFFFF';
@@ -36,6 +37,9 @@ export class AddNotesComponent implements OnInit {
   noteContent=new FormControl('');
   changeColor($event) {
     this.color = $event;
+  }
+  pinned(){
+    this.flag1=!this.flag1;
   }
   addNote(){
     this.flag = !this.flag;
