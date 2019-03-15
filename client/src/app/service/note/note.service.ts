@@ -10,6 +10,9 @@ export class NoteService {
   getnotes(){
     return this.service.httpGetData('notes/getNotesList');
   }
+  addnote(data){
+    return this.service.postUrlEncoded('notes/addNotes',data);
+  }
   updatenote(data){
     return this.service.encodedPostForm('notes/updateNotes',data)
   }

@@ -14,7 +14,7 @@
 <div *ngIf="flag===false"  fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
 
   <mat-card [style.background]=message fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
-    [style.backgroundColor]="color">
+    [style.backgroundColor]=card.color>
     <div class="Border" fxLayout="row" class="takenote">
       <textarea class="textArea" matTextareaAutosize placeholder="Title " [formControl]="noteTitle"
         class="textArea"></textarea>
@@ -34,7 +34,7 @@
         class="textArea"></textarea>
     </div>
     <div fxFlex='100'>
-      <app-note-icons (colorEvent)="changeColor($event)" (addNoteEvent)="addNote()"> </app-note-icons>
+      <app-note-icons (colorEvent)="changeColor($event)" (addNoteEvent)="addNote()" [card]=card > </app-note-icons>
     </div>
     <!-- <div fxFlex='10' fxHide.md fxLayoutAlign="end end">
       <button class="addnote" mat-button (click)="addNote()">close</button>

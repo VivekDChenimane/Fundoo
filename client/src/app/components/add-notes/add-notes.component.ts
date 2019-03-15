@@ -16,8 +16,7 @@
  */
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { HttpService} from '../../service/http/http.service';
-import { Router } from '@angular/router';
+import { NoteService } from '../../service/note/note.service';
 
 @Component({
   selector: 'app-add-notes',
@@ -27,17 +26,25 @@ import { Router } from '@angular/router';
 export class AddNotesComponent implements OnInit {
   flag=true;
   flag1=true;
+  card  = {
+    "isPined":false,
+    "isArchived":false,
+    "color":"#FFFFFF",
+    "reminder":[],
+    "collaberators":""
+  };
   @Output() newNoteEvent = new EventEmitter();
-  constructor(private httpService:HttpService ,private router : Router) { }
+  constructor(private noteService:NoteService) { }
   color:string = '#FFFFFF';
   ngOnInit() {
+    this.card 
   }
 
   noteTitle=new FormControl('', [Validators.required]);
   noteContent=new FormControl('');
-  changeColor($event) {
-    this.color = $event;
-  }
+  // changeColor($event) {
+  //   this.color = $event;
+  // }
   pinned(){
     this.flag1=!this.flag1;
   }
@@ -45,27 +52,31 @@ export class AddNotesComponent implements OnInit {
     this.flag = !this.flag;
     if(this.flag){
     if(this.noteTitle.value==''){
+      console.log("value barthilla");
+      
       return
     }
     else{
       var note = {
+        "id":undefined,
         "title":this.noteTitle.value,
         "description":this.noteContent.value,
         "labelIdList":[],
         "checklist":"",                 
-        "isPined":"",
-        "isArchived":"",
-        "color":this.color,
+        "isPined":this.card.isPined,
+        "isArchived":this.card.isArchived,
+        "color":this.card.color,
         "reminder":[],
         "collaberators":""
       }
       this.newNoteEvent.emit(note);
-      this.httpService.postUrlEncoded('notes/addNotes',note).subscribe(data=>{
+      this.noteService.addnote(note).subscribe(data=>{
         console.log(data);
         this.noteTitle.reset();
         this.noteContent.reset();
+        this.card.color="#FFFFFF";
       })
-      
+      // console.log(this.card.isArchived+this.card.color);
     }
    }
   }

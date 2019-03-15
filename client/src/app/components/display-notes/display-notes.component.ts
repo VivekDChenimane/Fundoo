@@ -32,7 +32,7 @@ export interface matdialog{
 })
 export class DisplayNotesComponent implements OnInit {
   
-  @Input() message:any;
+  @Input() notes:any;
   color:string;
   model: any;
   title:any;

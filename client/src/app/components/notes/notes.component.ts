@@ -32,7 +32,15 @@ export class NotesComponent implements OnInit, OnChanges {
 
   getNewNote($event) {
     this.cardData.push($event);
-
+    if($event["isArchived"]==false){        
+      if($event["isPined"]==false){
+        this.unPinNotes.push($event);
+        }
+      else
+        this.pinNotes.push($event);
+    }
+  
+ 
   }
   ngOnChanges() {
     console.log("Onchanges");

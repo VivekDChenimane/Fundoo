@@ -50,11 +50,14 @@ export class NoteIconsComponent implements OnInit {
   constructor(private noteService:NoteService) { }
 
   ngOnInit() {
+    console.log(this.card);
+    
   }
 
   changeColor(color) {
-    if(this.card==undefined){
-      this.colorEvent.emit(color);
+    if(this.card.id==undefined){
+      this.card.color=color;
+      // this.colorEvent.emit(color);
       return ;
     }
     else{
@@ -69,21 +72,22 @@ export class NoteIconsComponent implements OnInit {
         })
     }
   }
-  check(property){
+  check($property){
+    // console.log($property);
     // console.log(property);
-    this.count++;
-    console.log(this.card[property]);
-    console.log(this.card["isArchived"]);
-    console.log(this.count);
+    // this.count++;
+    // console.log(this.card[property]);
+    // console.log(this.card["isArchived"]);
+    // console.log(this.count);
     
         
     // if(this.card==undefined || !this.card[property]){
     //  return false ;
     // }
-    return true;
+    return false;
   }
   updateNote(){
-    if(this.card==undefined){
+    if(this.card.id==undefined){
       this.addNoteEvent.emit();
       return ;
     }
@@ -101,8 +105,10 @@ export class NoteIconsComponent implements OnInit {
      }
     }
     archiveNote(){
-      if(this.card==undefined){
-        this.addNoteEvent.emit();
+      if(this.card.id==undefined){
+        // this.addNoteEvent.emit();
+        console.log("archive ge banthu");
+        this.card.isArchived=true;
         return ;
       }
       else{
@@ -132,8 +138,8 @@ export class NoteIconsComponent implements OnInit {
   }
 
 trashNote(){
-  if(this.card==undefined){
-    console.log("no note id");
+  if(this.card.id==undefined){
+    console.log("can't delete creating note");
     return ;
   }
   else{
