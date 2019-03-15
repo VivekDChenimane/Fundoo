@@ -1,12 +1,8 @@
 <div fxLayout="column wrap"fxLayoutGap="15px" fxLayoutAlign="flex-start">
 <div><app-add-notes (newNoteEvent)="getNewNote($event)"></app-add-notes></div>
 
-<div ><app-display-notes  class="container" [message]="cardData"></app-display-notes></div>
+<div ><app-display-notes  class="container" [message]="unPinNotes"></app-display-notes></div>
 </div>
 
 
-<!-- <div class="card">
-    <app-note-icons></app-note-icons>
-
-</div> -->
 

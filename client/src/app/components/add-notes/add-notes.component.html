@@ -30,11 +30,11 @@
           </button> -->
     </div>
     <div class="Border" fxLayout="column" class="takenote">
-      <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. "
+      <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
     <div fxFlex='100'>
-      <app-note-icons [show]="true" (colorEvent)="changeColor($event)" (addNoteEvent)="addNote()"> </app-note-icons>
+      <app-note-icons (colorEvent)="changeColor($event)" (addNoteEvent)="addNote()"> </app-note-icons>
     </div>
     <!-- <div fxFlex='10' fxHide.md fxLayoutAlign="end end">
       <button class="addnote" mat-button (click)="addNote()">close</button>

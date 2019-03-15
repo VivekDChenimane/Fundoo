@@ -22,6 +22,7 @@ import { RemindersComponent } from './components/reminders/reminders.component';
 import { NoteDialogComponent } from './components/note-dialog/note-dialog.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
+import { SearchComponent } from './components/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { TrashComponent } from './components/trash/trash.component';
     RemindersComponent,
     NoteDialogComponent,
     ArchiveComponent,
-    TrashComponent
+    TrashComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -26,7 +26,8 @@ export class NoteIconsComponent implements OnInit {
   @Input() card: any
   @Output() colorEvent = new EventEmitter();
   @Output() addNoteEvent = new EventEmitter();
-  @Input() show: boolean
+  @Input() show=true;
+  count :number =0;
   model: any;
   colorArray =
     [[
@@ -68,6 +69,19 @@ export class NoteIconsComponent implements OnInit {
         })
     }
   }
+  check(property){
+    // console.log(property);
+    this.count++;
+    console.log(this.card[property]);
+    console.log(this.card["isArchived"]);
+    console.log(this.count);
+    
+        
+    // if(this.card==undefined || !this.card[property]){
+    //  return false ;
+    // }
+    return true;
+  }
   updateNote(){
     if(this.card==undefined){
       this.addNoteEvent.emit();
@@ -96,29 +110,43 @@ export class NoteIconsComponent implements OnInit {
         noteIdList:[this.card.id],
         isArchived:true
       }
-      console.log("in service");
-      
       this.noteService.archiveNote(this.model).subscribe(message=>{
-        console.log("archive done");
-        
         console.log(message);
+        this.card=undefined;
       })
     }
   }
-  deleteNote(){
-    if(this.card==undefined){
-      console.log("no note id");
-      return ;
-    }
-    else{
-    console.log("Card need to be deleted");
-    this.noteService.deleteNote({
-      "isdeleted":true,
-      "noteIdList":[this.card.id]
-  }).subscribe(data=>{
-    console.log(data)
-  },err=>console.log(err))
-  }
-}
 
+  unarchiveNote(){
+    this.model={
+      noteIdList:[this.card.id],
+      isArchived:false
+    }
+    console.log("in service");
+    
+    this.noteService.unarchiveNote(this.model).subscribe(message=>{
+      console.log("unarchive done");
+      console.log(message);
+      this.card=undefined;
+    })
+  }
+
+trashNote(){
+  if(this.card==undefined){
+    console.log("no note id");
+    return ;
+  }
+  else{
+  console.log("Card need to be deleted");
+  this.noteService.trashNote({
+    "isDeleted":true,
+    "noteIdList":[this.card.id]
+}).subscribe(data=>{
+  console.log(data)
+  console.log("trash done");
+  console.log(this.card);
+ 
+},err=>console.log(err))
+}
+}
 }

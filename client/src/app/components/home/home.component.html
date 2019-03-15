@@ -13,8 +13,9 @@
         <button mat-icon-button>
           <mat-icon>search</mat-icon>
         </button>
-        <input fxFlex="90" [(ngModel)]="value" matInput placeholder="search" [style.fontSize.px]="18" class="searchText"
+       <input fxFlex="90" [(ngModel)]="value" matInput placeholder="search" [style.fontSize.px]="18" class="searchText"
           autocomplete="off">
+            <!--<app-search  (keyword)=value></app-search> -->
       </mat-form-field>
     </div>
     <div fxFlex="25" fxLayoutAlign="end start" class="settingbtn">

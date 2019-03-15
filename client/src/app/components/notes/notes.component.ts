@@ -23,7 +23,7 @@ import { NoteService } from '../../service/note/note.service'
 })
 export class NotesComponent implements OnInit, OnChanges {
   pinNotes = [];
-  unPinNotes = [];
+  unPinNotes =[];
   constructor(private service: NoteService) { }
 
   ngOnInit() {
@@ -41,7 +41,22 @@ export class NotesComponent implements OnInit, OnChanges {
   getAllCard() {
     this.service.getnotes().subscribe(data => {
       this.cardData = data["data"]["data"];
+      // console.log( this.cardData);
+      this.check();
+      // console.log(this.pinNotes)
       return
     })
+  }
+  check(){
+    this.cardData.forEach(element => {
+      if(element["isDeleted"]==false && element["isArchived"]==false){        
+        if(element["isPined"]==false){
+          this.unPinNotes.push(element);
+          }
+        else
+          this.pinNotes.push(element);
+      }
+    });
+    console.log(this.pinNotes)
   }
 }

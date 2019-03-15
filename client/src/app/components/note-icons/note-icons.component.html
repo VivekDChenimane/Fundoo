@@ -49,18 +49,21 @@
     </ng-template>
   </mat-menu>
   <div fxFlex='15'><button  mat-icon-button ><mat-icon class="material-icons">image</mat-icon></button></div>
-  <div fxFlex='15'><button mat-icon-button ><mat-icon   class="material-icons"(click)="archiveNote()">archive</mat-icon></button></div>
+  <div fxFlex='15'><button mat-icon-button >
+    <mat-icon *ngIf="check(isArchived)" class="material-icons"(click)="unarchiveNote()">unarchive</mat-icon>
+    <mat-icon *ngIf="!check(isArchived)" class="material-icons"(click)="archiveNote()">archive</mat-icon>
+  </button></div>
   <div fxFlex='15'><button mat-icon-button  [matMenuTriggerFor]="More"><mat-icon  class="material-icons">more_vert</mat-icon></button></div>
   <mat-menu #More="matMenu" class="matmenu">
     <div>
       <button mat-menu-item>
-        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="deleteNote()">
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="trashNote()">
           Delete
         </div>
       </button>
     </div>
   </mat-menu>
-  <div fxFlex='' fxHide.md *ngIf="show">
+  <div fxFlex='' *ngIf="show">
     <button class="addnote" mat-button (click)="updateNote()">close</button>
   </div>
 </div>

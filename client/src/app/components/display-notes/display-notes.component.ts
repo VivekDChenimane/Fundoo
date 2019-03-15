@@ -18,7 +18,6 @@ import { Component, OnInit,Input,Inject } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {NoteDialogComponent} from '../note-dialog/note-dialog.component';
 import { NoteService } from '../../service/note/note.service';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 export interface matdialog{
   title:string;
@@ -35,7 +34,7 @@ export class DisplayNotesComponent implements OnInit {
   
   @Input() message:any;
   color:string;
-  // model: any;
+  model: any;
   title:any;
   description:any;
   constructor(public dialog: MatDialog , private noteService:NoteService) { }
@@ -47,29 +46,28 @@ export class DisplayNotesComponent implements OnInit {
   openDialog(card): void {
     
     const dialogRef = this.dialog.open(NoteDialogComponent, {
+      position: {top: '12.5%', left: '25%'},
       data:card,
-      width: '600px'
+      width: '600px',
+      // hasBackdrop: false,
+      // disableClose: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // // console.log(card["title"]);
-      // // console.log(card.id);
-      // // console.log(card["description"]);
-      // if(card.title!=this.title||card.description!=this.description){
-      //   this.model={
-      //     noteId:card.id,
-      //     title:card.title,
-      //     description:card.description
-      //   }
-      //   this.noteService.updatenote(this.model).subscribe(message=>{
-      //     console.log(message);
-      //   })
-      // }
-      // else{
-      //   console.log("changes not needed");
-      // }
-    
+      if(card.title!=this.title||card.description!=this.description){
+        this.model={
+          noteId:card.id,
+          title:card.title,
+          description:card.description
+        }
+        this.noteService.updatenote(this.model).subscribe(message=>{
+          console.log(message);
+        })
+      }
+      else{
+        console.log("changes not needed");
+      }
     });
   }
 
