@@ -34,7 +34,7 @@
         class="textArea"></textarea>
     </div>
     <div fxFlex='100'>
-      <app-note-icons (colorEvent)="changeColor($event)" (addNoteEvent)="addNote()" [card]=card > </app-note-icons>
+      <app-note-icons (addNoteEvent)="addNote()" [card]=card > </app-note-icons>
     </div>
     <!-- <div fxFlex='10' fxHide.md fxLayoutAlign="end end">
       <button class="addnote" mat-button (click)="addNote()">close</button>

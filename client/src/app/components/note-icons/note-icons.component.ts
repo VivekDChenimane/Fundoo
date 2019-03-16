@@ -24,7 +24,7 @@ import { NoteService } from '../../service/note/note.service';
 })
 export class NoteIconsComponent implements OnInit {
   @Input() card: any
-  @Output() colorEvent = new EventEmitter();
+  @Output() removeEvent = new EventEmitter();
   @Output() addNoteEvent = new EventEmitter();
   @Input() show=true;
   count :number =0;
@@ -53,11 +53,12 @@ export class NoteIconsComponent implements OnInit {
     console.log(this.card);
     
   }
-
+  remove(){
+           this.removeEvent.emit();
+  }
   changeColor(color) {
     if(this.card.id==undefined){
       this.card.color=color;
-      // this.colorEvent.emit(color);
       return ;
     }
     else{
@@ -71,20 +72,6 @@ export class NoteIconsComponent implements OnInit {
           console.log(err,"err");
         })
     }
-  }
-  check($property){
-    // console.log($property);
-    // console.log(property);
-    // this.count++;
-    // console.log(this.card[property]);
-    // console.log(this.card["isArchived"]);
-    // console.log(this.count);
-    
-        
-    // if(this.card==undefined || !this.card[property]){
-    //  return false ;
-    // }
-    return false;
   }
   updateNote(){
     if(this.card.id==undefined){
@@ -118,7 +105,7 @@ export class NoteIconsComponent implements OnInit {
       }
       this.noteService.archiveNote(this.model).subscribe(message=>{
         console.log(message);
-        this.card=undefined;
+        this.remove();
       })
     }
   }
@@ -133,7 +120,7 @@ export class NoteIconsComponent implements OnInit {
     this.noteService.unarchiveNote(this.model).subscribe(message=>{
       console.log("unarchive done");
       console.log(message);
-      this.card=undefined;
+      this.remove();
     })
   }
 
@@ -148,10 +135,10 @@ trashNote(){
     "isDeleted":true,
     "noteIdList":[this.card.id]
 }).subscribe(data=>{
-  console.log(data)
-  console.log("trash done");
-  console.log(this.card);
- 
+  // console.log(data)
+  // console.log("trash done");
+  // console.log(this.card);
+  this.remove();
 },err=>console.log(err))
 }
 }

@@ -23,10 +23,12 @@
       <button mat-icon-button color="basic" id="grid" fxHide.xs matTooltip="grid">
         <mat-icon>border_all</mat-icon>
       </button>
-
-      <button mat-icon-button colour="basic" matTooltip="ACCOUNT " [matTooltipClass]="'my-tooltip'">
+      <button mat-icon-button colour="basic" matTooltip="ACCOUNT " [matMenuTriggerFor]="account">
         <mat-icon>account_circle</mat-icon>
       </button></div>
+      <!-- <mat-menu #account="matMenu">
+        <button click="logout()">logout</button>
+      </mat-menu> -->
   </mat-toolbar>
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"

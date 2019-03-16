@@ -12,11 +12,11 @@ export class GuardGuard implements CanActivate {
   route: ActivatedRouteSnapshot;
   private router : Router;
   canActivate(){
-    if(window.localStorage.getItem('token')!=null){
+    if(localStorage.getItem('token')!=null){
       return true;
     }
     else{
-      this.router.navigate["/login"]
+      this.router.navigate['login']
       return;
     }
   }

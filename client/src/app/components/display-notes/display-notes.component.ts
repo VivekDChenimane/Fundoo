@@ -87,5 +87,18 @@ export class DisplayNotesComponent implements OnInit {
 // mouseLeaving() {
 //     this.isHovering = false;
 // }
-
+removeEvent(card){
+  // console.log("Can be removed");
+  // console.log(card.id);
+  var count=0;
+  this.notes.forEach(note => {
+    if(card.id==note.id){
+      this.notes.splice(count,1);
+      console.log(this.notes);
+    }
+    else
+      count++;
+  });
+  
+}
 }

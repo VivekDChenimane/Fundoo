@@ -12,7 +12,7 @@
         </mat-card-content>
       </div>
       <div fxFlex='100' fxLayout="row">
-           <app-note-icons [show]="false" [card]=card ></app-note-icons>
+           <app-note-icons (removeEvent)="removeEvent(card)" [show]="false" [card]=card ></app-note-icons>
       </div>
     </mat-card>
   </div>

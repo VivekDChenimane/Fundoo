@@ -17,6 +17,7 @@
 import { ChangeDetectorRef,Component, OnInit,OnDestroy } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+// import { HttpService } from '../../service/'
 
 
 @Component({
@@ -45,8 +46,11 @@ export class HomeComponent implements OnInit,OnDestroy {
   navigateTrash(){
     this.router.navigate(['trash']);
   }
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate['/login'];
+  }
   ngOnDestroy(){
     this.mobileQuery.removeListener(this._mobileQueryListener);
-
   }
 }
