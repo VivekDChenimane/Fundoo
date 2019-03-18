@@ -18,6 +18,7 @@ import { Component, OnInit,Input,Inject } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {NoteDialogComponent} from '../note-dialog/note-dialog.component';
 import { NoteService } from '../../service/note/note.service';
+import { DataService } from "../../service/data/data.service";
 
 export interface matdialog{
   title:string;
@@ -34,12 +35,15 @@ export class DisplayNotesComponent implements OnInit {
   
   @Input() notes:any;
   color:string;
+  @Input() search:boolean=true;
+  searchValue:String;
   model: any;
   title:any;
   description:any;
-  constructor(public dialog: MatDialog , private noteService:NoteService) { }
+  constructor(public dialog: MatDialog , private noteService:NoteService , private dataService:DataService) { }
   show(card){
     // console.log(card.title);
+    console.log(this.search);
     this.description=card.description;
     this.title=card.title;
   }
@@ -72,6 +76,9 @@ export class DisplayNotesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
+    console.log(this.searchValue);
+    console.log(this.search);
   } 
   // changeColor($event,card) {
   //   // card.color = $event;

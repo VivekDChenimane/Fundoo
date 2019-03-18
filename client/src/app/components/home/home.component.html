@@ -11,10 +11,10 @@
     <div fxFlex="50">
       <mat-form-field appearance="outline" [style.fontSize.px]="2" class="search">
         <button mat-icon-button>
-          <mat-icon>search</mat-icon>
+          <mat-icon >search</mat-icon>
         </button>
-       <input fxFlex="90" [(ngModel)]="value" matInput placeholder="search" [style.fontSize.px]="18" class="searchText"
-          autocomplete="off">
+       <input fxFlex="90" (click)="navigateSearch()" [(ngModel)]="search" (keyup)="searchfor()"matInput placeholder="search" [style.fontSize.px]="18" class="searchText"
+          autocomplete="off"> 
             <!--<app-search  (keyword)=value></app-search> -->
       </mat-form-field>
     </div>
@@ -26,9 +26,9 @@
       <button mat-icon-button colour="basic" matTooltip="ACCOUNT " [matMenuTriggerFor]="account">
         <mat-icon>account_circle</mat-icon>
       </button></div>
-      <!-- <mat-menu #account="matMenu">
-        <button click="logout()">logout</button>
-      </mat-menu> -->
+      <mat-menu #account="matMenu">
+        <!-- <button click="logout()">logout</button> -->
+      </mat-menu>
   </mat-toolbar>
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"

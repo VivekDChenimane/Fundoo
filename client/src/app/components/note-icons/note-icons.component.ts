@@ -50,7 +50,6 @@ export class NoteIconsComponent implements OnInit {
   constructor(private noteService:NoteService) { }
 
   ngOnInit() {
-    console.log(this.card);
     
   }
   remove(){
@@ -135,9 +134,6 @@ trashNote(){
     "isDeleted":true,
     "noteIdList":[this.card.id]
 }).subscribe(data=>{
-  // console.log(data)
-  // console.log("trash done");
-  // console.log(this.card);
   this.remove();
 },err=>console.log(err))
 }

@@ -17,8 +17,7 @@
 import { ChangeDetectorRef,Component, OnInit,OnDestroy } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
-// import { HttpService } from '../../service/'
-
+import { DataService } from '../../service/data/data.service';
 
 @Component({
   selector: 'app-home',
@@ -28,8 +27,8 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit,OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router) { 
+  search:string;
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService) { 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -45,6 +44,18 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
   navigateTrash(){
     this.router.navigate(['trash']);
+  }
+  navigateSearch(){
+    this.router.navigate(['search']);
+  }
+  searchfor(){
+    // console.log(this.search);
+    if(this.search==''){
+      // this.search=null;
+      this.dataService.changeMessage("nosearching");
+    }
+    else
+    this.dataService.changeMessage(this.search);
   }
   logout(){
     localStorage.removeItem('token');

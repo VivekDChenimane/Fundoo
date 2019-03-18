@@ -13,6 +13,7 @@ import { NoteDialogComponent } from './components/note-dialog/note-dialog.compon
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { GuardGuard } from '../guard/guard.guard';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
@@ -22,8 +23,9 @@ const routes: Routes = [
   {path: '',component: HomeComponent,canActivate:[GuardGuard],children:[
       {path:'home',component:NotesComponent},
       {path:'archive',component:ArchiveComponent},
-      {path:'trash',component:TrashComponent}
-    ]
+      {path:'trash',component:TrashComponent},
+      {path:'search',component:SearchComponent}
+    ] 
   },
   {
       path:'update-note',

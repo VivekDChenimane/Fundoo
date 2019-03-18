@@ -23,6 +23,7 @@ import { NoteDialogComponent } from './components/note-dialog/note-dialog.compon
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { SearchComponent } from './components/search/search.component';
+import { SearchPipe } from './pipe/search.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { SearchComponent } from './components/search/search.component';
     NoteDialogComponent,
     ArchiveComponent,
     TrashComponent,
-    SearchComponent
+    SearchComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
