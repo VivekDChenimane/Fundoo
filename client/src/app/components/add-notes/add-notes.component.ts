@@ -42,9 +42,6 @@ export class AddNotesComponent implements OnInit {
 
   noteTitle=new FormControl('', [Validators.required]);
   noteContent=new FormControl('');
-  // changeColor($event) {
-  //   this.color = $event;
-  // }
   pinned(){
     this.flag1=!this.flag1;
   }
@@ -52,7 +49,7 @@ export class AddNotesComponent implements OnInit {
     this.flag = !this.flag;
     if(this.flag){
     if(this.noteTitle.value==''){
-      console.log("value barthilla");
+      console.log("can't be empty");
       
       return
     }
@@ -76,7 +73,6 @@ export class AddNotesComponent implements OnInit {
         this.noteContent.reset();
         this.card.color="#FFFFFF";
       })
-      // console.log(this.card.isArchived+this.card.color);
     }
    }
   }

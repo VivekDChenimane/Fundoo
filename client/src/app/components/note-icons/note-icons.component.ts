@@ -92,9 +92,9 @@ export class NoteIconsComponent implements OnInit {
     }
     archiveNote(){
       if(this.card.id==undefined){
-        // this.addNoteEvent.emit();
-        console.log("archive ge banthu");
         this.card.isArchived=true;
+        this.addNoteEvent.emit();
+        console.log("archive ge banthu");
         return ;
       }
       else{

@@ -1,0 +1,21 @@
+<div>
+  <div fxFlex='15'><button mat-icon-button [matMenuTriggerFor]="More">
+      <mat-icon class="material-icons">more_vert</mat-icon>
+    </button></div>
+  <mat-menu #More="matMenu" class="matmenu">
+    <div>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="deleteNote(card)" >
+          Delete forever
+        </div>
+      </button>
+    </div>
+    <div>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          restore
+        </div>
+      </button>
+    </div>
+  </mat-menu>
+</div>

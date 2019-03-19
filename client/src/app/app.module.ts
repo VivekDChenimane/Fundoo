@@ -24,6 +24,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchPipe } from './pipe/search.pipe';
+import { DeleteIconsComponent } from './components/delete-icons/delete-icons.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { SearchPipe } from './pipe/search.pipe';
     ArchiveComponent,
     TrashComponent,
     SearchComponent,
-    SearchPipe
+    SearchPipe,
+    DeleteIconsComponent
   ],
   imports: [
     BrowserModule,

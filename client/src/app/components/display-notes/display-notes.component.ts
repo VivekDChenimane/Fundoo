@@ -56,9 +56,11 @@ export class DisplayNotesComponent implements OnInit {
       // hasBackdrop: false,
       // disableClose: false
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result==='deleted'){
+        this.removeEvent(card)
+      }
+      else{
       if(card.title!=this.title||card.description!=this.description){
         this.model={
           noteId:card.id,
@@ -71,7 +73,7 @@ export class DisplayNotesComponent implements OnInit {
       }
       else{
         console.log("changes not needed");
-      }
+      }}
     });
   }
 
@@ -80,23 +82,8 @@ export class DisplayNotesComponent implements OnInit {
     console.log(this.searchValue);
     console.log(this.search);
   } 
-  // changeColor($event,card) {
-  //   // card.color = $event;
-  //   console.log("color");
-    
-  // }
 
-
-  // isHovering = false;
-// mouseHovering() {
-//     this.isHovering = true;
-// }
-// mouseLeaving() {
-//     this.isHovering = false;
-// }
 removeEvent(card){
-  // console.log("Can be removed");
-  // console.log(card.id);
   var count=0;
   this.notes.forEach(note => {
     if(card.id==note.id){
