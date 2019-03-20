@@ -1,0 +1,64 @@
+<div *ngIf="remindershow" fxflex="100">
+  <div fxLayoutAlign="space-around center">
+    <button mat-menu-item>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>Later today</div>
+        <div fxFlexOffset='20'>08:00 PM</div>
+      </div>
+    </button>
+  </div>
+  <div>
+    <button mat-menu-item>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>Tommorow</div>
+        <div fxFlexOffset='20'>08:00 AM</div>
+      </div>
+    </button>
+  </div>
+  <div>
+    <button mat-menu-item>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>Next week</div>
+        <div fxFlexOffset='18'>Mon,08:00AM</div>
+      </div>
+    </button>
+  </div>
+  <div>
+    <button overlapTrigger="true" mat-menu-item (click)="toggle()" (click)="$event.stopPropagation()">
+      <div fxLayout="row">
+        <div fxLayoutAlign="space-around center" class="material-icons">schedule</div>
+        <div fxFlexOffset='8'>Pick date & time</div>
+      </div>
+    </button>
+  </div>
+</div>
+<div *ngIf="!remindershow" fxflex="100">
+  <div>
+    <button overlapTrigger="true" mat-menu-item>
+      <div fxLayout="row" (click)="$event.stopPropagation()">
+        <div fxLayoutAlign="space-around center" (click)="$event.stopPropagation()" (click)="toggle()"
+          class="material-icons">arrow_back</div>
+        <div fxFlexOffset='8'>Pick date & time</div>
+      </div>
+    </button>
+  </div>
+    <div fxLayout="row">
+      <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" (click)="$event.stopPropagation()"
+        placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div fxLayout="row" (click)="$event.stopPropagation()">
+        <mat-form-field>
+            <mat-label>Add a Time</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option>None</mat-option>
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2</mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+</div>

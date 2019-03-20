@@ -1,59 +1,36 @@
-<div fxLayout="row"  >
-  <div fxFlex='15'><button id="Remind"  matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remindMenu">
-    <mat-icon  class="material-icons">notification_important</mat-icon>
-  </button></div>
-  <mat-menu #remindMenu="matMenu" class="matmenu">
-    <p>Reminder:</p>
-    <div>
-      <button mat-menu-item>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <div>Later today</div>
-          <div fxFlexOffset='20'>08:00 PM</div>
-        </div>
-      </button>
-    </div>
-    <div>
-        <button mat-menu-item>
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div>Tommorow</div>
-            <div fxFlexOffset='20'>08:00 AM</div>
-          </div>
-        </button>
-      </div>
-      <div>
-          <button mat-menu-item>
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <div>Next week</div>
-              <div fxFlexOffset='18'>Mon,08:00AM</div>
-            </div>
-          </button>
-        </div>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+<div fxLayout="row">
+  <div fxFlex='15'><button id="Remind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remindMenu">
+      <mat-icon class="material-icons">notification_important</mat-icon>
+    </button></div>
+  <mat-menu #remindMenu="matMenu" class="Remaindermatmenu">
+    <app-reminder-icon></app-reminder-icon>
   </mat-menu>
-  <div fxFlex='15'><button mat-icon-button > <mat-icon fxFlex='15' class="material-icons">person_add</mat-icon></button></div>
+  <div fxFlex='15'><button mat-icon-button>
+      <mat-icon fxFlex='15' class="material-icons">person_add</mat-icon>
+    </button></div>
   <div fxFlex='15'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
-    <mat-icon  class="material-icons">color_lens</mat-icon>
-  </button></div>
+      <mat-icon class="material-icons">color_lens</mat-icon>
+    </button></div>
   <mat-menu #selectTheme="matMenu" class="matmenu">
     <ng-template matMenuContent>
-        <div fxLayout=row fxLayoutGap=10px style="margin-top:5px" *ngFor='let row of colorArray'>
-          <div *ngFor='let color of row'>
-            <button [ngStyle]="{'background-color': color.color }" (click)='changeColor(color.color)'
-              matTooltip="{{color.name}}" mat-mini-fab></button>
-          </div>
+      <div fxLayout=row fxLayoutGap=10px style="margin-top:5px" *ngFor='let row of colorArray'>
+        <div *ngFor='let color of row'>
+          <button [ngStyle]="{'background-color': color.color }" (click)='changeColor(color.color)'
+            matTooltip="{{color.name}}" mat-mini-fab></button>
         </div>
+      </div>
     </ng-template>
   </mat-menu>
-  <div fxFlex='15'><button  mat-icon-button ><mat-icon class="material-icons">image</mat-icon></button></div>
-  <div fxFlex='15'><button mat-icon-button >
-    <mat-icon *ngIf=card.isArchived class="material-icons"(click)="unarchiveNote()">unarchive</mat-icon>
-    <mat-icon *ngIf=!card.isArchived class="material-icons"(click)="archiveNote()" >archive</mat-icon>
-  </button></div>
-  <div fxFlex='15'><button mat-icon-button  [matMenuTriggerFor]="More"><mat-icon  class="material-icons">more_vert</mat-icon></button></div>
+  <div fxFlex='15'><button mat-icon-button>
+      <mat-icon class="material-icons">image</mat-icon>
+    </button></div>
+  <div fxFlex='15'><button mat-icon-button>
+      <mat-icon *ngIf=card.isArchived class="material-icons" (click)="unarchiveNote()">unarchive</mat-icon>
+      <mat-icon *ngIf=!card.isArchived class="material-icons" (click)="archiveNote()">archive</mat-icon>
+    </button></div>
+  <div fxFlex='15'><button mat-icon-button [matMenuTriggerFor]="More">
+      <mat-icon class="material-icons">more_vert</mat-icon>
+    </button></div>
   <mat-menu #More="matMenu" class="matmenu">
     <div>
       <button mat-menu-item>

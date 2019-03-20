@@ -25,6 +25,7 @@ import { TrashComponent } from './components/trash/trash.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { DeleteIconsComponent } from './components/delete-icons/delete-icons.component';
+import { ReminderIconComponent } from './components/reminder-icon/reminder-icon.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { DeleteIconsComponent } from './components/delete-icons/delete-icons.com
     TrashComponent,
     SearchComponent,
     SearchPipe,
-    DeleteIconsComponent
+    DeleteIconsComponent,
+    ReminderIconComponent
   ],
   imports: [
     BrowserModule,
