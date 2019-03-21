@@ -79,10 +79,14 @@ export class DisplayNotesComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
-    console.log(this.searchValue);
-    console.log(this.search);
-  } 
+    this.arrangeCards();
 
+  } 
+  arrangeCards(){
+    console.log(this.notes);
+    console.log("Arrange card");
+    
+  }
 removeEvent(card){
   var count=0;
   this.notes.forEach(note => {
