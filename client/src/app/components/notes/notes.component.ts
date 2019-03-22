@@ -39,8 +39,6 @@ export class NotesComponent implements OnInit, OnChanges {
       else
         this.pinNotes.push($event);
     }
-  
- 
   }
   ngOnChanges() {
     console.log("Onchanges");
@@ -60,7 +58,7 @@ export class NotesComponent implements OnInit, OnChanges {
       if(element["isDeleted"]==false && element["isArchived"]==false){        
         if(element["isPined"]==false){
           this.unPinNotes.push(element);
-          }
+        }
         else
           this.pinNotes.push(element);
       }

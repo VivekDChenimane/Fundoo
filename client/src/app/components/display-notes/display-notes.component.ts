@@ -14,16 +14,16 @@
 /**
  * importing all the file from various module
  */
-import { Component, OnInit,Input,Inject } from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {NoteDialogComponent} from '../note-dialog/note-dialog.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
 import { NoteService } from '../../service/note/note.service';
 import { DataService } from "../../service/data/data.service";
 
-export interface matdialog{
-  title:string;
-  description:string;
-  color:any;
+export interface matdialog {
+  title: string;
+  description: string;
+  color: any;
 }
 
 @Component({
@@ -32,67 +32,91 @@ export interface matdialog{
   styleUrls: ['./display-notes.component.scss']
 })
 export class DisplayNotesComponent implements OnInit {
-  
-  @Input() notes:any;
-  color:string;
-  @Input() search:boolean=true;
-  searchValue:String;
+
+  @Input() notes: any;
+  // @Output() pinEvent = new EventEmitter();
+  color: string;
+  @Input() search: boolean = true;
+  searchValue: String;
   model: any;
-  title:any;
-  description:any;
-  constructor(public dialog: MatDialog , private noteService:NoteService , private dataService:DataService) { }
-  show(card){
-    // console.log(card.title);
-    console.log(this.search);
-    this.description=card.description;
-    this.title=card.title;
+  title: any;
+  isArchived: any;
+  isDeleted: any;
+  isPined: any;
+  description: any;
+  constructor(public dialog: MatDialog, private noteService: NoteService, private dataService: DataService) { }
+  show(card) {
+    this.description = card.description;
+    this.title = card.title;
+    this.isArchived = card.isArchived;
+    this.isDeleted = card.isDeleted;
+    this.isPined = card.isPined;
   }
   openDialog(card): void {
-    
+
     const dialogRef = this.dialog.open(NoteDialogComponent, {
-      position: {top: '12.5%', left: '25%'},
-      data:card,
-      width: '600px',
+      position: { top: '12.5%' },
+      data: card,
+      // width: '238px',
       // hasBackdrop: false,
       // disableClose: false
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result==='deleted'){
+      if (result === 'deleted') {
         this.removeEvent(card)
       }
-      else{
-      if(card.title!=this.title||card.description!=this.description){
-        this.model={
-          noteId:card.id,
-          title:card.title,
-          description:card.description
+      else {
+        if (card.title != this.title || card.description != this.description) {
+          this.model = {
+            noteId: card.id,
+            title: card.title,
+            description: card.description
+          }
+          this.noteService.updatenote(this.model).subscribe(message => {
+            console.log(message);
+          })
         }
-        this.noteService.updatenote(this.model).subscribe(message=>{
-          console.log(message);
-        })
+        else if (card.isArchived != this.isArchived || card.isDeleted) {
+          this.removeEvent(card);
+        }
+        else if(card.isArchived!=this.isPined){
+          this.updatePin(card);
+        }
+        else {
+          console.log("changes not needed");
+        }
       }
-      else{
-        console.log("changes not needed");
-      }}
     });
   }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
-    console.log(this.searchValue);
-    console.log(this.search);
-  } 
-
-removeEvent(card){
-  var count=0;
-  this.notes.forEach(note => {
-    if(card.id==note.id){
-      this.notes.splice(count,1);
-      console.log(this.notes);
+    this.dataService.currentMessage.subscribe(message => { this.searchValue = message });
+  }
+  changePin(card){
+    card.isPined=!card.isPined;
+    this.updatePin(card);
+  }
+    updatePin(card){
+    this.model={
+      noteIdList:[card.id],
+      isPined:card.isPined
     }
-    else
-      count++;
-  });
-  
-}
+    this.noteService.pinUnpinNote(this.model).subscribe(message=>{
+      console.log(message);
+      this.removeEvent(card);
+    })
+
+  }
+  removeEvent(card) {
+    var count = 0;
+    this.notes.forEach(note => {
+      if (card.id == note.id) {
+        this.notes.splice(count, 1);
+        console.log(this.notes);
+      }
+      else
+        count++;
+    });
+    return;
+  }
 }

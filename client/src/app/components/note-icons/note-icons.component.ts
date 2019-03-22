@@ -86,38 +86,23 @@ export class NoteIconsComponent implements OnInit {
       }
       this.noteService.updatenote(this.model).subscribe(message=>{
         console.log(message);
-      })
-    // }
-     }
-    }
-    archiveNote(){
-      if(this.card.id==undefined){
-        this.card.isArchived=true;
-        this.addNoteEvent.emit();
-        console.log("archive ge banthu");
-        return ;
-      }
-      else{
-      this.model={
-        noteIdList:[this.card.id],
-        isArchived:true
-      }
-      this.noteService.archiveNote(this.model).subscribe(message=>{
-        console.log(message);
         this.remove();
       })
+     }
     }
-  }
+ 
 
-  unarchiveNote(){
+  changeArchiveNote(){
+    // console.log(this.card.isArchived);
+    this.card.isArchived=!this.card.isArchived;
     this.model={
       noteIdList:[this.card.id],
-      isArchived:false
+      isArchived:this.card.isArchived
     }
     console.log("in service");
     
     this.noteService.unarchiveNote(this.model).subscribe(message=>{
-      console.log("unarchive done");
+      console.log("change archive done");
       console.log(message);
       this.remove();
     })

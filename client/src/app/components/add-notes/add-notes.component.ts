@@ -17,6 +17,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from '../../service/note/note.service';
+import { addNoteModel } from '../../Models/model';
 
 @Component({
   selector: 'app-add-notes',
@@ -24,27 +25,32 @@ import { NoteService } from '../../service/note/note.service';
   styleUrls: ['./add-notes.component.scss']
 })
 export class AddNotesComponent implements OnInit {
+  exampleNote;
   flag=true;
   flag1=true;
-  card  = {
-    "isPined":false,
-    "isArchived":false,
-    "color":"#FFFFFF",
-    "reminder":[],
-    "collaberators":""
-  };
+  card :any;
+  // {
+  //   "isPined":false,
+  //   "isArchived":false,
+  //   "color":"#FFFFFF",
+  //   "reminder":[],
+  //   "collaberators":""
+  // };
   @Output() newNoteEvent = new EventEmitter();
-  constructor(private noteService:NoteService) { }
+  constructor(private noteService:NoteService) { 
+    this.card = new addNoteModel();
+  }
   color:string = '#FFFFFF';
   ngOnInit() {
     this.card 
   }
-
+  changePin(){
+    this.card.isPined=!this.card.isPined;
+   
+  }
   noteTitle=new FormControl('', [Validators.required]);
   noteContent=new FormControl('');
-  pinned(){
-    this.flag1=!this.flag1;
-  }
+ 
   addNote(){
     this.flag = !this.flag;
     if(this.flag){
@@ -66,12 +72,13 @@ export class AddNotesComponent implements OnInit {
         "reminder":[],
         "collaberators":""
       }
-      this.newNoteEvent.emit(note);
       this.noteService.addnote(note).subscribe(data=>{
-        console.log(data);
+        this.exampleNote=data;
         this.noteTitle.reset();
         this.noteContent.reset();
         this.card.color="#FFFFFF";
+        console.log(this.exampleNote['status']['details']);
+        this.newNoteEvent.emit(this.exampleNote['status']['details']);
       })
     }
    }

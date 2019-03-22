@@ -6,7 +6,7 @@
     <app-reminder-icon></app-reminder-icon>
   </mat-menu>
   <div fxFlex='15'><button mat-icon-button>
-      <mat-icon fxFlex='15' class="material-icons">person_add</mat-icon>
+      <mat-icon fxFlex='15' class="material-icons ">person_add</mat-icon>
     </button></div>
   <div fxFlex='15'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
       <mat-icon class="material-icons">color_lens</mat-icon>
@@ -24,9 +24,9 @@
   <div fxFlex='15'><button mat-icon-button>
       <mat-icon class="material-icons">image</mat-icon>
     </button></div>
-  <div fxFlex='15'><button mat-icon-button>
-      <mat-icon *ngIf=card.isArchived class="material-icons" (click)="unarchiveNote()">unarchive</mat-icon>
-      <mat-icon *ngIf=!card.isArchived class="material-icons" (click)="archiveNote()">archive</mat-icon>
+  <div fxFlex='15'><button mat-icon-button (click)="changeArchiveNote()">
+      <mat-icon *ngIf=card.isArchived class="material-icons">unarchive</mat-icon>
+      <mat-icon *ngIf=!card.isArchived class="material-icons">archive</mat-icon>
     </button></div>
   <div fxFlex='15'><button mat-icon-button [matMenuTriggerFor]="More">
       <mat-icon class="material-icons">more_vert</mat-icon>

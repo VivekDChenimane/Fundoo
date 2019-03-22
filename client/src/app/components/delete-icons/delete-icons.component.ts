@@ -7,7 +7,7 @@ import { NoteService } from '../../service/note/note.service';
   styleUrls: ['./delete-icons.component.scss']
 })
 export class DeleteIconsComponent implements OnInit {
-  @Input() card: [];
+  @Input() card: any;
   @Output() removeEvent = new EventEmitter();
   constructor(private noteService:NoteService) { }
 
@@ -25,4 +25,13 @@ export class DeleteIconsComponent implements OnInit {
   remove(){
     this.removeEvent.emit();
 }
+restoreNote(){
+  this.noteService.trashNote({
+    "isDeleted":false,
+    "noteIdList":[this.card.id]
+}).subscribe(data=>{
+  this.remove();
+},err=>console.log(err))
+}
+
 }

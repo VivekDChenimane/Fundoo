@@ -24,4 +24,7 @@ export class NoteDialogComponent implements OnInit {
   remove(){
     this.dialogRef.close("deleted");
   }
+  changePin(card){
+    card.isPined=!card.isPined;
+}
 }

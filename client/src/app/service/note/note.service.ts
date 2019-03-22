@@ -35,6 +35,9 @@ export class NoteService {
     return this.service.httpGetData('notes/getTrashNotesList')
   }
   unarchiveNote(data){
-    return this.service.postJSON('notes/archiveNotes',data)
+    return this.service.postJSON('notes/archiveNotes',data);
+  }
+  pinUnpinNote(data){
+    return this.service.postJSON('notes/pinUnpinNotes',data);
   }
 }

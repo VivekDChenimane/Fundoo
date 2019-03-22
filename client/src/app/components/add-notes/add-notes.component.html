@@ -15,19 +15,19 @@
 
   <mat-card [style.background]=message fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
     [style.backgroundColor]=card.color>
-    <div class="Border" fxLayout="row" class="takenote">
-      <textarea class="textArea" matTextareaAutosize placeholder="Title " [formControl]="noteTitle"
+    <div class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
+      <textarea fxflex="80" class="textArea" matTextareaAutosize placeholder="Title " [formControl]="noteTitle"
         class="textArea"></textarea>
-        <!-- <button fxLayoutAlign="end start" mat-icon-button color="basic" (click)="pinned()">
-            <div class="barpin" *ngIf="flag1==true">
-              <img src="../../../assets/images/bell.svg" />
+        <button fxflex="80" mat-icon-button color="basic" (click)="changePin()">
+            <div class="barpin" *ngIf=card.isPined>
+              <img src="../../../assets/images/pin_Off.svg" />
     
             </div>
-            <div class="barpin" *ngIf="flag1==false">
+            <div class="barpin" *ngIf=!card.isPined>
     
-              <img src="../../../assets/images/bell.svg" />
+              <img src="../../../assets/images/pin_On.svg"/>
             </div>
-          </button> -->
+          </button>
     </div>
     <div class="Border" fxLayout="column" class="takenote">
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
