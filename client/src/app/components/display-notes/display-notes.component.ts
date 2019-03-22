@@ -99,7 +99,22 @@ export class DisplayNotesComponent implements OnInit {
     updatePin(card){
     this.model={
       noteIdList:[card.id],
-      isPined:card.isPined
+      isPined:card.isPined}
+    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
+    this.arrangeCards();
+
+  } 
+  arrangeCards(){
+    console.log(this.notes);
+    console.log("Arrange card");
+    
+  }
+removeEvent(card){
+  var count=0;
+  this.notes.forEach(note => {
+    if(card.id==note.id){
+      this.notes.splice(count,1);
+      console.log(this.notes);
     }
     this.noteService.pinUnpinNote(this.model).subscribe(message=>{
       console.log(message);
