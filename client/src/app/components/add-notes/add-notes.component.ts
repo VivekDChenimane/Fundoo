@@ -17,7 +17,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from '../../service/note/note.service';
-import { addNoteModel } from '../../Models/model';
+import { Model } from '../../Models/model.model';
 
 @Component({
   selector: 'app-add-notes',
@@ -25,24 +25,25 @@ import { addNoteModel } from '../../Models/model';
   styleUrls: ['./add-notes.component.scss']
 })
 export class AddNotesComponent implements OnInit {
-  exampleNote;
+  /**
+   * @description To toggle between add note or not.
+   * Default set to true.
+   */
   flag=true;
-  flag1=true;
+  /**
+   * @description To hold the model of the note.
+   */
   card :any;
-  // {
-  //   "isPined":false,
-  //   "isArchived":false,
-  //   "color":"#FFFFFF",
-  //   "reminder":[],
-  //   "collaberators":""
-  // };
   @Output() newNoteEvent = new EventEmitter();
-  constructor(private noteService:NoteService) { 
-    this.card = new addNoteModel();
+  constructor(private noteService:NoteService) {
+    /**
+     * @description Create instance of the class Model.
+     */
+    this.card = new Model();
   }
   color:string = '#FFFFFF';
   ngOnInit() {
-    this.card 
+    // console.log(this.card); 
   }
   changePin(){
     this.card.isPined=!this.card.isPined;
@@ -55,30 +56,31 @@ export class AddNotesComponent implements OnInit {
     this.flag = !this.flag;
     if(this.flag){
     if(this.noteTitle.value==''){
-      console.log("can't be empty");
-      
       return
     }
     else{
-      var note = {
-        "id":undefined,
-        "title":this.noteTitle.value,
-        "description":this.noteContent.value,
-        "labelIdList":[],
-        "checklist":"",                 
-        "isPined":this.card.isPined,
-        "isArchived":this.card.isArchived,
-        "color":this.card.color,
-        "reminder":[],
-        "collaberators":""
-      }
-      this.noteService.addnote(note).subscribe(data=>{
-        this.exampleNote=data;
+      this.card.title=this.noteTitle.value;
+      this.card.description=this.noteContent.value;
+      console.log(this.card)
+      // var note = {
+      //   "id":undefined,
+      //   "title":this.noteTitle.value,
+      //   "description":this.noteContent.value,
+      //   "labelIdList":[],
+      //   "checklist":"",                 
+      //   "isPined":this.card.isPined,
+      //   "isArchived":this.card.isArchived,
+      //   "color":this.card.color,
+      //   "reminder":[],
+      //   "collaberators":""
+      // }
+      this.noteService.addnote(this.card).subscribe(data=>{
+        let note=data;
         this.noteTitle.reset();
         this.noteContent.reset();
         this.card.color="#FFFFFF";
-        console.log(this.exampleNote['status']['details']);
-        this.newNoteEvent.emit(this.exampleNote['status']['details']);
+        console.log(note['status']['details']);
+        this.newNoteEvent.emit(note['status']['details']);
       })
     }
    }
