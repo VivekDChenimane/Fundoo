@@ -43,16 +43,23 @@ export class AddNotesComponent implements OnInit {
   }
   color:string = '#FFFFFF';
   ngOnInit() {
-    // console.log(this.card); 
   }
+  /**
+   * @description To pin and unpin the note.
+   */
   changePin(){
     this.card.isPined=!this.card.isPined;
    
   }
+  // variable to hold the title of the card,which should not be empty.
   noteTitle=new FormControl('', [Validators.required]);
+    // variable to hold the description of the card.
   noteContent=new FormControl('');
- 
+  /**
+   * @description To add the new card by calling note service for Api.
+   */
   addNote(){
+    //flag to close as soon as the card is saved.
     this.flag = !this.flag;
     if(this.flag){
     if(this.noteTitle.value==''){
@@ -62,12 +69,15 @@ export class AddNotesComponent implements OnInit {
       this.card.title=this.noteTitle.value;
       this.card.description=this.noteContent.value;
       console.log(this.card);
+      //call addnote method of the note service which contains the exact URL for the API service.
       this.noteService.addnote(this.card).subscribe(data=>{
         let note=data;
+        //Reset the values.
         this.noteTitle.reset();
         this.noteContent.reset();
         this.card.color="#FFFFFF";
         console.log(note['status']['details']);
+        //Emit the note to parent to make the new card visible.
         this.newNoteEvent.emit(note['status']['details']);
       })
     }
