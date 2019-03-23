@@ -26,6 +26,8 @@ import { SearchComponent } from './components/search/search.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { DeleteIconsComponent } from './components/delete-icons/delete-icons.component';
 import { ReminderIconComponent } from './components/reminder-icon/reminder-icon.component';
+import { LabelListComponent } from './components/label-list/label-list.component';
+import { LabelDialogComponent } from './components/label-dialog/label-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,9 @@ import { ReminderIconComponent } from './components/reminder-icon/reminder-icon.
     SearchComponent,
     SearchPipe,
     DeleteIconsComponent,
-    ReminderIconComponent
+    ReminderIconComponent,
+    LabelListComponent,
+    LabelDialogComponent
   ],
   imports: [
     BrowserModule,

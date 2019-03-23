@@ -72,8 +72,11 @@ export class LoginComponent implements OnInit {
     console.log(user);
     this.service.postRequest('user/login',user).subscribe((data: any)  =>  {
       localStorage.setItem('token', data['id']);
-      console.log(data);
-      
+      localStorage.setItem('email', data["email"]);
+      localStorage.setItem('firstName', data["firstName"])
+      localStorage.setItem('lastName', data["lastName"])
+      localStorage.setItem('userid', data["userId"]);
+      localStorage.setItem('imageUrl', data["imageUrl"]);
       if (data != 'undefined') {
         if (data.id) {
            this.router.navigate(['home']);

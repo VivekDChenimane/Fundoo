@@ -16,8 +16,11 @@
  */
 import { ChangeDetectorRef,Component, OnInit,OnDestroy } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { DataService } from '../../service/data/data.service';
+import { Label } from '../../Models/model.model';
+import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +31,8 @@ export class HomeComponent implements OnInit,OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   search:string;
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService) { 
+  label:Label;
+  constructor(public dialog: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -64,4 +68,15 @@ export class HomeComponent implements OnInit,OnDestroy {
   ngOnDestroy(){
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+  openLabelDialog(){
+    const dialogRef = this.dialog.open(LabelDialogComponent, {
+      data:{id:"",
+        label: "",
+        isDeleted: false,
+        userId:""}
+});
+dialogRef.afterClosed().subscribe(result => {
+
+})
+}
 }

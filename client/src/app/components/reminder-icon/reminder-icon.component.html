@@ -55,10 +55,40 @@
             <mat-label>Add a Time</mat-label>
             <mat-select [(value)]="selected">
               <mat-option>None</mat-option>
-              <mat-option value="option1">Option 1</mat-option>
-              <mat-option value="option2">Option 2</mat-option>
-              <mat-option value="option3">Option 3</mat-option>
+              <mat-option value="option1">
+                <div>
+                  <button mat-menu-item>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <div>Morning </div>
+                      <div fxFlexOffset='18'>08:00AM</div>
+                    </div>
+                  </button>
+                </div>
+              </mat-option>
+              <mat-option value="option2">
+                <button mat-menu-item>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>Afternoon </div>
+                    <div fxFlexOffset='18'>01:00PM</div>
+                  </div>
+                </button>
+              </mat-option>
+              <mat-option value="option3">
+                <button mat-menu-item>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>Evening </div>
+                    <div fxFlexOffset='18'>06:00PM</div>
+                  </div>
+                </button>
+              </mat-option>
+              <mat-option value="option3">
+                  <button mat-menu-item>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <div>Night </div>
+                      <div fxFlexOffset='18'>08:00PM</div>
+                    </div>
+                  </button>
+                </mat-option>
             </mat-select>
           </mat-form-field>
       </div>
-</div>

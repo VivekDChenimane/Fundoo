@@ -40,4 +40,7 @@ export class NoteService {
   pinUnpinNote(data){
     return this.service.postJSON('notes/pinUnpinNotes',data);
   }
+  noteLabel(data){
+    return this.service.postJSON('/noteLabels',data);
+  }
 }

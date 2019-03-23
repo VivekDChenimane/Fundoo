@@ -23,7 +23,7 @@ import { DataService } from "../../service/data/data.service";
 export interface matdialog {
   title: string;
   description: string;
-  color: any;
+  color: any; 
 }
 
 @Component({
@@ -34,7 +34,7 @@ export interface matdialog {
 export class DisplayNotesComponent implements OnInit {
 
   @Input() notes: any;
-  // @Output() pinEvent = new EventEmitter();
+  @Output() pinEvent = new EventEmitter();
   color: string;
   @Input() search: boolean = true;
   searchValue: String;
@@ -63,7 +63,8 @@ export class DisplayNotesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'deleted') {
-        this.removeEvent(card)
+
+        this.removeEvent(true,card)
       }
       else {
         if (card.title != this.title || card.description != this.description) {
@@ -76,10 +77,10 @@ export class DisplayNotesComponent implements OnInit {
             console.log(message);
           })
         }
-        else if (card.isArchived != this.isArchived || card.isDeleted) {
-          this.removeEvent(card);
-        }
-        else if(card.isArchived!=this.isPined){
+        // else if (card.isArchived != this.isArchived || card.isDeleted) {
+        //   this.removeEvent(true,card);
+        // }
+        else if(card.isPined!=this.isPined){
           this.updatePin(card);
         }
         else {
@@ -90,8 +91,8 @@ export class DisplayNotesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(message => { this.searchValue = message });
-  }
+    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
+    }
   changePin(card){
     card.isPined=!card.isPined;
     this.updatePin(card);
@@ -99,18 +100,18 @@ export class DisplayNotesComponent implements OnInit {
     updatePin(card){
     this.model={
       noteIdList:[card.id],
-      isPined:card.isPined}
-    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
-    this.arrangeCards();
-    
-  } 
-  arrangeCards(){
-    console.log(this.notes);
-    console.log("Arrange card");
-    
-  }
+      isPined:card.isPined
+    }
+    this.noteService.pinUnpinNote(this.model).subscribe(message=>{
+      console.log(message);
+      this.pinEvent.emit(card);
+      this.removeEvent(true,card);
 
-  removeEvent(card) {
+    })  
+  } 
+
+  removeEvent($event,card) {
+    if($event){
     var count = 0;
     this.notes.forEach(note => {
       if (card.id == note.id) {
@@ -122,4 +123,6 @@ export class DisplayNotesComponent implements OnInit {
     });
     return;
   }
+}
+return;
 }

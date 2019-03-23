@@ -19,7 +19,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from '../../service/note/note.service';
 import { Model } from '../../Models/model.model';
 
-@Component({
+@Component({ 
   selector: 'app-add-notes',
   templateUrl: './add-notes.component.html',
   styleUrls: ['./add-notes.component.scss']
@@ -61,19 +61,7 @@ export class AddNotesComponent implements OnInit {
     else{
       this.card.title=this.noteTitle.value;
       this.card.description=this.noteContent.value;
-      console.log(this.card)
-      // var note = {
-      //   "id":undefined,
-      //   "title":this.noteTitle.value,
-      //   "description":this.noteContent.value,
-      //   "labelIdList":[],
-      //   "checklist":"",                 
-      //   "isPined":this.card.isPined,
-      //   "isArchived":this.card.isArchived,
-      //   "color":this.card.color,
-      //   "reminder":[],
-      //   "collaberators":""
-      // }
+      console.log(this.card);
       this.noteService.addnote(this.card).subscribe(data=>{
         let note=data;
         this.noteTitle.reset();

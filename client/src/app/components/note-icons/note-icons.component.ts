@@ -52,8 +52,8 @@ export class NoteIconsComponent implements OnInit {
   ngOnInit() {
     
   }
-  remove(){
-           this.removeEvent.emit();
+  remove($needed){
+           this.removeEvent.emit($needed);
   }
   changeColor(color) {
     if(this.card.id==undefined){
@@ -86,7 +86,7 @@ export class NoteIconsComponent implements OnInit {
       }
       this.noteService.updatenote(this.model).subscribe(message=>{
         console.log(message);
-        this.remove();
+        this.remove(false);
       })
      }
     }
@@ -104,7 +104,7 @@ export class NoteIconsComponent implements OnInit {
     this.noteService.unarchiveNote(this.model).subscribe(message=>{
       console.log("change archive done");
       console.log(message);
-      this.remove();
+      this.remove(true);
     })
   }
 
@@ -119,7 +119,7 @@ trashNote(){
     "isDeleted":true,
     "noteIdList":[this.card.id]
 }).subscribe(data=>{
-  this.remove();
+  this.remove(true);
 },err=>console.log(err))
 }
 }

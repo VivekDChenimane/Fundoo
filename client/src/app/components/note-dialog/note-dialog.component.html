@@ -18,7 +18,7 @@
         </div>
       </div>
       <div fxFlex='100'>
-        <app-note-icons *ngIf=!card.isDeleted [card]=card (removeEvent)="closeDialog()"></app-note-icons>
+        <app-note-icons *ngIf=!card.isDeleted [card]=card (removeEvent)="remove($event)"></app-note-icons>
         <app-delete-icons *ngIf=card.isDeleted [card]=card (removeEvent)="remove()"></app-delete-icons>
       </div>
     </div>

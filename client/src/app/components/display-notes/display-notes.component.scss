@@ -1,6 +1,11 @@
 .display-note{
     max-width: 240px;   
     margin-top: 20px;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: normal;
+    align-items: center;
 }
 .note-display{
 margin-left: 10%;

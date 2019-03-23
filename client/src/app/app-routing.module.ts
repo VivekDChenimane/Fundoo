@@ -14,6 +14,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { GuardGuard } from '../guard/guard.guard';
 import { SearchComponent } from './components/search/search.component';
+import { LabelDialogComponent } from './components/label-dialog/label-dialog.component';
 
 const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
       path:'update-note',
       component:NoteDialogComponent
+  },
+  {
+    path:'update-label',
+    component:LabelDialogComponent
   }
 ];
 @NgModule({
