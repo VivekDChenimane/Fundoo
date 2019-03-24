@@ -28,6 +28,7 @@ import { DeleteIconsComponent } from './components/delete-icons/delete-icons.com
 import { ReminderIconComponent } from './components/reminder-icon/reminder-icon.component';
 import { LabelListComponent } from './components/label-list/label-list.component';
 import { LabelDialogComponent } from './components/label-dialog/label-dialog.component';
+import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { LabelDialogComponent } from './components/label-dialog/label-dialog.com
     DeleteIconsComponent,
     ReminderIconComponent,
     LabelListComponent,
-    LabelDialogComponent
+    LabelDialogComponent,
+    CollaboratorDialogComponent
   ],
   imports: [
     BrowserModule,

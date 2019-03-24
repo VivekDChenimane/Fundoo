@@ -16,7 +16,8 @@
  */
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { NoteService } from '../../service/note/note.service';
-
+import { MatDialog } from '@angular/material';
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 @Component({
   selector: 'app-note-icons',
   templateUrl: './note-icons.component.html',
@@ -47,7 +48,7 @@ export class NoteIconsComponent implements OnInit {
       { 'color': '#81D4FA', 'name': 'blue' },
       { 'color': '#0288D1', 'name': 'darkblue' }
     ]]
-  constructor(private noteService:NoteService) { }
+  constructor(private noteService:NoteService,public dialog:MatDialog) { }
 
   ngOnInit() {
     
@@ -122,5 +123,12 @@ trashNote(){
   this.remove(true);
 },err=>console.log(err))
 }
+}
+addCollaborator(){
+  const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+    maxWidth: 'auto',
+    height: 'auto',
+    data:this.card.id
+  });
 }
 }

@@ -27,8 +27,19 @@
         <mat-icon>account_circle</mat-icon>
       </button></div>
       <mat-menu #account="matMenu">
-        <!-- <button click="logout()">logout</button> -->
-      </mat-menu>
+        <div fxLayoutAlign="row wrap">
+          <div fxFlex=20>  
+            <button  (click) = "$event.stopPropagation()"
+                      (click)="imageSelectFile.click()" matTooltip="fundoo Account"
+                      mat-mini-fab class="imageSelect" >
+        <div mat-raised-button>change
+        </div>
+        </button>
+         <input (click) = "$event.stopPropagation()" type="file" 
+        (change)="onFileUpload($event)" #imageSelectFile>
+         </div>
+        </div>
+            </mat-menu>
   </mat-toolbar>
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"

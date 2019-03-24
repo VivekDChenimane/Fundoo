@@ -20,6 +20,9 @@ import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
 import { NoteService } from '../../service/note/note.service';
 import { DataService } from "../../service/data/data.service";
 
+/**
+ * @description Create a interface for knowing attributes the data.
+ */
 export interface matdialog {
   title: string;
   description: string;

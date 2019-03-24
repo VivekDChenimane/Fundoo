@@ -5,8 +5,8 @@
   <mat-menu #remindMenu="matMenu" class="Remaindermatmenu">
     <app-reminder-icon></app-reminder-icon>
   </mat-menu>
-  <div fxFlex='15'><button mat-icon-button>
-      <mat-icon fxFlex='15' class="material-icons ">person_add</mat-icon>
+  <div fxFlex='15'><button mat-icon-button  matTooltip="Collaborator" (click)="addCollaborator()">
+      <mat-icon class="material-icons ">person_add</mat-icon>
     </button></div>
   <div fxFlex='15'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
       <mat-icon class="material-icons">color_lens</mat-icon>

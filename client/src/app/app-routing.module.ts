@@ -15,7 +15,7 @@ import { TrashComponent } from './components/trash/trash.component';
 import { GuardGuard } from '../guard/guard.guard';
 import { SearchComponent } from './components/search/search.component';
 import { LabelDialogComponent } from './components/label-dialog/label-dialog.component';
-
+import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
   {path: 'login',component: LoginComponent},
@@ -35,6 +35,11 @@ const routes: Routes = [
   {
     path:'update-label',
     component:LabelDialogComponent
+  }
+  ,
+  {
+    path:'add-collaborator',
+    component:CollaboratorDialogComponent
   }
 ];
 @NgModule({
