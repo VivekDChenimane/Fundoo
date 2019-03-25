@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-label-list',
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LabelListComponent implements OnInit {
 
   constructor() { }
-
+@Input() ArrayOfLabel;
   ngOnInit() {
   }
 

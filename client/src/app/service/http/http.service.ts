@@ -52,6 +52,18 @@ export class HttpService {
     }
     return this.http.post(url, this.encode(data), httpOptions);
   }
+
+  // encodedPostFormDelete(url: any) {
+  //   url = environment.baseUrl+ url;
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //       'Authorization': localStorage.getItem('token')
+  //     })
+  //   }
+  //   return this.http.delete(url, httpOptions);
+  // }
+
   postJSON(url: string, body: any): any {
     url=environment.baseUrl+ url;
     const httpOptions = {

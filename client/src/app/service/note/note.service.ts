@@ -43,4 +43,10 @@ export class NoteService {
   noteLabel(data){
     return this.service.postJSON('/noteLabels',data);
   }
+  getLabels(){
+    return this.service.httpGetData('noteLabels/getNoteLabelList');
+  }
+  // deleteLabel(data){
+  //   return this.service.encodedPostFormDelete('noteLabels/'+data+'/deleteNoteLabel')
+  // }
 }

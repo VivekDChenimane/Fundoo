@@ -21,6 +21,9 @@ import { Router } from '@angular/router';
 import { DataService } from '../../service/data/data.service';
 import { Label } from '../../Models/model.model';
 import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
+import { NoteService } from '../../service/note/note.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -28,17 +31,19 @@ import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit,OnDestroy {
+  destroy$: Subject<boolean> = new Subject<boolean>();
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   search:string;
-  label:Label;
-  constructor(public dialog: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService) {
+  ArrayOfLabel:Label[]=[];
+  constructor(public dialog: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService,public noteService:NoteService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit() {
+    this.getLabel();
   }
   navigateArchive(){
     this.router.navigate(['archive']);
@@ -67,7 +72,31 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy(){
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
+  getLabel() {
+    try{
+      this.noteService.getLabels()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        this.ArrayOfLabel=result['data']['deatails'];
+        // this.ArrayOfLabel=this.ArrayOfLabel.reverse();
+        console.log(result["data"]["details"]);
+        this.ArrayOfLabel=result["data"]["details"];
+        console.log(this.ArrayOfLabel);
+        //.forEach(element => {
+        //   // this.ArrayOfLabel.push(result["data"]["details"][element]);
+        //   console.log(result["data"]["details"][element]);
+        // });
+       
+      })
+    }catch{
+      console.log("Error in getLabel");
+    }
+  }
+    
+        
   openLabelDialog(){
     const dialogRef = this.dialog.open(LabelDialogComponent, {
       data:{id:"",
@@ -79,4 +108,5 @@ dialogRef.afterClosed().subscribe(result => {
 
 })
 }
+
 }

@@ -1,4 +1,5 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+      <!-------------------------------Menu-Bar------------------------------------>
   <mat-toolbar class="example-toolbar">
     <div fxFlex="5">
       <button mat-icon-button matTooltip="menu-bar" (click)="snav.toggle()">
@@ -55,9 +56,11 @@
             Remainder</mat-list-item>
 
           <mat-divider></mat-divider>
+           
           <p id="para">labels</p>
-          <app-label-list></app-label-list>
-          <mat-list-item role="listitem" id="lable" (click)="openLabelDialog()">
+          
+          <app-label-list [ArrayOfLabel]="ArrayOfLabel"></app-label-list>
+          <mat-list-item role="listitem" id="lable" (click)="openLabelDialog()" >
             <mat-icon id="edit">edit</mat-icon>
             Edit label
           </mat-list-item>

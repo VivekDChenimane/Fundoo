@@ -32,6 +32,5 @@ export class LabelDialogComponent implements OnInit {
         console.log(message);
       })
     }
-    // console.log("line 28"+this.labelName);
   }
 }
