@@ -1,3 +1,8 @@
-<div *ngFor='let array of ArrayOfLabel'>
-        {{array.label}}
+<div *ngFor='let label of ArrayOfLabel'>
+  <mat-nav-list>
+      <mat-list-item (click)="openLabelNotes(array)">   
+        <mat-icon>label_outline</mat-icon>     
+          {{label.label}}
+        </mat-list-item>
+      </mat-nav-list>
       </div>

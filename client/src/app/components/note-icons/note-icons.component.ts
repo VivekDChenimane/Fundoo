@@ -28,6 +28,7 @@ export class NoteIconsComponent implements OnInit {
   @Output() removeEvent = new EventEmitter();
   @Output() addNoteEvent = new EventEmitter();
   @Input() show=true;
+  addLabel:boolean=true;
   count :number =0;
   model: any;
   colorArray =
@@ -91,10 +92,12 @@ export class NoteIconsComponent implements OnInit {
       })
      }
     }
- 
 
   changeArchiveNote(){
-    // console.log(this.card.isArchived);
+    if(this.card.id==undefined){
+      this.addNoteEvent.emit();
+      return ;
+    }
     this.card.isArchived=!this.card.isArchived;
     this.model={
       noteIdList:[this.card.id],
@@ -130,5 +133,9 @@ addCollaborator(){
     height: 'auto',
     data:this.card.id
   });
+}
+addLabelToggle(){
+  console.log("sadfg")
+  this.addLabel=!this.addLabel;
 }
 }

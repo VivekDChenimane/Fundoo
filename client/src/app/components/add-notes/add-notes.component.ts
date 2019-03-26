@@ -77,6 +77,7 @@ export class AddNotesComponent implements OnInit {
         this.noteContent.reset();
         this.card.color="#FFFFFF";
         console.log(note['status']['details']);
+        this.card = new Model();
         //Emit the note to parent to make the new card visible.
         this.newNoteEvent.emit(note['status']['details']);
       })

@@ -99,10 +99,7 @@ export class HomeComponent implements OnInit,OnDestroy {
         
   openLabelDialog(){
     const dialogRef = this.dialog.open(LabelDialogComponent, {
-      data:{id:"",
-        label: "",
-        isDeleted: false,
-        userId:""}
+      data:this.ArrayOfLabel
 });
 dialogRef.afterClosed().subscribe(result => {
 

@@ -14,13 +14,18 @@ margin-right: 10%;
 ::ng-deep .ng-star-inserted{
     margin-right: 0%;
 }
-.title{
-    width: 180px;
-}
+// .title{
+//     width: 180px;
+// }
 
 
 
-
+.textArea{
+    background: transparent;
+    border: none;
+    outline: none;
+    user-select: none;
+  } 
 .example-card{
     max-width:240px;
 }

@@ -11,5 +11,7 @@ export class LabelListComponent implements OnInit {
 @Input() ArrayOfLabel;
   ngOnInit() {
   }
-
+  openLabelNotes(array){
+    
+  }
 }

@@ -46,7 +46,7 @@ export class NoteService {
   getLabels(){
     return this.service.httpGetData('noteLabels/getNoteLabelList');
   }
-  // deleteLabel(data){
-  //   return this.service.encodedPostFormDelete('noteLabels/'+data+'/deleteNoteLabel')
-  // }
+  deleteLabel(data){
+    return this.service.encodedPostFormDelete('noteLabels/'+data+'/deleteNoteLabel')
+  }
 }

@@ -1,43 +1,30 @@
 <div>
-        <div mat-dialog-title class="label done">Edit Labels </div>
-        <div fxLaoutGap="space-between" fxlayoutAlign="row" mat-dialog-content>
-            <div class="done">
-                <mat-icon fxFlex=10 (click)="addLabel()" mat-icon-button>done</mat-icon>
-            </div>
-            <input fxFlex=70 class="inputNote done" [(ngModel)]="label"  placeholder="Create new Label">
-                                      
-            <!------------------------- clear---------------------------------------- -->
-    
-            <div class="clear done">
-                <mat-icon fxFlex=10 (click)="clear()" mat-icon-button>clear</mat-icon>
-            </div>
+    <div mat-dialog-title>Edit Labels </div>
+    <div fxLaoutGap="space-between" fxlayoutAlign="row" mat-dialog-content>
+        <div class="clear done">
+            <mat-icon fxFlex=10 (click)="clear()" mat-icon-button>clear</mat-icon>
         </div>
-        <mat-divider></mat-divider>
-        <div class="color">{{message}}</div>
-        <div fxLayout="row" class="color1" fxLayoutAlign="space-between center"
-             *ngFor="let label of ArrayOfLabel">
-             <!------------------------- delete label---------------------------------------- -->
-    
-            <div fxLayout="row" fxLayoutAlign="space-between center" class="delete">
-                <mat-icon (click)="deleteLabel(label.id)" class="hover" fxFlex=10 mat-icon-button>
-                    delete</mat-icon>
-            </div>
-            <div fxFlex="80" [innerHTML]="label.label" class="label" 
-                 *ngIf="!canEdit || label.label!=editLabel"></div>
-            <div fxFlex="80" [innerHTML]="label.label" class="label" contenteditable="true" 
-                 *ngIf="canEdit && label.label==editLabel"
-                #editDiv>
-            </div>
-             <!------------------------- edit label---------------------------------------- -->
-    
-    
-            <div fxFlex="10">
-                <mat-icon (click)=edit(label) *ngIf="iconEdit || label.id!=idEdit">edit</mat-icon>
-                <mat-icon (click)=editlabel(label) *ngIf="clickEdit && label.id==idEdit">done</mat-icon>
-            </div>
+        <input class="textArea" fxFlex=80 [(ngModel)]="labelName" placeholder="Create new Label">
+        <div>
+            <mat-icon fxFlex=10 fxLayoutAlign="space-between end" (click)="addLabel()" mat-icon-button>done</mat-icon>
         </div>
-        <mat-divider></mat-divider>
-            <!------------------------- close---------------------------------------- -->
-    
-        <div class="btn" mat-button (click)="close()">Done</div>
     </div>
+    <mat-divider class="divider"></mat-divider>
+    <div class="divider" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let label of ArrayOfLabel">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-icon (click)="deleteLabel(label.id)" fxFlex=10 mat-icon-button>
+                delete</mat-icon>
+        </div>
+        <div fxFlex="80" [(innerHTML)]="label.label" contenteditable="true">
+        </div>
+
+        <div fxFlex="10">
+            <mat-icon (click)=edit(label)>edit</mat-icon>
+        </div>
+    </div>
+    <mat-divider class="divider"></mat-divider>
+
+    <div>
+        <div mat-button fxLayoutAlign="end end" (click)="close()">Done</div>
+    </div>
+</div>

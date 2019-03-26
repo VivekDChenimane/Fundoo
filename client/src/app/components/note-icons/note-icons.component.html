@@ -5,7 +5,7 @@
   <mat-menu #remindMenu="matMenu" class="Remaindermatmenu">
     <app-reminder-icon></app-reminder-icon>
   </mat-menu>
-  <div fxFlex='15'><button mat-icon-button  matTooltip="Collaborator" (click)="addCollaborator()">
+  <div fxFlex='15'><button mat-icon-button matTooltip="Collaborator" (click)="addCollaborator()">
       <mat-icon class="material-icons ">person_add</mat-icon>
     </button></div>
   <div fxFlex='15'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
@@ -32,12 +32,24 @@
       <mat-icon class="material-icons">more_vert</mat-icon>
     </button></div>
   <mat-menu #More="matMenu" class="matmenu">
-    <div>
+    <div *ngIf=addLabel>
       <button mat-menu-item>
         <div fxLayout="row" fxLayoutAlign="space-between start" (click)="trashNote()">
           Delete
         </div>
       </button>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="addLabelToggle()"
+          (click)="$event.stopPropagation()">
+          Add Label<Label></Label>
+        </div>
+      </button>
+    </div>
+    <div *ngIf=!addLabel>
+      Label note
+      <div>
+        <input class="textArea" fxFlex=80 [(ngModel)]="labelName" placeholder="Search for Label">
+      </div>
     </div>
   </mat-menu>
   <div fxFlex='' *ngIf="show">

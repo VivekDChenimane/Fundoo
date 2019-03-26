@@ -20,7 +20,7 @@ export class DeleteIconsComponent implements OnInit {
   }).subscribe(message=>{
       console.log(message);
       this.remove();
-  });
+  }); 
   }
   remove(){
     this.removeEvent.emit();
@@ -31,6 +31,7 @@ restoreNote(){
     "noteIdList":[this.card.id]
 }).subscribe(data=>{
   this.remove();
+  console.log(data);
 },err=>console.log(err))
 }
 
