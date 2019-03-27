@@ -2,9 +2,9 @@
   <div *ngFor="let card of notes|search:(search?null:searchValue)">
     <mat-card class="display-note" [style.background]=card.color fxFlex="0 1 calc(33.3%)" fxLayout="row wrap" fxLayoutAlign="start center"
       fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%">
-      <div (click)=openDialog(card) (click)="show(card)" fxLayout="column">
-        <div class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
-            <textarea class="textArea">{{card.title}}</textarea>
+      <div fxFlex=100 (click)=openDialog(card) (click)="show(card)" fxLayout="column">
+        <div fxFlex=50 class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
+           <div> <textarea  class="textArea">{{card.title}}</textarea></div>
           <button *ngIf=!card.isDeleted fxFlex=10 mat-icon-button color="basic" (click)="changePin(card)" (click)="$event.stopPropagation()">
             <div class="barpin"  *ngIf=card.isPined>
               <img src="../../../assets/images/pin_Off.svg" />
@@ -14,9 +14,11 @@
             </div>
           </button>
         </div>
+        <div fxFlex=50>
         <mat-card-content>
           <mat-card-subtitle><textarea class="textArea">{{card.description}}</textarea></mat-card-subtitle>
         </mat-card-content>
+      </div>
       </div>
       <div fxFlex='100' fxLayout="row">
         <app-note-icons *ngIf=!card.isDeleted (removeEvent)="removeEvent($event,card)" [show]="false" [card]=card>

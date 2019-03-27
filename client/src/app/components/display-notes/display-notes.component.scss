@@ -24,8 +24,10 @@ margin-right: 10%;
     background: transparent;
     border: none;
     outline: none;
-    user-select: none;
-  } 
+    // user-select: none;
+    min-height: auto;
+    resize: none;
+} 
 .example-card{
     max-width:240px;
 }

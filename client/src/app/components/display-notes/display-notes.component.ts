@@ -100,6 +100,7 @@ export class DisplayNotesComponent implements OnInit {
     card.isPined=!card.isPined;
     this.updatePin(card);
   }
+  
     updatePin(card){
     this.model={
       noteIdList:[card.id],
