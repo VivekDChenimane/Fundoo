@@ -3,7 +3,7 @@
       <mat-icon class="material-icons">notification_important</mat-icon>
     </button></div>
   <mat-menu #remindMenu="matMenu" class="Remaindermatmenu">
-    <app-reminder-icon></app-reminder-icon>
+    <app-reminder-icon [card]=card></app-reminder-icon>
   </mat-menu>
   <div fxFlex='15'><button mat-icon-button matTooltip="Collaborator" (click)="addCollaborator()">
       <mat-icon class="material-icons ">person_add</mat-icon>

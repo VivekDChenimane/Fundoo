@@ -49,4 +49,7 @@ export class NoteService {
   deleteLabel(data){
     return this.service.encodedPostFormDelete('noteLabels/'+data+'/deleteNoteLabel')
   }
+  addUpdateReminderNote(data){
+    return this.service.postJSON('notes/addUpdateReminderNotes',data);
+  }
 }

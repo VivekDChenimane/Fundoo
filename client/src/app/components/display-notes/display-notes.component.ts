@@ -95,6 +95,7 @@ export class DisplayNotesComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
+    console.log(this.notes)
     }
   changePin(card){
     card.isPined=!card.isPined;

@@ -82,9 +82,9 @@ export class HomeComponent implements OnInit,OnDestroy {
       .subscribe(result => {
         this.ArrayOfLabel=result['data']['deatails'];
         // this.ArrayOfLabel=this.ArrayOfLabel.reverse();
-        console.log(result["data"]["details"]);
+        // console.log(result["data"]["details"]);
         this.ArrayOfLabel=result["data"]["details"];
-        console.log(this.ArrayOfLabel);
+        // console.log(this.ArrayOfLabel);
         //.forEach(element => {
         //   // this.ArrayOfLabel.push(result["data"]["details"][element]);
         //   console.log(result["data"]["details"][element]);

@@ -1,27 +1,13 @@
 <div *ngIf="remindershow" fxflex="100">
-  <div fxLayoutAlign="space-around center">
-    <button mat-menu-item>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <div>Later today</div>
-        <div fxFlexOffset='20'>08:00 PM</div>
-      </div>
-    </button>
-  </div>
-  <div>
-    <button mat-menu-item>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <div>Tommorow</div>
-        <div fxFlexOffset='20'>08:00 AM</div>
-      </div>
-    </button>
-  </div>
-  <div>
-    <button mat-menu-item>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <div>Next week</div>
-        <div fxFlexOffset='18'>Mon,08:00AM</div>
-      </div>
-    </button>
+  <div *ngFor="let remind of remindList">
+    <div fxLayoutAlign="space-around center">
+      <button mat-menu-item (click)="reminder(remind.daycount,remind.timeCount)">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div>{{remind.day}}</div>
+          <div fxFlexOffset='20'>{{remind["time"]}}</div>
+        </div>
+      </button>
+    </div>
   </div>
   <div>
     <button overlapTrigger="true" mat-menu-item (click)="toggle()" (click)="$event.stopPropagation()">
@@ -32,7 +18,7 @@
     </button>
   </div>
 </div>
-<div *ngIf="!remindershow" fxflex="100">
+<div *ngIf="!remindershow" fxflex="100"  fxLayout="column">
   <div>
     <button overlapTrigger="true" mat-menu-item>
       <div fxLayout="row" (click)="$event.stopPropagation()">
@@ -42,53 +28,38 @@
       </div>
     </button>
   </div>
-    <div fxLayout="row">
-      <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" (click)="$event.stopPropagation()"
-        placeholder="Choose a date">
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <mat-form-field class="example-full-width">
+      <input matInput [min]="todaydate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="checker">
       <mat-datepicker-toggle matSuffix [for]="picker">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-    </div>
-    <div fxLayout="row" (click)="$event.stopPropagation()">
-        <mat-form-field>
-            <mat-label>Add a Time</mat-label>
-            <mat-select [(value)]="selected">
-              <mat-option>None</mat-option>
-              <mat-option value="option1">
-                <div>
-                  <button mat-menu-item>
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                      <div>Morning </div>
-                      <div fxFlexOffset='18'>08:00AM</div>
-                    </div>
-                  </button>
-                </div>
-              </mat-option>
-              <mat-option value="option2">
-                <button mat-menu-item>
-                  <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div>Afternoon </div>
-                    <div fxFlexOffset='18'>01:00PM</div>
-                  </div>
-                </button>
-              </mat-option>
-              <mat-option value="option3">
-                <button mat-menu-item>
-                  <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div>Evening </div>
-                    <div fxFlexOffset='18'>06:00PM</div>
-                  </div>
-                </button>
-              </mat-option>
-              <mat-option value="option3">
-                  <button mat-menu-item>
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                      <div>Night </div>
-                      <div fxFlexOffset='18'>08:00PM</div>
-                    </div>
-                  </button>
-                </mat-option>
-            </mat-select>
-          </mat-form-field>
-      </div>
+    </mat-form-field>
+    
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" (click)="$event.stopPropagation()">
+    <mat-form-field>
+      <mat-label>Add a Time</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option *ngFor="let remind of customList" value=remind.value>
+          <div>
+            <button mat-menu-item (click)="customReminder(remind.timeCount)">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>{{remind.timeZone}} </div>
+                <div fxFlexOffset='18'>{{remind.time}}</div>
+              </div>
+            </button>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div  fxLayout="row">
+  <div fxFlex="90" fxLayoutAlign="end end">
+    <button (click)="saveReminder()">
+        Save
+    </button>
+  </div>
+</div>
+</div>
