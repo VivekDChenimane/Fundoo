@@ -3,8 +3,6 @@ import { NoteService } from '../../service/note/note.service';
 import { DataService } from '../../service/data/data.service';
 import { takeUntil } from  'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -13,16 +11,14 @@ import { NgForOf } from '@angular/common';
 })
 export class SearchComponent implements OnInit {
   // search: any;
+  @Input() keyword;
   cardData=[];
   destroy: Subject<boolean> = new Subject<boolean>(); 
   constructor(private noteService:NoteService,private dataService:DataService) { }
   ngOnInit() { 
-    // this.dataService.currentMessage.subscribe(message=>{this.search=message});
     this.getAllCard();
   } 
-  // transform(cards:this.cardData,) {}
    getAllCard() {
-    //  console.log("search value"+this.search);
     this.noteService.getnotes().pipe(takeUntil(this.destroy))  
     .subscribe(data => {
         this.cardData = [];

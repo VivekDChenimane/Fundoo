@@ -18,6 +18,8 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { NoteService } from '../../service/note/note.service';
 import { MatDialog } from '@angular/material';
 import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
+import { DataService } from '../../service/data/data.service'
+import { Label } from '../../Models/model.model'
 @Component({
   selector: 'app-note-icons',
   templateUrl: './note-icons.component.html',
@@ -28,6 +30,7 @@ export class NoteIconsComponent implements OnInit {
   @Output() removeEvent = new EventEmitter();
   @Output() addNoteEvent = new EventEmitter();
   @Input() show=true;
+  labelList:Label
   addLabel:boolean=true;
   count :number =0;
   model: any;
@@ -49,9 +52,10 @@ export class NoteIconsComponent implements OnInit {
       { 'color': '#81D4FA', 'name': 'blue' },
       { 'color': '#0288D1', 'name': 'darkblue' }
     ]]
-  constructor(private noteService:NoteService,public dialog:MatDialog) { }
+  constructor(private noteService:NoteService,public dialog:MatDialog,public dataService:DataService) { }
 
   ngOnInit() {
+    this.dataService.currentLabels.subscribe(message => {this.labelList = message})  ;
     
   }
   remove($needed){

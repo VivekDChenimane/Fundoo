@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit,OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   search:string;
-  ArrayOfLabel:Label[]=[];
+  check
+  ArrayOfLabel:Label;
   constructor(public dialog: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService,public noteService:NoteService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -58,9 +59,7 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.router.navigate(['search']);
   }
   searchfor(){
-    // console.log(this.search);
     if(this.search==''){
-      // this.search=null;
       this.dataService.changeMessage("nosearching");
     }
     else
@@ -79,18 +78,11 @@ export class HomeComponent implements OnInit,OnDestroy {
     try{
       this.noteService.getLabels()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(result => {
-        this.ArrayOfLabel=result['data']['deatails'];
-        // this.ArrayOfLabel=this.ArrayOfLabel.reverse();
-        // console.log(result["data"]["details"]);
-        this.ArrayOfLabel=result["data"]["details"];
-        // console.log(this.ArrayOfLabel);
-        //.forEach(element => {
-        //   // this.ArrayOfLabel.push(result["data"]["details"][element]);
-        //   console.log(result["data"]["details"][element]);
-        // });
-       
-      })
+      .subscribe(result => {   
+        // this.ArrayOfLabel=result["data"]["details"];
+        this.dataService.updateLabels(result["data"]["details"]);
+        this.dataService.currentLabels.subscribe(message => {this.ArrayOfLabel = message})  ;
+       })
     }catch{
       console.log("Error in getLabel");
     }
