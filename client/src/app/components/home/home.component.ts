@@ -31,6 +31,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit,OnDestroy {
+  
   destroy$: Subject<boolean> = new Subject<boolean>();
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -42,10 +43,15 @@ export class HomeComponent implements OnInit,OnDestroy {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
-
+  /**
+   * @description To get all the labels when home component is started.
+   */
   ngOnInit() {
     this.getLabel();
   }
+  /**
+   * @description To navigate to particular components 
+   */
   navigateArchive(){
     this.router.navigate(['archive']);
   }
@@ -58,6 +64,9 @@ export class HomeComponent implements OnInit,OnDestroy {
   navigateSearch(){
     this.router.navigate(['search']);
   }
+  /**
+   * @description 
+   */
   searchfor(){
     if(this.search==''){
       this.dataService.changeMessage("nosearching");

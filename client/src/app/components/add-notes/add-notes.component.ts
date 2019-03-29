@@ -69,6 +69,7 @@ export class AddNotesComponent implements OnInit {
       this.card.title=this.noteTitle.value;
       this.card.description=this.noteContent.value;
       console.log(this.card);
+      try{
       //call addnote method of the note service which contains the exact URL for the API service.
       this.noteService.addnote(this.card).subscribe(data=>{
         let note=data;
@@ -81,6 +82,9 @@ export class AddNotesComponent implements OnInit {
         //Emit the note to parent to make the new card visible.
         this.newNoteEvent.emit(note['status']['details']);
       })
+    }catch(error){
+      console.log(error+"Error in the note service of add note");
+    }
     }
    }
   }
