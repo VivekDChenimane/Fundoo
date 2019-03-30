@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.router.navigate(['search']);
   }
   /**
-   * @description 
+   * @description To update the search value to variable in the data service.
    */
   searchfor(){
     if(this.search==''){
@@ -74,10 +74,16 @@ export class HomeComponent implements OnInit,OnDestroy {
     else
     this.dataService.changeMessage(this.search);
   }
+  /**
+   * @description To clear the local storage and to go back for login page.
+   */
   logout(){
     localStorage.removeItem('token');
     this.router.navigate['/login'];
   }
+  /**
+   * @description To unsubscribe the resources
+   */
   ngOnDestroy(){
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.destroy$.next(true);

@@ -52,4 +52,10 @@ export class NoteService {
   addUpdateReminderNote(data){
     return this.service.postJSON('notes/addUpdateReminderNotes',data);
   }
+  searchUserList(data){
+    return this.service.postJSON('user/searchUserList',data)
+  }
+  addCollaborator(noteId,data){
+    return this.service.postJSON('notes/'+noteId+'/AddcollaboratorsNotes',data)
+  }
 }
