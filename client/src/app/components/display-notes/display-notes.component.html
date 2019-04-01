@@ -25,11 +25,7 @@
         </div>
       </div>
       <div *ngIf='card.reminder.length!=0'>
-        <mat-chip-list>
-          <mat-chip>Papadum</mat-chip>
-          <mat-chip>Naan</mat-chip>
-          <mat-chip>Dal</mat-chip>
-        </mat-chip-list>
+       
       </div>
       <div fxFlex='100' fxLayout="row">
         <app-note-icons *ngIf=!card.isDeleted (removeEvent)="removeEvent($event,card)" [show]="false" [card]=card>

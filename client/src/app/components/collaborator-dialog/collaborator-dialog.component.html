@@ -16,7 +16,7 @@
   </span>
 
   
-  <div *ngFor="let array of userList">
+  <div *ngFor="let array of collaborators">
     <div fxLayout="row" style="position: relative;">
       <button mat-icon-button class="icon"><mat-icon>person_outline</mat-icon></button>
         <div fxLayout="column">
@@ -27,18 +27,18 @@
                 {{array.email}}
           </div>
         </div>
-        <button mat-icon-button class="btnCollab" (click)="removeCollab(data.array.id)"><mat-icon>close</mat-icon></button>
+        <button mat-icon-button class="btnCollab" (click)="removeCollaborator(array.userId)"><mat-icon>close</mat-icon></button>
       </div>
     </div>
   
 <div fxLayout="row" style="position: relative;">
   <button mat-icon-button class="icon"><mat-icon>person_add</mat-icon></button>
   <input matInput [(ngModel)]='collaborator' (keyup)='searchlist(collaborator)' class="emailStyle" placeholder="Enter the email-id..." [matMenuTriggerFor]='menu'>
-  <button mat-icon-button class="btnCollab" (click)="addCollab(data.array.id)"><mat-icon>done</mat-icon></button>
+  <button mat-icon-button class="btnCollab" (click)="addCollaborator(data.array.id)"><mat-icon>done</mat-icon></button>
 </div>
 <mat-menu #menu='matMenu'>
 <div *ngFor='let array of searchResultList'>
-  <div (click)='details(array)'>{{array.email}}</div>
+  <div (click)='addCollaborator(array)'>{{array.email}}</div>
 </div>
 
 </mat-menu>

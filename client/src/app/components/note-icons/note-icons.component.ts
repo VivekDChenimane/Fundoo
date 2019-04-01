@@ -135,9 +135,11 @@ addCollaborator(){
   const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
     maxWidth: 'auto',
     height: 'auto',
-    data:this.card.id
+    data:{collaborators:this.card.collaborators,
+      id:this.card.id
+    }
   });
-}
+} 
 addLabelToggle(){
   console.log("sadfg")
   this.addLabel=!this.addLabel;

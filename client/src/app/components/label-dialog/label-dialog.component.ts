@@ -12,6 +12,7 @@ export class LabelDialogComponent implements OnInit {
   
   labelName: string;
   ArrayOfLabel: Label[];
+  label:Label;
   constructor(public dialogRef: MatDialogRef<LabelDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Label[], public noteService: NoteService) { }
 
@@ -63,12 +64,16 @@ export class LabelDialogComponent implements OnInit {
 
   }
   edit(label){
+    console.log(label);
     let body = {
       "label": label.label,
       "isDeleted": false,
       "id": label.id,
-      "userId": label.id
+      "userId":localStorage.getItem('userid')
     }
+    this.noteService.updateLabel(label.id,body).subscribe(message=>{
+      console.log(message);
+    })
   }
   close() {
     this.dialogRef.close();

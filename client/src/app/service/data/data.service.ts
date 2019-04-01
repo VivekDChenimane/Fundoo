@@ -24,6 +24,5 @@ labelDefault:Label={
   }
   updateLabels(message:Label){
     this.labelNotes.next(message)
-    console.log(this.labelNotes);
   }
 }

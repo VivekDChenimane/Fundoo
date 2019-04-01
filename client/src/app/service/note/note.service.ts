@@ -58,4 +58,10 @@ export class NoteService {
   addCollaborator(noteId,data){
     return this.service.postJSON('notes/'+noteId+'/AddcollaboratorsNotes',data)
   }
+  updateLabel(labelId, RequestBody){
+    return this.service.postJSON('/noteLabels/'+labelId+'/updateNoteLabel',RequestBody)
+  }
+  removeCollaborator(noteId,collaboratorId){
+    return this.service.encodedPostFormDelete('/notes/'+noteId+'/removeCollaboratorsNotes/'+collaboratorId)
+  }
 }

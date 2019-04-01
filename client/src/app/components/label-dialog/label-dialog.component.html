@@ -15,15 +15,12 @@
             <mat-icon (click)="deleteLabel(label.id)" fxFlex=10 mat-icon-button>
                 delete</mat-icon>
         </div>
-        <div fxFlex="80" [(innerHTML)]="label.label" contenteditable="true">
-        </div>
-
+        <input class="textArea" fxFlex="80" [(ngModel)]="label.label" id=label.id>
         <div fxFlex="10">
             <mat-icon (click)=edit(label)>edit</mat-icon>
         </div>
     </div>
     <mat-divider class="divider"></mat-divider>
-
     <div>
         <div mat-button fxLayoutAlign="end end" (click)="close()">Done</div>
     </div>
