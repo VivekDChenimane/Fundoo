@@ -44,6 +44,21 @@
           Add Label<Label></Label>
         </div>
       </button>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="$event.stopPropagation()">
+          Add drawing
+        </div>
+      </button>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="$event.stopPropagation()">
+          Make a copy
+        </div>
+      </button>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="$event.stopPropagation()">
+          Show checkboxes
+        </div>
+      </button>
     </div>
     <div *ngIf=!addLabel>
       Label note
@@ -51,7 +66,8 @@
         <input class="textArea" fxFlex=80 [(ngModel)]="labelName" placeholder="Search for Label">
       </div>
       <div *ngFor="let label of labelList">
-        <div>{{label.label}}</div>
+        <div>
+            <mat-checkbox (click)="labelToNote(label)">{{label.label}}</mat-checkbox></div>
       </div>
     </div>
   </mat-menu>

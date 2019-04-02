@@ -1,7 +1,4 @@
-<div class="note-display" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="14px">
-  <div *ngFor="let card of notes|search:(search?null:searchValue)">
-    <mat-card class="display-note" [style.background]=card.color fxFlex="0 1 calc(33.3%)" fxLayout="row wrap"
-      fxLayoutAlign="start center" fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%">
+<mat-card class="display-note" [style.background]=card.color fxLayout="column" fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%">
       <div fxFlex=100 (click)=openDialog(card) (click)="show(card)" fxLayout="column">
         <div fxFlex=50 class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
           <div> <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
@@ -47,29 +44,3 @@
         <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent(true,card)" [card]=card></app-delete-icons>
       </div>
     </mat-card>
-    <!-- <app-card [card]="card"></app-card> -->
-  </div>
-</div>
-
-
-
-
-<!-- <div *ngFor="let card of notes|search:(search?null:searchValue)" >
-  <p>{{notes.indexOf(card)}}</p>
-  
-  <mat-card class="display-note" [style.background]=card.color fxFlex="0 1 calc(33.3%)" fxLayout="row wrap"
-    fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%">
-    <div (click)=openDialog(card) (click)="show(card)" fxLayout="column">
-      <mat-card-header>
-        <mat-card-title class="title">{{card.title}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-card-subtitle>{{card.description}}</mat-card-subtitle>
-      </mat-card-content>
-    </div>
-    <div  fxFlex='100' fxLayout="row">
-         <app-note-icons *ngIf=!card.isDeleted (removeEvent)="removeEvent(card)" [show]="false" [card]=card ></app-note-icons>
-         <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent(card)" [card]=card ></app-delete-icons>
-    </div>
-  </mat-card>
-</div> -->

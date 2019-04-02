@@ -144,4 +144,11 @@ addLabelToggle(){
   console.log("sadfg")
   this.addLabel=!this.addLabel;
 }
+
+labelToNote(label){
+  console.log(label);
+  this.noteService.addLabelToNote(this.card.id,label.id,'').subscribe(message=>{
+    console.log(message);
+  })
+}
 }

@@ -16,6 +16,8 @@ import { GuardGuard } from '../guard/guard.guard';
 import { SearchComponent } from './components/search/search.component';
 import { LabelDialogComponent } from './components/label-dialog/label-dialog.component';
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
+import { RemindersComponent } from './components/reminders/reminders.component'
+import { LabelsComponent } from './components/labels/labels.component'
 const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
   {path: 'login',component: LoginComponent},
@@ -25,7 +27,9 @@ const routes: Routes = [
       {path:'home',component:NotesComponent},
       {path:'archive',component:ArchiveComponent},
       {path:'trash',component:TrashComponent},
-      {path:'search',component:SearchComponent}
+      {path:'search',component:SearchComponent},
+      {path:'reminder',component:RemindersComponent},
+      {path:'label',component:LabelsComponent}
     ] 
   },
   {

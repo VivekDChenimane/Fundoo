@@ -49,15 +49,15 @@ export class ReminderIconComponent implements OnInit {
       "noteIdList": [this.card.id],
       "reminder": this.checker
     }
-    // this.saveReminder();
   }
   saveReminder() {
     if (this.changed) {
-      console.log(this.model,"moidel")
+      console.log(this.model.reminder,"moidel")
       this.noteService.addUpdateReminderNote(this.model).subscribe(response => {
         // this.remindEvent.emit();
         console.log(response,"responce");
-      })
+        this.card.reminder[0]=this.model.reminder;
+      }) 
     }
   }
 }

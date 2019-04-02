@@ -64,4 +64,20 @@ export class NoteService {
   removeCollaborator(noteId,collaboratorId){
     return this.service.encodedPostFormDelete('/notes/'+noteId+'/removeCollaboratorsNotes/'+collaboratorId)
   }
+  deleteReminder(body){
+    return this.service.postJSON('notes/removeReminderNotes',body)
+  }
+  getReminderNotes(){
+    return this.service.httpGetData('notes/getReminderNotesList');
+  }
+  addLabelToNote(noteId,labelId,body){
+    return this.service.postJSON('notes/'+noteId+'/addLabelToNotes/'+labelId+'/add',body)
+  }
+  getNotesListByLabel(labelName){
+    return this.service.postJSON('notes/getNotesListByLabel/'+labelName,'');
+  }
+  removeLabelTags(id,labelId,body){
+    return this.service.postJSON('/notes/'+ id +'/addLabelToNotes/'+labelId+'/remove',body);
+
+  }
 }

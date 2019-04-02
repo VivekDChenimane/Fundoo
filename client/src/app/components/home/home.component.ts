@@ -64,6 +64,9 @@ export class HomeComponent implements OnInit,OnDestroy {
   navigateSearch(){
     this.router.navigate(['search']);
   }
+  navigateReminder(){
+    this.router.navigate(['reminder']);
+  }
   /**
    * @description To update the search value to variable in the data service.
    */

@@ -29,6 +29,8 @@ import { ReminderIconComponent } from './components/reminder-icon/reminder-icon.
 import { LabelListComponent } from './components/label-list/label-list.component';
 import { LabelDialogComponent } from './components/label-dialog/label-dialog.component';
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
+import { LabelsComponent } from './components/labels/labels.component';
+import { CardComponent } from './components/card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,9 @@ import { CollaboratorDialogComponent } from './components/collaborator-dialog/co
     ReminderIconComponent,
     LabelListComponent,
     LabelDialogComponent,
-    CollaboratorDialogComponent
+    CollaboratorDialogComponent,
+    LabelsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

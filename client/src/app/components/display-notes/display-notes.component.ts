@@ -129,5 +129,28 @@ export class DisplayNotesComponent implements OnInit {
     return;
   }
 }
-return;
+removeReminder(id){
+  console.log(id);
+    this.noteService.deleteReminder(
+      {
+        "noteIdList": [id]
+      })
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        error => {
+        })
+}
+removeLabelTag(labelId,card){
+console.log(labelId);
+this.noteService.removeLabelTags(card.id,labelId,
+  {
+    "noteId":card.id,  
+    "lableId":labelId
+  })
+  .subscribe(data=>{
+   console.log(data);
+  })
+}
 }
