@@ -30,4 +30,10 @@ export class NoteDialogComponent implements OnInit {
   changePin(card){
     card.isPined=!card.isPined;
 }
+fun(){
+  this.dialogRef.updateSize('80%');
+}
+fun1(){
+  this.dialogRef.updateSize('60%');
+}
 }

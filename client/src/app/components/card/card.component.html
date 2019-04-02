@@ -1,4 +1,4 @@
-<mat-card class="display-note" [style.background]=card.color fxLayout="column" fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%">
+<mat-card class="display-note" [style.background]=card.color fxLayout="column" fxFlex=100 fxFlex.lt-sm="100%">
       <div fxFlex=100 (click)=openDialog(card) (click)="show(card)" fxLayout="column">
         <div fxFlex=50 class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
           <div> <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
@@ -14,9 +14,7 @@
           </button>
         </div>
         <div fxFlex=50>
-          <mat-card-content>
-            <mat-card-subtitle><textarea class="textArea">{{card.description}}</textarea></mat-card-subtitle>
-          </mat-card-content>
+      <textarea class="textArea">{{card.description}}</textarea>
         </div>
       </div>
       <div *ngIf='card.reminder.length!=0'>
@@ -25,7 +23,7 @@
           <mat-icon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
         </mat-chip>
       </div>
-      <div *ngIf='card.noteLabels.length!=0'>
+      <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
         <div *ngFor='let item of card.noteLabels'>
           <mat-chip-list>
             <mat-chip>
@@ -35,12 +33,16 @@
           </mat-chip-list>
         </div>
       </div>
-      <div *ngFor='let item of card.collaborators'>
-          <mat-icon class="material-icons" matTooltip={{item.email}}>account_circle</mat-icon>
+      <div fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
+          <div *ngFor='let item of card.collaborators'>
+              <mat-icon class="material-icons" matTooltip={{item.email}}>account_circle</mat-icon>
+          </div>
+
       </div>
+   
       <div fxFlex='100' fxLayout="row">
-        <app-note-icons *ngIf=!card.isDeleted (removeEvent)="removeEvent($event,card)" [show]="false" [card]=card>
+        <app-note-icons *ngIf=!card.isDeleted (removeEvent)="removeEvent1($event)" [show]="false" [card]=card>
         </app-note-icons>
-        <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent(true,card)" [card]=card></app-delete-icons>
+        <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent1(true)" [card]=card></app-delete-icons>
       </div>
     </mat-card>

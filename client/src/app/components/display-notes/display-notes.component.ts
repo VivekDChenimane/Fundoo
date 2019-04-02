@@ -38,83 +38,13 @@ export class DisplayNotesComponent implements OnInit {
 
   @Input() notes: any;
   @Output() pinEvent = new EventEmitter();
-  color: string;
   @Input() search: boolean = true;
   searchValue: String;
   model: any;
-  title: any;
-  isArchived: any;
-  isDeleted: any;
-  isPined: any;
-  description: any;
-  constructor(public dialog: MatDialog, private noteService: NoteService, private dataService: DataService) { }
-  show(card) {
-    this.description = card.description;
-    this.title = card.title;
-    this.isArchived = card.isArchived;
-    this.isDeleted = card.isDeleted;
-    this.isPined = card.isPined;
-  }
-  openDialog(card): void {
-
-    const dialogRef = this.dialog.open(NoteDialogComponent, {
-      position: { top: '12.5%' },
-      data: card,
-      // width: '238px',
-      // hasBackdrop: false,
-      // disableClose: false
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'deleted') {
-
-        this.removeEvent(true,card)
-      }
-      else {
-        if (card.title != this.title || card.description != this.description) {
-          this.model = {
-            noteId: card.id,
-            title: card.title,
-            description: card.description
-          }
-          this.noteService.updatenote(this.model).subscribe(message => {
-            console.log(message);
-          })
-        }
-        // else if (card.isArchived != this.isArchived || card.isDeleted) {
-        //   this.removeEvent(true,card);
-        // }
-        else if(card.isPined!=this.isPined){
-          this.updatePin(card);
-        }
-        else {
-          console.log("changes not needed");
-        }
-      }
-    });
-  }
+  constructor(private noteService: NoteService, private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
-    console.log(this.notes)
     }
-  changePin(card){
-    card.isPined=!card.isPined;
-    this.updatePin(card);
-  }
-  
-    updatePin(card){
-    this.model={
-      noteIdList:[card.id],
-      isPined:card.isPined
-    }
-    this.noteService.pinUnpinNote(this.model).subscribe(message=>{
-      console.log(message);
-      this.pinEvent.emit(card);
-      this.removeEvent(true,card);
-
-    })  
-  } 
-
   removeEvent($event,card) {
     if($event){
     var count = 0;
@@ -129,28 +59,5 @@ export class DisplayNotesComponent implements OnInit {
     return;
   }
 }
-removeReminder(id){
-  console.log(id);
-    this.noteService.deleteReminder(
-      {
-        "noteIdList": [id]
-      })
-      .subscribe(
-        (data) => {
-          console.log(data);
-        },
-        error => {
-        })
-}
-removeLabelTag(labelId,card){
-console.log(labelId);
-this.noteService.removeLabelTags(card.id,labelId,
-  {
-    "noteId":card.id,  
-    "lableId":labelId
-  })
-  .subscribe(data=>{
-   console.log(data);
-  })
-}
+
 }
