@@ -1,3 +1,4 @@
+<div>
 <span mat-dialog-title fxLayout="row" >
   Collaborators
 </span>
@@ -15,11 +16,10 @@
     </div>
   </span>
 
-  
   <div *ngFor="let array of collaborators">
-    <div fxLayout="row" style="position: relative;">
-      <button mat-icon-button class="icon"><mat-icon>person_outline</mat-icon></button>
-        <div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-around center" style="position: relative;">
+      <button fxFlex=10 mat-icon-button class="icon"><mat-icon>person_outline</mat-icon></button>
+        <div fxFlex=90 fxLayout="column">
           <div class="usernameStyle">
                 {{array.firstName}} {{array.lastName}}
           </div>
@@ -27,23 +27,24 @@
                 {{array.email}}
           </div>
         </div>
-        <button mat-icon-button class="btnCollab" (click)="removeCollaborator(array.userId)"><mat-icon>close</mat-icon></button>
+        <button fxFlex=10 mat-icon-button class="btnCollab" (click)="removeCollaborator(array.userId)"><mat-icon>close</mat-icon></button>
       </div>
     </div>
   
 <div fxLayout="row" style="position: relative;">
   <button mat-icon-button class="icon"><mat-icon>person_add</mat-icon></button>
   <input matInput [(ngModel)]='collaborator' (keyup)='searchlist(collaborator)' class="emailStyle" placeholder="Enter the email-id..." [matMenuTriggerFor]='menu'>
-  <button mat-icon-button class="btnCollab" (click)="addCollaborator(data.array.id)"><mat-icon>done</mat-icon></button>
+  <button mat-icon-button class="btnCollab" (click)="addCollaborator()"><mat-icon>done</mat-icon></button>
 </div>
 <mat-menu #menu='matMenu'>
 <div *ngFor='let array of searchResultList'>
-  <div (click)='addCollaborator(array)'>{{array.email}}</div>
+  <div (click)='setCollaborator(array)'>{{array.email}}</div>
 </div>
 
 </mat-menu>
 </div>
 <div mat-dialog-actions class="actionDialog">
-  <button mat-raised-button class="actionButton" (click)="cancel()" [mat-dialog-close]>Cancel</button>
-  <button mat-raised-button class="actionButton" (click)="save()" [mat-dialog-close]>Save</button>
+  <button mat-raised-button class="actionButton" [mat-dialog-close]>Cancel</button>
+  <button mat-raised-button class="actionButton" [mat-dialog-close]>Save</button>
+</div>
 </div>

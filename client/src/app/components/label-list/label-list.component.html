@@ -1,9 +1,0 @@
-<div *ngFor='let label of ArrayOfLabel'>
-  <mat-nav-list>
-      <mat-list-item (click)="openLabelNotes(label.label)">   
-        <mat-icon>label_outline</mat-icon>     
-          {{label.label}}
-        </mat-list-item>
-      </mat-nav-list>
-      </div> 
-<app-labels (labelNotes)="labelNotes"></app-labels>

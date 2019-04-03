@@ -12,7 +12,9 @@ export class NoteDialogComponent implements OnInit {
   @Output() removeEvent = new EventEmitter();
   constructor(public dialogRef: MatDialogRef<NoteDialogComponent>,@Inject(MAT_DIALOG_DATA, ) public data:matdialog,private noteService:NoteService) { }
  card=this.data;
+ fullIcon:boolean;
   ngOnInit() {
+    this.fullIcon=true
     console.log(this.data);
   }
   changeColor($event) {
@@ -31,9 +33,9 @@ export class NoteDialogComponent implements OnInit {
     card.isPined=!card.isPined;
 }
 fun(){
-  this.dialogRef.updateSize('80%');
+  // this.dialogRef.updateSize('80%');
 }
 fun1(){
-  this.dialogRef.updateSize('60%');
+  // this.dialogRef.updateSize('60%');
 }
 }

@@ -26,7 +26,6 @@ import { SearchComponent } from './components/search/search.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { DeleteIconsComponent } from './components/delete-icons/delete-icons.component';
 import { ReminderIconComponent } from './components/reminder-icon/reminder-icon.component';
-import { LabelListComponent } from './components/label-list/label-list.component';
 import { LabelDialogComponent } from './components/label-dialog/label-dialog.component';
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 import { LabelsComponent } from './components/labels/labels.component';
@@ -50,7 +49,6 @@ import { CardComponent } from './components/card/card.component';
     SearchPipe,
     DeleteIconsComponent,
     ReminderIconComponent,
-    LabelListComponent,
     LabelDialogComponent,
     CollaboratorDialogComponent,
     LabelsComponent,

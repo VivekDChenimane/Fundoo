@@ -10,7 +10,6 @@
     
   }
   
-  
   [contentEditable=true]:empty:not(:focus):before{
     content:attr(data-text)
   }
@@ -31,9 +30,6 @@
   .textArea{
     background: transparent;
   }
-  
-  
-  
   
   .matcard{
     margin-top: 30px;

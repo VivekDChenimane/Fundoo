@@ -1,5 +1,5 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-      <!-------------------------------Menu-Bar------------------------------------>
+  <!-------------------------------Menu-Bar------------------------------------>
   <mat-toolbar class="example-toolbar">
     <div fxFlex="5">
       <button mat-icon-button matTooltip="menu-bar" (click)="snav.toggle()">
@@ -12,10 +12,10 @@
     <div fxFlex="50">
       <mat-form-field appearance="outline" [style.fontSize.px]="2" class="search">
         <button mat-icon-button>
-          <mat-icon >search</mat-icon>
+          <mat-icon>search</mat-icon>
         </button>
-       <input fxFlex="90" (click)="navigateSearch()" [(ngModel)]="search" (keyup)="searchfor()"matInput placeholder="search" [style.fontSize.px]="18" class="searchText"
-          autocomplete="off"> 
+        <input fxFlex="90" (click)="navigateSearch()" [(ngModel)]="search" (keyup)="searchfor()" matInput
+          placeholder="search" [style.fontSize.px]="18" class="searchText" autocomplete="off">
       </mat-form-field>
     </div>
     <div fxFlex="25" fxLayoutAlign="end start" class="settingbtn">
@@ -26,21 +26,22 @@
       <button mat-icon-button colour="basic" matTooltip="ACCOUNT " [matMenuTriggerFor]="account">
         <mat-icon>account_circle</mat-icon>
       </button></div>
-      <mat-menu #account="matMenu">
-        <div fxLayoutAlign="row wrap">
-          <div fxFlex=20>  
-            <button  (click) = "$event.stopPropagation()"
-                      (click)="imageSelectFile.click()" matTooltip="fundoo Account"
-                      mat-mini-fab class="imageSelect" >
-        <div mat-raised-button>change
+    <mat-menu #account="matMenu">
+      <div fxLayoutAlign="row wrap">
+        <div fxFlex=20>
+          <button (click)="$event.stopPropagation()" (click)="imageSelectFile.click()" matTooltip="fundoo Account"
+            mat-mini-fab class="imageSelect">
+            <div mat-raised-button>change
+            </div>
+          </button>
+          <input (click)="$event.stopPropagation()" type="file" (change)="onFileUpload($event)" #imageSelectFile>
         </div>
-        </button>
-         <input (click) = "$event.stopPropagation()" type="file" 
-        (change)="onFileUpload($event)" #imageSelectFile>
-         </div>
-        </div>
-            </mat-menu>
+      </div>
+    </mat-menu>
   </mat-toolbar>
+
+  <!---------------------------Side-Nav--------------------------------------------->
+
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
@@ -52,14 +53,22 @@
 
           <mat-list-item role="listitem" id="rem" (click)="navigateReminder()">
             <img id="img2" src="../../../assets/images/bell.svg" />
-            Remainder</mat-list-item> 
+            Remainder</mat-list-item>
 
           <mat-divider></mat-divider>
-           
+
           <p id="para">labels</p>
-          
-          <app-label-list [ArrayOfLabel]="ArrayOfLabel"></app-label-list>
-          <mat-list-item role="listitem" id="lable" (click)="openLabelDialog()" >
+
+          <!-- <app-label-list [ArrayOfLabel]="ArrayOfLabel"></app-label-list> -->
+          <div *ngFor='let label of ArrayOfLabel'>
+            <mat-nav-list>
+              <mat-list-item (click)="openLabelNotes(label.label)">
+                <mat-icon>label_outline</mat-icon>
+                {{label.label}}
+              </mat-list-item>
+            </mat-nav-list>
+          </div>
+          <mat-list-item role="listitem" id="lable" (click)="openLabelDialog()">
             <mat-icon id="edit">edit</mat-icon>
             Edit label
           </mat-list-item>

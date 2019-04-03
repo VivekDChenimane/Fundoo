@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit,OnDestroy {
   private _mobileQueryListener: () => void;
   search:string;
   check
+  labelNotes;
   ArrayOfLabel:Label;
   constructor(public dialog: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService,public noteService:NoteService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -91,6 +92,13 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
+  }
+  openLabelNotes(labelName){
+    this.noteService.getNotesListByLabel(labelName).subscribe(message=>{
+      this.labelNotes=message['data']['data']
+      this.router.navigate(['label']);
+    })
+    
   }
   getLabel() {
     try{

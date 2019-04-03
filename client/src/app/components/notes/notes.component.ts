@@ -57,6 +57,8 @@ export class NotesComponent implements OnInit, OnChanges {
   getAllCard() {
     this.service.getnotes().subscribe(data => {
       this.cardData = data["data"]["data"];
+      // console.log(this.cardData,'card');
+      
       // To remove the deleted cards and to sort the cards into pined and unpined.
       this.check();
       return

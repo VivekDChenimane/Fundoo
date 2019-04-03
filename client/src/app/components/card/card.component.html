@@ -1,8 +1,8 @@
 <mat-card class="display-note" [style.background]=card.color fxLayout="column" fxFlex=100 fxFlex.lt-sm="100%">
-      <div fxFlex=100 (click)=openDialog(card) (click)="show(card)" fxLayout="column">
+      <div fxFlex=100 (click)="check()" (click)="show(card)" fxLayout="column">
         <div fxFlex=50 class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
           <div> <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
-              cdkAutosizeMaxRows="15" class="textArea">{{card.title}}</textarea></div>
+              cdkAutosizeMaxRows="15" class="textArea" [(ngModel)]="card.title"></textarea></div>
           <button *ngIf=!card.isDeleted fxFlex=10 mat-icon-button color="basic" (click)="changePin(card)"
             (click)="$event.stopPropagation()">
             <div class="barpin" *ngIf=card.isPined>
@@ -18,17 +18,17 @@
         </div>
       </div>
       <div *ngIf='card.reminder.length!=0'>
-        <mat-chip class="sample">
+        <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
           Tom{{card.reminder[0]|date:shortdate}}
-          <mat-icon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
+          <mat-icon *ngIf=cancelIcon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
         </mat-chip>
       </div>
       <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
         <div *ngFor='let item of card.noteLabels'>
           <mat-chip-list>
-            <mat-chip>
+            <mat-chip (mouseenter)="remin=true" (mouseleave)="remin=false">
               {{item.label}}
-              <mat-icon (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
+              <mat-icon *ngIf=cancelIcon  (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
             </mat-chip>
           </mat-chip-list>
         </div>
@@ -39,9 +39,8 @@
           </div>
 
       </div>
-   
       <div fxFlex='100' fxLayout="row">
-        <app-note-icons *ngIf=!card.isDeleted (removeEvent)="removeEvent1($event)" [show]="false" [card]=card>
+        <app-note-icons fxFlex=100 *ngIf=!card.isDeleted (removeEvent)="removeEvent1($event)" [show]=fullIcon [card]=card>
         </app-note-icons>
         <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent1(true)" [card]=card></app-delete-icons>
       </div>

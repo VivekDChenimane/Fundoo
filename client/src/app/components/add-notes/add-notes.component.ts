@@ -18,7 +18,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from '../../service/note/note.service';
 import { Model } from '../../Models/model.model';
-
+ 
 @Component({ 
   selector: 'app-add-notes',
   templateUrl: './add-notes.component.html',
@@ -39,10 +39,11 @@ export class AddNotesComponent implements OnInit {
     /**
      * @description Create instance of the class Model.
      */
-    this.card = new Model();
+  
   }
   color:string = '#FFFFFF';
   ngOnInit() {
+    this.card = new Model();
   }
   /**
    * @description To pin and unpin the note.
@@ -66,8 +67,13 @@ export class AddNotesComponent implements OnInit {
       return
     }
     else{
+      console.log(this.card);
+      
       this.card.title=this.noteTitle.value;
       this.card.description=this.noteContent.value;
+      this.card.collaborators=JSON.stringify(this.card.collaborators);
+      this.card.collaberators=this.card.collaborators;
+      this.card.noteLabels=JSON.stringify(this.card.noteLabels);
       console.log(this.card);
       try{
       //call addnote method of the note service which contains the exact URL for the API service.
@@ -87,5 +93,8 @@ export class AddNotesComponent implements OnInit {
     }
     }
    }
+  }
+  removeReminder(){
+    this.card.reminder=[];
   }
 }

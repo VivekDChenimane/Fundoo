@@ -1,21 +1,23 @@
 export class Model {
-        title: string
-        description: string
-        color: string
+        title: string=""
+        description: string=""
+        color: string="#ffffff"
         createdDate: Date
         modifiedDate: Date
         id: string
         imageUrl: string
-        isArchived: boolean
-        isDeleted: boolean
-        isPined: boolean
-        reminder: Array<string>
-        noteLabels: Array<Label>
+        isArchived: boolean=false
+        isDeleted: boolean=false
+        isPined: boolean=false
+        reminder: Array<string>=[]
+        noteLabels: Array<Label>=[]
         userId: string
         labelIdList: [String]
-        noteCheckLists: Array<Checklists>
+        noteCheckLists: Array<Checklists>=[]
         questionAndAnswerNotes: [Object]
-        collaborators: [Object]
+        collaborators: []=[];
+        collaberators: []=[]
+
     }
     export interface Label {
         id: string

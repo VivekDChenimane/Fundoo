@@ -1,14 +1,14 @@
 <div fxLayout="row">
-  <div fxFlex='15'><button id="Remind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remindMenu">
+  <div fxFlex='13'><button id="Remind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remindMenu">
       <mat-icon class="material-icons">notification_important</mat-icon>
     </button></div>
   <mat-menu #remindMenu="matMenu" class="Remaindermatmenu">
     <app-reminder-icon [card]=card></app-reminder-icon>
   </mat-menu>
-  <div fxFlex='15'><button mat-icon-button matTooltip="Collaborator" (click)="addCollaborator()">
+  <div fxFlex='13'><button mat-icon-button matTooltip="Collaborator" (click)="addCollaborator()">
       <mat-icon class="material-icons ">person_add</mat-icon>
     </button></div>
-  <div fxFlex='15'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
+  <div fxFlex='13'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
       <mat-icon class="material-icons">color_lens</mat-icon>
     </button></div>
   <mat-menu #selectTheme="matMenu" class="matmenu">
@@ -21,16 +21,17 @@
       </div>
     </ng-template>
   </mat-menu>
-  <div fxFlex='15'><button mat-icon-button>
+  <div fxFlex='13'><button mat-icon-button>
       <mat-icon class="material-icons">image</mat-icon>
     </button></div>
-  <div fxFlex='15'><button mat-icon-button (click)="changeArchiveNote()">
+  <div fxFlex='13'><button mat-icon-button (click)="changeArchiveNote()">
       <mat-icon *ngIf=card.isArchived class="material-icons">unarchive</mat-icon>
       <mat-icon *ngIf=!card.isArchived class="material-icons">archive</mat-icon>
     </button></div>
-  <div fxFlex='15'><button mat-icon-button [matMenuTriggerFor]="More">
+  <div fxFlex='13'><button mat-icon-button [matMenuTriggerFor]="More">
       <mat-icon class="material-icons">more_vert</mat-icon>
-    </button></div>
+    </button>
+  </div>
   <mat-menu #More="matMenu" class="matmenu">
     <div *ngIf=addLabel>
       <button mat-menu-item>
@@ -65,7 +66,7 @@
       <div>
         <input class="textArea" fxFlex=80 [(ngModel)]="labelName" placeholder="Search for Label">
       </div>
-      <div *ngFor="let label of labelList">
+      <div *ngFor="let label of labelList;trackBy: trackByLabel">
         <div>
             <mat-checkbox (click)="labelToNote(label)">{{label.label}}</mat-checkbox></div>
       </div>

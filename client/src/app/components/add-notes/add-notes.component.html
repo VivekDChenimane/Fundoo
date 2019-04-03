@@ -21,11 +21,9 @@
         <button fxflex="80" mat-icon-button color="basic" (click)="changePin()">
             <div class="barpin" *ngIf=card.isPined>
               <img src="../../../assets/images/pin_Off.svg" />
-    
-            </div>
+                </div>
             <div class="barpin" *ngIf=!card.isPined>
-    
-              <img src="../../../assets/images/pin_On.svg"/>
+                  <img src="../../../assets/images/pin_On.svg"/>
             </div>
           </button>
     </div>
@@ -33,11 +31,30 @@
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
+    <div *ngIf='card.reminder.length!=0'>
+      <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
+          {{card.reminder[0]|date:shortdate}}
+        <mat-icon *ngIf=cancelIcon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </div>
+    <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
+      <div *ngFor='let item of card.noteLabels'>
+        <mat-chip-list>
+          <mat-chip (mouseenter)="remin=true" (mouseleave)="remin=false">
+            {{item.label}}
+            <mat-icon *ngIf=cancelIcon  (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <div fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
+        <div *ngFor='let item of card.collaborators'>
+            <mat-icon class="material-icons" matTooltip={{item.email}}>account_circle</mat-icon>
+        </div>
+    </div>
     <div fxFlex='100'>
       <app-note-icons (addNoteEvent)="addNote()" [card]=card > </app-note-icons>
     </div>
-    <!-- <div fxFlex='10' fxHide.md fxLayoutAlign="end end">
-      <button class="addnote" mat-button (click)="addNote()">close</button>
-    </div> -->
-  </mat-card>
+   </mat-card> 
+   <!-- <app-card [card]="card" (removeEvent)="removeEvent($event,card)"></app-card> -->
 </div>

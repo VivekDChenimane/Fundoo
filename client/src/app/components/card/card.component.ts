@@ -10,6 +10,7 @@ import { DataService } from "../../service/data/data.service";
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+@Input() fullIcon;
 @Input() card
 @Input() search: boolean = true;
 @Output() pinEvent = new EventEmitter();
@@ -24,27 +25,34 @@ description: any;
   constructor(public dialog: MatDialog, private noteService: NoteService, private dataService: DataService) { }
 
   ngOnInit() {
+    console.log(this.fullIcon)
     this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
-   }
-   show(card) {
-    this.description = card.description;
-    this.title = card.title;
-    this.isArchived = card.isArchived;
-    this.isDeleted = card.isDeleted;
-    this.isPined = card.isPined;
+  }
+   show() {
+    this.description = this.card.description;
+    this.title = this.card.title;
+    this.isArchived = this.card.isArchived;
+    this.isDeleted = this.card.isDeleted;
+    this.isPined = this.card.isPined;
+  }
+  check(){
+    if(!this.fullIcon){
+    this.openDialog(this.card);
+      this.show();
+  }
+    return;
   }
   openDialog(card): void {
-
     const dialogRef = this.dialog.open(NoteDialogComponent, {
-      position: { top: '12.5%' },
+      position: { top: '15.5%' },
       data: card,
-      width: '55%',
+      
       // hasBackdrop: false,
       // disableClose: false
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'deleted') {
-
+        this.removeEvent.emit('true');
       }
       else {
         if (card.title != this.title || card.description != this.description) {

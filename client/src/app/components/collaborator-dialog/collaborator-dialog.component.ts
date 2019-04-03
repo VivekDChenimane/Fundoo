@@ -13,7 +13,8 @@ export class CollaboratorDialogComponent implements OnInit {
   email:string;
   searchResultList;
   collaborator;
-  collaborators:[];
+  collaborators:any[];
+  collaboratorBody;
   constructor(public dialogRef: MatDialogRef<CollaboratorDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data,public noteService:NoteService) { }
 
@@ -22,7 +23,11 @@ export class CollaboratorDialogComponent implements OnInit {
     this.email=localStorage.getItem('email');
     console.log(this.data.collaborators)
     this.collaborators=this.data.collaborators
-
+    if(this.data['id']==undefined){
+      if(this.data['collaborators']==undefined){
+        this.collaborators=[];
+      }
+    }
   }
   
   searchlist(data){
@@ -34,27 +39,53 @@ export class CollaboratorDialogComponent implements OnInit {
     })
   }
 }
-addCollaborator(userDetails){
+addCollaborator(){
+  if(this.data['id']==undefined){
+    this.collaborators.push(this.collaboratorBody);
+    this.collaborator="";
+  }
+  else{
+  this.noteService.addCollaborator(this.data['id'], this.collaboratorBody).subscribe(result => {
+    this.collaborators.push(this.collaboratorBody);
+    this.collaborator="";
+    console.log(result)
+  })
+}
+}
+setCollaborator(userDetails){
+  this.collaborator=userDetails.email;
   console.log(userDetails);
-  let collaboratorBody = {
+  this.collaboratorBody = {
     "firstName": userDetails.firstName,
     "lastName": userDetails.lastName,
     "email": userDetails.email,
     "userId": userDetails.userId
   }
-  console.log(collaboratorBody)
-  this.noteService.addCollaborator(this.data['id'], collaboratorBody).subscribe(result => {
-    // this.collaborators.push(collaboratorBody);
-    this.collaborator="";
-    console.log(result)
-  })
+  
 }
 removeCollaborator(collaboratorId){
   console.log(this.collaborators)
   console.log(collaboratorId);
   console.log(this.data['id'])
+  if(this.data['id']==!undefined){
   this.noteService.removeCollaborator(this.data['id'],collaboratorId).subscribe(result=>{
    console.log(result);
- })
+ })}
+ var count = 0;
+    this.collaborators.forEach(collaborator => {
+      console.log("enter for each")
+      console.log(collaborator.userId+"="+collaboratorId)
+      if (collaborator.userId ==collaboratorId ){
+        console.log("enter each")
+        this.collaborators.splice(count, 1);
+        console.log(this.collaborators);
+      }
+      else
+        count++;
+    });
+    return;
+}
+cancel(){
+  this.dialogRef.close();
 }
 }
