@@ -24,11 +24,11 @@
         </mat-chip>
       </div>
       <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
-        <div *ngFor='let item of card.noteLabels'>
+        <div *ngFor='let item of card.noteLabels' >
           <mat-chip-list>
-            <mat-chip (mouseenter)="remin=true" (mouseleave)="remin=false">
+            <mat-chip  (mouseenter)="item.hover=true" (mouseleave)="item.hover=false">
               {{item.label}}
-              <mat-icon *ngIf=cancelIcon  (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
+              <mat-icon *ngIf=item.hover (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
             </mat-chip>
           </mat-chip-list>
         </div>

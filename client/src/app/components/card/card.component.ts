@@ -10,6 +10,7 @@ import { DataService } from "../../service/data/data.service";
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+  
 @Input() fullIcon;
 @Input() card
 @Input() search: boolean = true;
@@ -26,7 +27,6 @@ description: any;
 
   ngOnInit() {
     console.log(this.fullIcon)
-    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
   }
    show() {
     this.description = this.card.description;
@@ -76,7 +76,9 @@ description: any;
   }
   changePin(card){
     card.isPined=!card.isPined;
+    if(!this.fullIcon)
     this.updatePin(card);
+    return
   }
   
     updatePin(card){
@@ -87,7 +89,7 @@ description: any;
     this.noteService.pinUnpinNote(this.model).subscribe(message=>{
       console.log(message);
       // this.pinEvent.emit(card);
-      // this.removeEvent(true,card);
+      this.removeEvent.emit('pin');
 
     })  
   }

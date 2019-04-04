@@ -44,6 +44,7 @@ export class DisplayNotesComponent implements OnInit {
   constructor(private noteService: NoteService, private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
     }
   removeEvent($event,card) {
     if($event){
@@ -56,8 +57,13 @@ export class DisplayNotesComponent implements OnInit {
       else
         count++;
     });
-    return;
+   
   }
+  if($event=='pin'){
+    console.log("Entered test")
+       this.pinEvent.emit(card);
+    }
+    return;
 }
 
 }
