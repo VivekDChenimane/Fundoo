@@ -20,6 +20,7 @@ import { MatDialog } from '@angular/material';
 import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 import { DataService } from '../../service/data/data.service'
 import { Label } from '../../Models/model.model'
+import { forEach } from '@angular/router/src/utils/collection';
 @Component({
   selector: 'app-note-icons',
   templateUrl: './note-icons.component.html',
@@ -147,13 +148,31 @@ addLabelToggle(){
 
 labelToNote(label){
   console.log(label);
+  console.log(this.card.noteLabels.indexOf(label));
+  this.card.noteLabels.forEach(list => {
+    if(list.id==label.id){
+      console.log("Already label exist");
+      return;
+    }
+    // console.log(list)
+  });
   this.card.noteLabels.push(label);
   if(this.card.id!=undefined){
   this.noteService.addLabelToNote(this.card.id,label.id,'').subscribe(message=>{
     console.log(message);
   })
-}}
-trackByLabel(index,label){
-  console.log("index=>"+index+"label=>"+label.id)
+}
+}
+
+isSelected(id){
+  // console.log(this.card);
+  this.card.noteLabels.forEach(list => {
+    // console.log("listId=>"+list.id+"id=>"+id)
+    if(list.id=id){
+      // console.log("----------------------------")
+      return true;
+    }
+  });
+  // return false;
 }
 }

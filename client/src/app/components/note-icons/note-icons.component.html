@@ -61,16 +61,20 @@
         </div>
       </button>
     </div>
-    <div *ngIf=!addLabel>
+    <div *ngIf=!addLabel >
+      <div fxLayout="column" fxLayoutAlign="space-around start">
       Label note
       <div>
         <input class="textArea" fxFlex=80 [(ngModel)]="labelName" placeholder="Search for Label">
       </div>
-      <div *ngFor="let label of labelList;trackBy: trackByLabel">
+      <div *ngFor="let label of labelList">
         <div>
-            <mat-checkbox (click)="labelToNote(label)">{{label.label}}</mat-checkbox></div>
+            <mat-checkbox (click)="labelToNote(label)">
+              {{label.label}}</mat-checkbox></div>
+      </div>
       </div>
     </div>
+
   </mat-menu>
   <div fxFlex='' *ngIf="show">
     <button class="addnote" mat-button (click)="updateNote()">close</button>

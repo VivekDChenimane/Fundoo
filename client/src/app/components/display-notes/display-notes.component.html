@@ -1,5 +1,12 @@
 <div class="note-display" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="14px">
   <div *ngFor="let card of notes|search:(search?null:searchValue)">
-    <app-card [card]="card" (removeEvent)="removeEvent($event,card)"></app-card>
+    <app-card class="example-card" [card]="card" (removeEvent)="removeEvent($event,card)"></app-card>
   </div>
 </div>
+
+
+<!-- <div class="note-display"  fxLayout.lt-sm="column" fxLayoutGap="14px">
+    <div *ngFor="let card of notes|search:(search?null:searchValue)">
+      <app-card class="example-card" fxLayout="column" layout-wrap [card]="card" (removeEvent)="removeEvent($event,card)"></app-card>
+    </div>
+  </div> -->
