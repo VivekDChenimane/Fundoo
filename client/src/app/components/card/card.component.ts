@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
 import { NoteService } from '../../service/note/note.service';
 import { DataService } from "../../service/data/data.service";
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 
 @Component({
   selector: 'app-card',
@@ -133,4 +134,12 @@ description: any;
       return;
 
   }
+  openCollaborator(){
+    const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+    width:'auto',
+      data:{collaborators:this.card.collaborators,
+        id:this.card.id
+      }
+    });
+  } 
 }

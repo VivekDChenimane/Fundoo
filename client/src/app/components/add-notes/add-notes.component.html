@@ -33,14 +33,14 @@
     </div>
     <div *ngIf='card.reminder.length!=0'>
       <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
-          {{card.reminder[0]|date:shortdate}}
+          {{card.reminder[0]|date:'medium'}}
         <mat-icon *ngIf=cancelIcon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
       </mat-chip>
     </div>
     <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
       <div *ngFor='let item of card.noteLabels'>
         <mat-chip-list>
-          <mat-chip (mouseenter)="remin=true" (mouseleave)="remin=false">
+          <mat-chip class="sample" (mouseenter)="remin=true" (mouseleave)="remin=false">
             {{item.label}}
             <mat-icon *ngIf=cancelIcon  (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
           </mat-chip>
@@ -49,7 +49,7 @@
     </div>
     <div fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
         <div *ngFor='let item of card.collaborators'>
-            <mat-icon class="material-icons" matTooltip={{item.email}}>account_circle</mat-icon>
+            <mat-icon class="material-icons"  (click)="openCollaborator()" matTooltip={{item.email}}>account_circle</mat-icon>
         </div>
     </div>
     <div fxFlex='100'>

@@ -7,6 +7,7 @@
             (click)="$event.stopPropagation()">
             <div class="barpin" *ngIf=card.isPined>
               <img src="../../../assets/images/pin_Off.svg" />
+              <!-- <mat-icon class="material-icons">pin_Off</mat-icon> -->
             </div>
             <div class="barpin" *ngIf=!card.isPined>
               <img src="../../../assets/images/pin_On.svg" />
@@ -26,7 +27,7 @@
       <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
         <div *ngFor='let item of card.noteLabels' >
           <mat-chip-list>
-            <mat-chip  (mouseenter)="item.hover=true" (mouseleave)="item.hover=false">
+            <mat-chip class="sample" (mouseenter)="item.hover=true" (mouseleave)="item.hover=false">
               {{item.label}}
               <mat-icon *ngIf=item.hover (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
             </mat-chip>
@@ -35,7 +36,7 @@
       </div>
       <div fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
           <div *ngFor='let item of card.collaborators'>
-              <mat-icon class="material-icons" matTooltip={{item.email}}>account_circle</mat-icon>
+              <mat-icon class="material-icons" (click)="openCollaborator()" matTooltip={{item.email}}>account_circle</mat-icon>
           </div>
 
       </div>

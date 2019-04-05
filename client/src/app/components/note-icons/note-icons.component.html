@@ -6,7 +6,7 @@
     <app-reminder-icon [card]=card></app-reminder-icon>
   </mat-menu>
   <div fxFlex='13'><button mat-icon-button matTooltip="Collaborator" (click)="addCollaborator()">
-      <mat-icon class="material-icons ">person_add</mat-icon>
+      <mat-icon class="material-icons">person_add</mat-icon>
     </button></div>
   <div fxFlex='13'><button mat-icon-button matTooltip="Select theme" [matMenuTriggerFor]="selectTheme">
       <mat-icon class="material-icons">color_lens</mat-icon>
@@ -68,7 +68,7 @@
         <input class="textArea" fxFlex=80 [(ngModel)]="labelName" placeholder="Search for Label">
       </div>
       <div *ngFor="let label of labelList">
-        <div>
+        <div *ngIf="label.id!=''">
             <mat-checkbox (click)="labelToNote(label)">
               {{label.label}}</mat-checkbox></div>
       </div>

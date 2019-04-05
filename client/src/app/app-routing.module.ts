@@ -29,7 +29,7 @@ const routes: Routes = [
       {path:'trash',component:TrashComponent},
       {path:'search',component:SearchComponent},
       {path:'reminder',component:RemindersComponent},
-      {path:'label',component:LabelsComponent}
+      {path:'label/:labelName',component:LabelsComponent,data:{labelName:'labelName'}}
     ] 
   },
   {

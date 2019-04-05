@@ -33,6 +33,8 @@
   
   .matcard{
     margin-top: 30px;
+    border-radius: 18px;
+    box-shadow: 1px 1px 1px 1px #888888;
   }
   .Border :focus{
     outline: white;
@@ -74,3 +76,12 @@
     outline: none;
     user-select: none;
   }
+  .mat-icon{
+    color: rgb(103, 107, 110);
+}
+.mat-icon:hover {
+    color: black;
+}
+.sample{
+  background: transparent;
+}

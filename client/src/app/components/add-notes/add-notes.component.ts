@@ -18,7 +18,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from '../../service/note/note.service';
 import { Model } from '../../Models/model.model';
- 
+import { MatDialog } from '@angular/material';
+import { CollaboratorDialogComponent} from '../collaborator-dialog/collaborator-dialog.component';
 @Component({ 
   selector: 'app-add-notes',
   templateUrl: './add-notes.component.html',
@@ -35,7 +36,7 @@ export class AddNotesComponent implements OnInit {
    */
   card :any;
   @Output() newNoteEvent = new EventEmitter();
-  constructor(private noteService:NoteService) {
+  constructor(public dialog: MatDialog,private noteService:NoteService) {
     /**
      * @description Create instance of the class Model.
      */
@@ -74,6 +75,7 @@ export class AddNotesComponent implements OnInit {
       this.card.collaborators=JSON.stringify(this.card.collaborators);
       this.card.collaberators=this.card.collaborators;
       this.card.noteLabels=JSON.stringify(this.card.noteLabels);
+      this.card.labelIdList=JSON.stringify(this.card.labelIdList);
       console.log(this.card);
       try{
       //call addnote method of the note service which contains the exact URL for the API service.
@@ -94,6 +96,14 @@ export class AddNotesComponent implements OnInit {
     }
    }
   }
+  openCollaborator(){
+    const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+    width:'auto',
+      data:{collaborators:this.card.collaborators,
+        id:this.card.id
+      }
+    });
+  } 
   removeReminder(){
     this.card.reminder=[];
   }

@@ -94,10 +94,9 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.destroy$.unsubscribe();
   }
   openLabelNotes(labelName){
-    this.noteService.getNotesListByLabel(labelName).subscribe(message=>{
-      this.labelNotes=message['data']['data']
-      this.router.navigate(['label']);
-    })
+    
+      this.router.navigate(['label',labelName]);
+    // })
     
   }
   getLabel() {
@@ -106,6 +105,7 @@ export class HomeComponent implements OnInit,OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {   
         // this.ArrayOfLabel=result["data"]["details"];
+        console.log(result["data"]["details"])
         this.dataService.updateLabels(result["data"]["details"]);
         this.dataService.currentLabels.subscribe(message => {this.ArrayOfLabel = message})  ;
        })

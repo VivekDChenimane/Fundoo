@@ -85,16 +85,7 @@ export class NoteIconsComponent implements OnInit {
       return ;
     }
     else{ 
-      // this.addNoteEvent.emit();
-      // this.model={
-      //   noteId:this.card.id,
-      //   title:this.card.title,
-      //   description:this.card.description
-      // }
-      // this.noteService.updatenote(this.model).subscribe(message=>{
-      //   console.log(message);
         this.remove(false);
-      // })
      }
     }
 
@@ -155,24 +146,23 @@ labelToNote(label){
       return;
     }
     // console.log(list)
-  });
+  },this.service(label));
+ }
+service(label){
   this.card.noteLabels.push(label);
   if(this.card.id!=undefined){
   this.noteService.addLabelToNote(this.card.id,label.id,'').subscribe(message=>{
     console.log(message);
   })
 }
+else 
+this.card.labelIdList.push(label.id);
 }
-
 isSelected(id){
-  // console.log(this.card);
   this.card.noteLabels.forEach(list => {
-    // console.log("listId=>"+list.id+"id=>"+id)
     if(list.id=id){
-      // console.log("----------------------------")
       return true;
     }
   });
-  // return false;
 }
 }

@@ -12,7 +12,7 @@ export class Model {
         reminder: Array<string>=[]
         noteLabels: Array<Label>=[]
         userId: string
-        labelIdList: [String]
+        labelIdList: []=[]
         noteCheckLists: Array<Checklists>=[]
         questionAndAnswerNotes: [Object]
         collaborators: []=[];

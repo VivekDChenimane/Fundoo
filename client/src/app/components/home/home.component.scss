@@ -32,11 +32,6 @@
   
   
   
-  // .my-tooltip {
-  //   white-space: pre-line;
-  //   // width: 200px;
-  //   // height: 200px;
-  // }
   .sear{
     align-self: center
   }
@@ -186,3 +181,9 @@
     box-shadow: 0 0 0 0 rgba(0,0,0,.2), 0 0 0 0 rgba(0,0,0,.14), 0 0 0 0 rgba(0,0,0,.12);
     width: 140px;
   }
+  .mat-icon{
+    color: rgb(103, 107, 110);
+}
+.mat-icon:hover {
+    color: black;
+}
