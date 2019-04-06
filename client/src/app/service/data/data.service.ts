@@ -18,11 +18,16 @@ labelDefault:Label={
   private labelNotes= new BehaviorSubject<Label>(this.labelDefault);
   currentLabels=this.labelNotes.asObservable();
 
+  private view=new BehaviorSubject(true);
+  currentView=this.view.asObservable();
   constructor() { }
   changeMessage(message: string) {
     this.messageSource.next(message)
   }
   updateLabels(message:Label){
     this.labelNotes.next(message)
+  }
+  changeView(message:boolean){
+    this.view.next(message);
   }
 }

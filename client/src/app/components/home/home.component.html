@@ -20,8 +20,9 @@
     </div>
     <div fxFlex="25" fxLayoutAlign="end start" class="settingbtn">
 
-      <button mat-icon-button color="basic" id="grid" fxHide.xs matTooltip="grid">
-        <mat-icon>border_all</mat-icon>
+      <button mat-icon-button color="basic" id="grid" (click)="changeView()" fxHide.xs matTooltip="grid">
+        <mat-icon *ngIf=view >view_stream</mat-icon>
+        <mat-icon *ngIf=!view>view_module</mat-icon>
       </button>
       <button mat-icon-button colour="basic" matTooltip="ACCOUNT " [matMenuTriggerFor]="account">
         <mat-icon>account_circle</mat-icon>

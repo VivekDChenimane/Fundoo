@@ -91,6 +91,7 @@ export class NoteIconsComponent implements OnInit {
 
   changeArchiveNote(){
     if(this.card.id==undefined){
+      this.card.isArchived=true;
       this.addNoteEvent.emit();
       return ;
     }

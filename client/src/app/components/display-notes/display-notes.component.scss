@@ -7,10 +7,13 @@
     place-content: normal;
     align-items: center;
 }
-.note-display{
+.gridView{
 margin-left: 10%;
 margin-right: 10%;
-
+}
+.listView{
+margin-left: 20%;
+margin-right: 20%;
 }
 ::ng-deep .ng-star-inserted{
     margin-right: 0%;
@@ -37,5 +40,6 @@ margin-right: 10%;
 
 .test{
     padding: 5px;
+    // max-width: 750px;
 
 }

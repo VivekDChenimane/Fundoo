@@ -15,7 +15,15 @@
           </button>
         </div>
         <div fxFlex=50>
-      <textarea class="textArea">{{card.description}}</textarea>
+      <textarea class="textArea" [(ngModel)]="card.description"></textarea>
+        </div>
+        <div fxLayout="row">
+          <mat-icon fxFlex="5%">add</mat-icon>
+          <mat-checkbox [(ngModel)]=addCheck color="primary">
+          </mat-checkbox>
+          <input fxFlex="95%" class="Border" placeholder="List Item" 
+                 [ngStyle]="{'background-color':color}" [(ngModel)]=newList
+                 (keydown)=addList($event)/>
         </div>
       </div>
       <div *ngIf='card.reminder.length!=0'>

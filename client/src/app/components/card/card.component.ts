@@ -24,6 +24,8 @@ isArchived: any;
 isDeleted: any;
 isPined: any;
 description: any;
+newList
+addCheck
   constructor(public dialog: MatDialog, private noteService: NoteService, private dataService: DataService) { }
 
   ngOnInit() {
@@ -56,7 +58,9 @@ description: any;
         this.removeEvent.emit('true');
       }
       else {
+        console.log(card.description+" = "+this.description);
         if (card.title != this.title || card.description != this.description) {
+          console.log("Entered");
           this.model = {
             noteId: card.id,
             title: card.title,
@@ -136,10 +140,14 @@ description: any;
   }
   openCollaborator(){
     const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+      panelClass: 'myClass',
     width:'auto',
       data:{collaborators:this.card.collaborators,
         id:this.card.id
       }
     });
   } 
+  addList(){
+    
+  }
 }

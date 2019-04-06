@@ -19,6 +19,7 @@ import { MatDialog } from '@angular/material';
 import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
 import { NoteService } from '../../service/note/note.service';
 import { DataService } from "../../service/data/data.service";
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 /**
  * @description Create a interface for knowing attributes the data.
@@ -35,7 +36,7 @@ export interface matdialog {
   styleUrls: ['./display-notes.component.scss']
 })
 export class DisplayNotesComponent implements OnInit {
-
+  view=true;
   @Input() notes: any;
   @Output() pinEvent = new EventEmitter();
   @Input() search: boolean = true;
@@ -45,6 +46,8 @@ export class DisplayNotesComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
+    this.notes=this.notes.reverse();
+    this.dataService.currentView.subscribe(message => {this.view=message});
     }
   removeEvent($event,card) {
     if($event){

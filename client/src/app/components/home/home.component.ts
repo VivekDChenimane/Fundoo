@@ -31,7 +31,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit,OnDestroy {
-  
+  view=true;
   destroy$: Subject<boolean> = new Subject<boolean>();
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit,OnDestroy {
   check
   labelNotes;
   ArrayOfLabel:Label;
-  constructor(public dialog: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService,public noteService:NoteService) {
+  constructor(public dialog1: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService,public noteService:NoteService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -116,12 +116,16 @@ export class HomeComponent implements OnInit,OnDestroy {
     
         
   openLabelDialog(){
-    const dialogRef = this.dialog.open(LabelDialogComponent, {
+    const dialogRef = this.dialog1.open(LabelDialogComponent, {
       data:this.ArrayOfLabel
 });
 dialogRef.afterClosed().subscribe(result => {
 
 })
+}
+changeView(){
+  this.view=!this.view;
+  this.dataService.changeView(this.view);
 }
 
 }
