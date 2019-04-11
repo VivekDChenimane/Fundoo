@@ -78,6 +78,11 @@ export class NoteService {
   }
   removeLabelTags(id,labelId,body){
     return this.service.postJSON('/notes/'+ id +'/addLabelToNotes/'+labelId+'/remove',body);
-
+  }
+  uploadImage(data){
+    return this.service.postImage('user/uploadProfileImage',data)
+  }
+  getNoteDetails(cardId){
+    return this.service.httpGetData('notes/getNotesDetail/'+cardId);
   }
 }

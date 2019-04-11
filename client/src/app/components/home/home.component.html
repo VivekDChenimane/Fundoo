@@ -21,72 +21,83 @@
     <div fxFlex="25" fxLayoutAlign="end start" class="settingbtn">
 
       <button mat-icon-button color="basic" id="grid" (click)="changeView()" fxHide.xs matTooltip="grid">
-        <mat-icon *ngIf=view >view_stream</mat-icon>
+        <mat-icon *ngIf=view>view_stream</mat-icon>
         <mat-icon *ngIf=!view>view_module</mat-icon>
       </button>
-      <button mat-icon-button colour="basic" matTooltip="ACCOUNT " [matMenuTriggerFor]="account">
-        <mat-icon>account_circle</mat-icon>
-      </button></div>
+      <div class="profilepic">
+        <button *ngIf="newImage != '' " (click)="$event.stopPropagation()" matTooltip="fundoo Account" mat-mini-fab
+          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover'}" [matMenuTriggerFor]="account"
+          class="imagetext">
+        </button>
+        <button *ngIf="newImage == '' " (click)="$event.stopPropagation()" matTooltip="fundoo Account" mat-mini-fab
+          [matMenuTriggerFor]="account" class="imagetext">
+          {{email | uppercase | slice : 0 : 1 }}</button>
+      </div>
+    </div>
     <mat-menu #account="matMenu">
       <div fxLayoutAlign="row wrap">
         <div fxFlex=20>
-          <button (click)="$event.stopPropagation()" (click)="imageSelectFile.click()" matTooltip="fundoo Account"
-            mat-mini-fab class="imageSelect">
-            <div mat-raised-button>change
-            </div>
+          <button (click)="$event.stopPropagation()" (click)="openPicture(image)"  matTooltip="fundoo Account"
+            mat-mini-fab [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover'}" 
+            class="imageSelect">
+            <!-- <div mat-raised-button >change
+            </div> -->
           </button>
-          <input (click)="$event.stopPropagation()" type="file" (change)="onFileUpload($event)" #imageSelectFile>
         </div>
+        <div fxLayout="column" fxLayoutAlign="left left" style="padding-right: 20px">
+          <span class="usernameStyle">{{name}}</span>
+          <span class="emailStyle">{{email}}</span></div>
       </div>
-    </mat-menu>
-  </mat-toolbar>
+      <button mat-button (click)="logout()" style="background-color: royalblue; margin-top: 25px">Log Out</button>
+</mat-menu>
+</mat-toolbar>
 
-  <!---------------------------Side-Nav--------------------------------------------->
+<!---------------------------Side-Nav--------------------------------------------->
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56">
-      <mat-nav-list>
-        <mat-list role="List">
-          <mat-list-item role="listitem" id="note" (click)="navigateHome()">
-            <img id="img1" src="../../../assets/images/bulb.svg" />
-            Note</mat-list-item>
+<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56">
+    <mat-nav-list>
+      <mat-list role="List">
+        <mat-list-item role="listitem" id="note" (click)="navigateHome()">
+          <img id="img1" src="../../../assets/images/bulb.svg" />
+          Note</mat-list-item>
 
-          <mat-list-item role="listitem" id="rem" (click)="navigateReminder()">
-            <img id="img2" src="../../../assets/images/bell.svg" />
-            Remainder</mat-list-item>
+        <mat-list-item role="listitem" id="rem" (click)="navigateReminder()">
+          <img id="img2" src="../../../assets/images/bell.svg" />
+          Remainder</mat-list-item>
 
-          <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-          <p id="para">labels</p>
+        <p id="para">labels</p>
 
-          <!-- <app-label-list [ArrayOfLabel]="ArrayOfLabel"></app-label-list> -->
-          <div *ngFor='let label of ArrayOfLabel'>
-            <mat-nav-list>
-              <mat-list-item (click)="openLabelNotes(label.label)">
-                <mat-icon>label_outline</mat-icon>
-                {{label.label}}
-              </mat-list-item>
-            </mat-nav-list>
-          </div>
-          <mat-list-item role="listitem" id="lable" (click)="openLabelDialog()">
-            <mat-icon id="edit">edit</mat-icon>
-            Edit label
-          </mat-list-item>
+        <!-- <app-label-list [ArrayOfLabel]="ArrayOfLabel"></app-label-list> -->
+        <div *ngFor='let label of ArrayOfLabel'>
+          <mat-nav-list>
+            <mat-list-item (click)="openLabelNotes(label.label)">
+              <mat-icon>label_outline</mat-icon>
+              {{label.label}}
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+        <mat-list-item role="listitem" id="lable" (click)="openLabelDialog()">
+          <mat-icon id="edit">edit</mat-icon>
+          Edit label
+        </mat-list-item>
 
-          <mat-divider></mat-divider>
-          <mat-list-item role="listitem" id="arch" (click)="navigateArchive()">
-            <img id="img4" src="../../../assets/images/archive.svg" />
-            Archive</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem" id="arch" (click)="navigateArchive()">
+          <img id="img4" src="../../../assets/images/archive.svg" />
+          Archive</mat-list-item>
 
-          <mat-list-item role="listitem" id="bin" (click)="navigateTrash()">
-            <img id="img5" src="../../../assets/images/trash.svg" />
-            Trash</mat-list-item>
+        <mat-list-item role="listitem" id="bin" (click)="navigateTrash()">
+          <img id="img5" src="../../../assets/images/trash.svg" />
+          Trash</mat-list-item>
 
-        </mat-list>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+      </mat-list>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

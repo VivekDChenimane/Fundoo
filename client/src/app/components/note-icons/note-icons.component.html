@@ -33,7 +33,7 @@
     </button>
   </div>
   <mat-menu #More="matMenu" class="matmenu">
-    <div *ngIf=addLabel>
+    <div *ngIf=addLabel (click)="$event.stopPropagation()">
       <button mat-menu-item>
         <div fxLayout="row" fxLayoutAlign="space-between start" (click)="trashNote()">
           Delete
@@ -51,12 +51,17 @@
         </div>
       </button>
       <button mat-menu-item>
-        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="$event.stopPropagation()">
+        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="openQandA()" >
+          Ask Question
+        </div>
+      </button>
+      <button mat-menu-item>
+        <div fxLayout="row" fxLayoutAlign="space-between start" >
           Make a copy
         </div>
       </button>
       <button mat-menu-item>
-        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="$event.stopPropagation()">
+        <div fxLayout="row" fxLayoutAlign="space-between start" >
           Show checkboxes
         </div>
       </button>

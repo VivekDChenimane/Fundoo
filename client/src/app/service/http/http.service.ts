@@ -74,5 +74,15 @@ export class HttpService {
     }
     return this.http.post(url, body, httpOptions)
   }
-
+  postImage(url: string, body: any): any {
+    url=environment.baseUrl + url;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('token')
+  
+      })
+    }
+    console.log(localStorage.getItem('token'),"token")
+    return this.http.post(url, body, httpOptions)
+  }
 } 

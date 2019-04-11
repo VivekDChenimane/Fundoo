@@ -30,3 +30,19 @@
 .mat-icon:hover {
     color: black;
 }
+.display-note{
+    .iconClass{
+        opacity: 0;
+    }
+    .barpin{
+        opacity: 0;
+    }
+    &:hover{
+        .iconClass{
+            opacity: 1;
+        }
+        .barpin{
+            opacity: 1;
+        }
+    }
+}

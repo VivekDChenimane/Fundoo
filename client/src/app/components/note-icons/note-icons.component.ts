@@ -20,7 +20,8 @@ import { MatDialog } from '@angular/material';
 import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 import { DataService } from '../../service/data/data.service'
 import { Label } from '../../Models/model.model'
-import { forEach } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-note-icons',
   templateUrl: './note-icons.component.html',
@@ -53,7 +54,7 @@ export class NoteIconsComponent implements OnInit {
       { 'color': '#81D4FA', 'name': 'blue' },
       { 'color': '#0288D1', 'name': 'darkblue' }
     ]]
-  constructor(private noteService:NoteService,public dialog:MatDialog,public dataService:DataService) { }
+  constructor(private noteService:NoteService, private router : Router,public dialog:MatDialog,public dataService:DataService) { }
 
   ngOnInit() {
     this.dataService.currentLabels.subscribe(message => {this.labelList = message})  ;
@@ -166,4 +167,7 @@ isSelected(id){
     }
   });
 }
+openQandA(){
+  this.router.navigate(['question&Answers',this.card.id]);
+} 
 }

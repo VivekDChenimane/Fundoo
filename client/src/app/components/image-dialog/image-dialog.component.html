@@ -1,0 +1,33 @@
+<div fxLayout="column" style="padding:5px;height:80%;">
+  <div mat-dialog-title>
+          <span>Select Profile Photo</span>
+        </div>
+<div class="body">
+<button mat-button  (click)="photoInput.click()">Select a photo from your computer</button>
+<input type="file" (change)="fileChangeEvent($event)" />
+
+<input #fileInput type="file" style="display:none" (change)="fileChangeEvent($event)">
+<image-cropper
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="4 / 3"
+  [resizeToWidth]="168"
+  format="png"
+  (imageCropped)="imageCropped($event)"
+  (imageLoaded)="imageLoaded()"
+  (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+
+<img [src]="croppedImage" />
+</div>
+<div style="bottom:5;margin-top: 5%" fxLayout="row">
+<div style="padding:5px;">
+    <button mat-raised-button color="primary" [mat-dialog-close]="{'image':croppedImage}" (click)=setimage()>Save as profile picture</button>
+</div>
+<div style="padding:5px;">
+    <button mat-button [mat-dialog-close]="{'title':false}" cdkFocusInitial>Cancel</button>
+</div>
+
+</div>
+</div>

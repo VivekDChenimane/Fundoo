@@ -30,6 +30,10 @@ import { LabelDialogComponent } from './components/label-dialog/label-dialog.com
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 import { LabelsComponent } from './components/labels/labels.component';
 import { CardComponent } from './components/card/card.component';
+import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { QuestionAnswersComponent } from './components/question-answers/question-answers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +56,9 @@ import { CardComponent } from './components/card/card.component';
     LabelDialogComponent,
     CollaboratorDialogComponent,
     LabelsComponent,
-    CardComponent
+    CardComponent,
+    ImageDialogComponent,
+    QuestionAnswersComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +66,9 @@ import { CardComponent } from './components/card/card.component';
     FlexLayoutModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ImageCropperModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

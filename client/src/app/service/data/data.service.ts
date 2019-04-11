@@ -20,6 +20,11 @@ labelDefault:Label={
 
   private view=new BehaviorSubject(true);
   currentView=this.view.asObservable();
+
+  private changephoto = new BehaviorSubject(true);
+  currentPhoto = this.changephoto.asObservable();
+
+  
   constructor() { }
   changeMessage(message: string) {
     this.messageSource.next(message)
@@ -30,4 +35,8 @@ labelDefault:Label={
   changeView(message:boolean){
     this.view.next(message);
   }
+  changeImage(message:boolean){
+    console.log(message,"imagedata")
+    this.changephoto.next(message); 
+    }
 }

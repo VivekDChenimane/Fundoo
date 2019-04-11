@@ -18,6 +18,8 @@ import { LabelDialogComponent } from './components/label-dialog/label-dialog.com
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 import { RemindersComponent } from './components/reminders/reminders.component'
 import { LabelsComponent } from './components/labels/labels.component'
+import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
+import { QuestionAnswersComponent } from './components/question-answers/question-answers.component';
 const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
   {path: 'login',component: LoginComponent},
@@ -29,7 +31,8 @@ const routes: Routes = [
       {path:'trash',component:TrashComponent},
       {path:'search',component:SearchComponent},
       {path:'reminder',component:RemindersComponent},
-      {path:'label/:labelName',component:LabelsComponent,data:{labelName:'labelName'}}
+      {path:'label/:labelName',component:LabelsComponent},
+      {path:'question&Answers/:cardId',component:QuestionAnswersComponent}
     ] 
   },
   {
@@ -44,6 +47,11 @@ const routes: Routes = [
   {
     path:'add-collaborator',
     component:CollaboratorDialogComponent
+  }
+  ,
+  {
+    path:'upload-image',
+    component:ImageDialogComponent
   }
 ];
 @NgModule({

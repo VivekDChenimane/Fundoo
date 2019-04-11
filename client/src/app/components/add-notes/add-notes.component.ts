@@ -65,6 +65,7 @@ export class AddNotesComponent implements OnInit {
     this.flag = !this.flag;
     if(this.flag){
     if(this.noteTitle.value==''){
+      this.card.reminder=[];
       return
     }
     else{
@@ -87,6 +88,7 @@ export class AddNotesComponent implements OnInit {
         this.card.color="#FFFFFF";
         console.log(note['status']['details']);
         this.card = new Model();
+        this.card.reminder=[];
         //Emit the note to parent to make the new card visible.
         this.newNoteEvent.emit(note['status']['details']);
       })

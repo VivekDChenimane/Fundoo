@@ -1,0 +1,22 @@
+<mat-card> 
+    
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex=90 fxLayout="column" fxLayoutAlign="space-between start">
+        <div class="noteContent" matTooltip="Note Title">{{card.title}} </div>
+        <div class="noteContent" matTooltip="Note Description">{{card.description}}</div>
+      </div>
+      <div fxFlex=10 matTooltip="Go back to notes" (click)="close()">
+        <button mat-button>Close</button>
+      </div>
+    </div>
+    <hr>
+    <div *ngIf=!show>
+      <div contenteditable="true" placeholder="Enter your question here" #quest></div>
+      <div class="close_button"><button (click)="addQuestion()" mat-button>Done</button> </div>
+    </div>
+
+    <div *ngIf=show>
+      <div> Question Asked</div>
+      <div [froalaEditor]>{{question}}</div>
+    </div>
+</mat-card> 

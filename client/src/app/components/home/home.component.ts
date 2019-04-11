@@ -15,10 +15,12 @@
  * importing all the file from various module
  */
 import { ChangeDetectorRef,Component, OnInit,OnDestroy } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { DataService } from '../../service/data/data.service';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 import { Label } from '../../Models/model.model';
 import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
 import { NoteService } from '../../service/note/note.service';
@@ -32,12 +34,19 @@ import { Subject } from 'rxjs';
 })
 export class HomeComponent implements OnInit,OnDestroy {
   view=true;
+  name:string;
+  email:string;
+  imageProfile: string;
+  image;
   destroy$: Subject<boolean> = new Subject<boolean>();
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   search:string;
   check
   labelNotes;
+  profile;
+  imageFile = null;
+  
   ArrayOfLabel:Label;
   constructor(public dialog1: MatDialog,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router,private dataService:DataService,public noteService:NoteService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -49,6 +58,9 @@ export class HomeComponent implements OnInit,OnDestroy {
    */
   ngOnInit() {
     this.getLabel();
+    this.name=localStorage.getItem('firstName');
+    this.email=localStorage.getItem('email');
+    this.dataService.currentPhoto.subscribe(message => {this.image = message})
   }
   /**
    * @description To navigate to particular components 
@@ -82,8 +94,9 @@ export class HomeComponent implements OnInit,OnDestroy {
    * @description To clear the local storage and to go back for login page.
    */
   logout(){
-    localStorage.removeItem('token');
-    this.router.navigate['/login'];
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    this.ngOnInit();
   }
   /**
    * @description To unsubscribe the resources
@@ -127,5 +140,31 @@ changeView(){
   this.view=!this.view;
   this.dataService.changeView(this.view);
 }
-
+public newImage = localStorage.getItem('imageUrl');
+img = environment.profileUrl + this.newImage;
+onFileUpload(event) {
+  this.imageFile = event.path[0].files[0];
+  const uploadImage = new FormData();
+  uploadImage.append('file', this.imageFile, this.imageFile.name);
+  this.openPicture(event);
+}
+openPicture(data){
+  const dialogRef =this.dialog1.open(ImageDialogComponent,{
+    width: 'auto',
+    height: 'auto',
+    data: data,
+    // disableClose: true
+  })
+  dialogRef.afterClosed().subscribe(result=>{
+    if(result=="imageChange"){
+      console.log("Correct ag banthu");
+    }
+   this.dataService.currentPhoto.subscribe(response=>this.profile=response)
+   if(this.profile=true){
+     console.log("banthu")
+     this.imageProfile=localStorage.getItem('imageUrl');
+     this.img=environment.profileUrl+this.imageProfile;
+   }
+  })
+}
 }

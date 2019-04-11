@@ -17,14 +17,14 @@
         <div fxFlex=50>
       <textarea class="textArea" [(ngModel)]="card.description"></textarea>
         </div>
-        <div fxLayout="row">
+        <!-- <div fxLayout="row">
           <mat-icon fxFlex="5%">add</mat-icon>
           <mat-checkbox [(ngModel)]=addCheck color="primary">
           </mat-checkbox>
           <input fxFlex="95%" class="Border" placeholder="List Item" 
                  [ngStyle]="{'background-color':color}" [(ngModel)]=newList
                  (keydown)=addList($event)/>
-        </div>
+        </div> -->
       </div>
       <div *ngIf='card.reminder.length!=0'>
         <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
@@ -49,7 +49,7 @@
 
       </div>
       <div fxFlex='100' fxLayout="row">
-        <app-note-icons fxFlex=100 *ngIf=!card.isDeleted (removeEvent)="removeEvent1($event)" [show]=fullIcon [card]=card>
+        <app-note-icons class="iconClass" fxFlex=100 *ngIf=!card.isDeleted (removeEvent)="removeEvent1($event)" [show]=fullIcon [card]=card>
         </app-note-icons>
         <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent1(true)" [card]=card></app-delete-icons>
       </div>
