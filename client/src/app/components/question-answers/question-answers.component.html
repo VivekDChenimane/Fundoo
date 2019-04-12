@@ -1,22 +1,23 @@
-<mat-card> 
-    
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxFlex=90 fxLayout="column" fxLayoutAlign="space-between start">
+<mat-card>  
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxFlex=90 fxLayout="column" >
         <div class="noteContent" matTooltip="Note Title">{{card.title}} </div>
         <div class="noteContent" matTooltip="Note Description">{{card.description}}</div>
       </div>
-      <div fxFlex=10 matTooltip="Go back to notes" (click)="close()">
+      <div fxFlex=10  matTooltip="Go back to notes" (click)="close()">
         <button mat-button>Close</button>
       </div>
     </div>
     <hr>
-    <div *ngIf=!show>
-      <div contenteditable="true" placeholder="Enter your question here" #quest></div>
-      <div class="close_button"><button (click)="addQuestion()" mat-button>Done</button> </div>
+    <div *ngIf="show==0">
+      <div  [froalaEditor] [(froalaModel)]="question" id="froala-editor" placeholder="Enter your question here"></div>
+      <div fxLayoutAlign="end center" ><button (click)="addQuestion()" mat-button>Done</button> </div>
     </div>
-
-    <div *ngIf=show>
-      <div> Question Asked</div>
-      <div [froalaEditor]>{{question}}</div>
+    <div *ngIf="show!=0">
+      <div> Question:</div>
+      <div [innerHTML]="questions"></div>
     </div>
 </mat-card> 
+<div *ngIf="show!=0">
+    <button [ngStyle]="{'background-image':'url(' +image+card.user.imageUrl+ ')','background-size':'cover'}" mat-mini-fab></button>
+</div>

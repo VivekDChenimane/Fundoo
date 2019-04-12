@@ -4,9 +4,8 @@
         </div>
 <div class="body">
 <button mat-button  (click)="photoInput.click()">Select a photo from your computer</button>
-<input type="file" (change)="fileChangeEvent($event)" />
 
-<input #fileInput type="file" style="display:none" (change)="fileChangeEvent($event)">
+<input #photoInput type="file" style="display:none" (change)="fileChangeEvent($event)">
 <image-cropper
   [imageChangedEvent]="imageChangedEvent"
   [maintainAspectRatio]="true"

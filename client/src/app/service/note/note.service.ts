@@ -85,4 +85,7 @@ export class NoteService {
   getNoteDetails(cardId){
     return this.service.httpGetData('notes/getNotesDetail/'+cardId);
   }
+  addQuestionAndAnswer(body){
+    return this.service.postJSON('/questionAndAnswerNotes/addQuestionAndAnswer',body)
+  }
 }
