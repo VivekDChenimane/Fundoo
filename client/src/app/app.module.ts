@@ -33,6 +33,7 @@ import { CardComponent } from './components/card/card.component';
 import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { BarRatingModule } from "ngx-bar-rating";
 import { QuestionAnswersComponent } from './components/question-answers/question-answers.component';
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { QuestionAnswersComponent } from './components/question-answers/question
     BrowserAnimationsModule,
     AppMaterialModule,
     HttpClientModule,
+    BarRatingModule,
     ImageCropperModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
   ],

@@ -1,12 +1,6 @@
-<!-- <div class="note-display" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="14px">
-  <div *ngFor="let card of notes|search:(search?null:searchValue)">
-    <app-card class="example-card" [card]="card" (removeEvent)="removeEvent($event,card)"></app-card>
-  </div>
-</div> -->
-
 <!-- <div [ngClass]="{'gridView':view,'listView':!view}">Pinned</div> -->
-<div [ngClass]="{'gridView':view,'listView':!view}" [fxLayout]="view?'row wrap':'column'" fxLayout.lt-sm="column" >
-  <div *ngFor="let card of notes|search:(search?null:searchValue)" >
+<div [ngClass]="{'gridView':view,'listView':!view}" [fxLayout]="view?'row wrap':'column'" fxLayout.lt-sm="column">
+  <div *ngFor="let card of notes|search:(search?null:searchValue)">
     <app-card class="example-card" [card]="card" class="test" (removeEvent)="removeEvent($event,card)"></app-card>
   </div>
 </div>

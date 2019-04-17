@@ -1,8 +1,10 @@
 <mat-card>
+
   <div fxLayout="row" fxLayoutAlign="space-between start">
     <div fxFlex=90 fxLayout="column">
       <div class="noteContent" matTooltip="Note Title">{{card.title}} </div>
       <div class="noteContent" matTooltip="Note Description">{{card.description}}</div>
+      <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
     </div>
     <div fxFlex=10 matTooltip="Go back to notes" (click)="close()">
       <button mat-button>Close</button>
@@ -15,7 +17,7 @@
   </div>
   <div *ngIf="show!=0">
     <div> Question:</div>
-    <div [innerHTML]="questions"></div>
+    <div [innerHTML]="questions.message"></div>
   </div>
 </mat-card>
 <div *ngIf="show!=0">
@@ -27,10 +29,19 @@
         <div class="userName">{{card.user.firstName | titlecase}} {{card.user.lastName | titlecase}}</div>
         <div class="userName">{{card.modifiedDate | date:'medium'}}</div>
       </div>
-      <div [innerHTML]="questions"></div>
+      <div [innerHTML]="questions.message"></div>
       <div fxLayout="row" fxLayoutAlign="space-around center">
       <mat-icon matTooltip="Reply">reply</mat-icon>
       <mat-icon matTooltip="Like">thumb_up_alt</mat-icon>
+      <div> {{questions.like.length}}</div>
+      <div *ngIf="checkRating(questions.rate)">
+        <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" (rateChange)="rating(questions, $event)"></bar-rating>
+    </div>
+    <div>{{averageRating(questions.rate)}}</div>
+    <div>
+            <mat-icon  *ngIf="open==true" (click)="open = !open">keyboard_arrow_down</mat-icon>
+            <mat-icon matTooltip="Hide {{viewReplies(questions)}} replies" class="down" *ngIf="open==false" (click)="open = !open">keyboard_arrow_up</mat-icon>
+    </div>
       </div>
       <div *ngIf="show==0 && cardId==card.id">
         <div [froalaEditor] [(froalaModel)]="question"></div>
@@ -38,5 +49,4 @@
       </div>
     </div>
   </div>
-
 </div>

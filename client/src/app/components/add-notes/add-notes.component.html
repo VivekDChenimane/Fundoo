@@ -1,31 +1,30 @@
 <div *ngIf="flag===true" (click)="flag=false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
   <mat-card fxFlex="50" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center">
 
-    <div class="Border" id="noteTitle" fxLayout="column"
-      class="maincard">Take a note...
+    <div class="Border" id="noteTitle" fxLayout="column" class="maincard">Take a note...
     </div>
     <div fxLayout="row" fxLayoutAlign="end start" fxFlex.xs="100">
-      <mat-icon class="check"  matTooltip="New List" disabled>check_box</mat-icon>
-      <mat-icon class="brush"  matTooltip="New note with drawing">brush</mat-icon>
+      <mat-icon class="check" matTooltip="New List" disabled>check_box</mat-icon>
+      <mat-icon class="brush" matTooltip="New note with drawing">brush</mat-icon>
       <mat-icon class="insert" matTooltip="New note with image">insert_photo</mat-icon>
     </div>
   </mat-card>
 </div>
-<div *ngIf="flag===false"  fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
+<div *ngIf="flag===false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
 
   <mat-card [style.background]=message fxLayout="column" class="matcard" fxFlex="55" fxFlexOffset.xl="20" fxFlex.xs='97'
     [style.backgroundColor]=card.color>
     <div class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
       <textarea fxflex="80" class="textArea" matTextareaAutosize placeholder="Title " [formControl]="noteTitle"
         class="textArea"></textarea>
-        <button fxflex="80" mat-icon-button color="basic" (click)="changePin()">
-            <div class="barpin" *ngIf=card.isPined>
-              <img src="../../../assets/images/pin_Off.svg" />
-                </div>
-            <div class="barpin" *ngIf=!card.isPined>
-                  <img src="../../../assets/images/pin_On.svg"/>
-            </div>
-          </button>
+      <button fxflex="80" mat-icon-button color="basic" (click)="changePin()">
+        <div class="barpin" *ngIf=card.isPined>
+          <img src="../../../assets/images/pin_Off.svg" />
+        </div>
+        <div class="barpin" *ngIf=!card.isPined>
+          <img src="../../../assets/images/pin_On.svg" />
+        </div>
+      </button>
     </div>
     <div class="Border" fxLayout="column" class="takenote">
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
@@ -33,28 +32,29 @@
     </div>
     <div *ngIf='card.reminder.length!=0'>
       <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
-          {{card.reminder[0]|date:'medium'}}
+        {{card.reminder[0]|date:'medium'}}
         <mat-icon *ngIf=cancelIcon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
       </mat-chip>
     </div>
-    <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
+    <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
       <div *ngFor='let item of card.noteLabels'>
         <mat-chip-list>
           <mat-chip class="sample" (mouseenter)="remin=true" (mouseleave)="remin=false">
             {{item.label}}
-            <mat-icon *ngIf=cancelIcon  (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
+            <mat-icon *ngIf=cancelIcon (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
       </div>
     </div>
     <div fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
-        <div *ngFor='let item of card.collaborators'>
-            <mat-icon class="material-icons"  (click)="openCollaborator()" matTooltip={{item.email}}>account_circle</mat-icon>
-        </div>
+      <div *ngFor='let item of card.collaborators'>
+        <mat-icon class="material-icons" (click)="openCollaborator()" matTooltip={{item.email}}>account_circle
+        </mat-icon>
+      </div>
     </div>
     <div fxFlex='100'>
-      <app-note-icons (addNoteEvent)="addNote()" [card]=card > </app-note-icons>
+      <app-note-icons (addNoteEvent)="addNote()" [card]=card> </app-note-icons>
     </div>
-   </mat-card> 
-   <!-- <app-card [card]="card" (removeEvent)="removeEvent($event,card)"></app-card> -->
+  </mat-card>
+  <!-- <app-card [card]="card" (removeEvent)="removeEvent($event,card)"></app-card> -->
 </div>

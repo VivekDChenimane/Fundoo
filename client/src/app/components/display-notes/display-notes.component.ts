@@ -27,7 +27,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 export interface matdialog {
   title: string;
   description: string;
-  color: any; 
+  color: any;
 }
 
 @Component({
@@ -36,7 +36,7 @@ export interface matdialog {
   styleUrls: ['./display-notes.component.scss']
 })
 export class DisplayNotesComponent implements OnInit {
-  view=true;
+  view = true;
   @Input() notes: any;
   @Output() pinEvent = new EventEmitter();
   @Input() search: boolean = true;
@@ -45,28 +45,28 @@ export class DisplayNotesComponent implements OnInit {
   constructor(private noteService: NoteService, private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(message => {this.searchValue = message})  ;
-    this.notes=this.notes.reverse();
-    this.dataService.currentView.subscribe(message => {this.view=message});
-    }
-  removeEvent($event,card) {
-    if($event){
-    var count = 0;
-    this.notes.forEach(note => {
-      if (card.id == note.id) {
-        this.notes.splice(count, 1);
-        console.log(this.notes);
-      }
-      else
-        count++;
-    });
-   
+    this.dataService.currentMessage.subscribe(message => { this.searchValue = message });
+    this.notes = this.notes.reverse();
+    this.dataService.currentView.subscribe(message => { this.view = message });
   }
-  if($event=='pin'){
-    console.log("Entered test")
-       this.pinEvent.emit(card);
+  removeEvent($event, card) {
+    if ($event) {
+      var count = 0;
+      this.notes.forEach(note => {
+        if (card.id == note.id) {
+          this.notes.splice(count, 1);
+          console.log(this.notes);
+        }
+        else
+          count++;
+      });
+
+    }
+    if ($event == 'pin') {
+      console.log("Entered test")
+      this.pinEvent.emit(card);
     }
     return;
-}
+  }
 
 }

@@ -1,23 +1,23 @@
 <mat-card class="display-note" [style.background]=card.color fxLayout="column" fxFlex=100 fxFlex.lt-sm="100%">
-      <div fxFlex=100 (click)="check()" (click)="show(card)" fxLayout="column">
-        <div fxFlex=50 class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
-          <div> <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
-              cdkAutosizeMaxRows="15" class="textArea" [(ngModel)]="card.title"></textarea></div>
-          <button *ngIf=!card.isDeleted fxFlex=10 mat-icon-button color="basic" (click)="changePin(card)"
-            (click)="$event.stopPropagation()">
-            <div class="barpin" *ngIf=card.isPined>
-              <img src="../../../assets/images/pin_Off.svg" />
-              <!-- <mat-icon class="material-icons">pin_Off</mat-icon> -->
-            </div>
-            <div class="barpin" *ngIf=!card.isPined>
-              <img src="../../../assets/images/pin_On.svg" />
-            </div>
-          </button>
+  <div fxFlex=100 (click)="check()" (click)="show(card)" fxLayout="column">
+    <div fxFlex=50 class="Border" fxLayout="row" fxLayoutAlign="space-between center" class="takenote">
+      <div> <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="15"
+          class="textArea" [(ngModel)]="card.title"></textarea></div>
+      <button *ngIf=!card.isDeleted fxFlex=10 mat-icon-button color="basic" (click)="changePin(card)"
+        (click)="$event.stopPropagation()">
+        <div class="barpin" *ngIf=card.isPined>
+          <img src="../../../assets/images/pin_Off.svg" />
+          <!-- <mat-icon class="material-icons">pin_Off</mat-icon> -->
         </div>
-        <div fxFlex=50>
+        <div class="barpin" *ngIf=!card.isPined>
+          <img src="../../../assets/images/pin_On.svg" />
+        </div>
+      </button>
+    </div>
+    <div fxFlex=50>
       <textarea class="textArea" [(ngModel)]="card.description"></textarea>
-        </div>
-        <!-- <div fxLayout="row">
+    </div>
+    <!-- <div fxLayout="row">
           <mat-icon fxFlex="5%">add</mat-icon>
           <mat-checkbox [(ngModel)]=addCheck color="primary">
           </mat-checkbox>
@@ -25,32 +25,33 @@
                  [ngStyle]="{'background-color':color}" [(ngModel)]=newList
                  (keydown)=addList($event)/>
         </div> -->
-      </div>
-      <div *ngIf='card.reminder.length!=0'>
-        <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
-          Tom{{card.reminder[0]|date:shortdate}}
-          <mat-icon *ngIf=cancelIcon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
+  </div>
+  <div *ngIf='card.reminder.length!=0'>
+    <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
+      Tom{{card.reminder[0]|date:shortdate}}
+      <mat-icon *ngIf=cancelIcon (click)="removeReminder(card.id)" matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </div>
+  <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
+    <div *ngFor='let item of card.noteLabels'>
+      <mat-chip-list>
+        <mat-chip class="sample" (mouseenter)="item.hover=true" (mouseleave)="item.hover=false">
+          {{item.label}}
+          <mat-icon *ngIf=item.hover (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
         </mat-chip>
-      </div>
-      <div *ngIf='card.noteLabels.length!=0' fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center" >
-        <div *ngFor='let item of card.noteLabels' >
-          <mat-chip-list>
-            <mat-chip class="sample" (mouseenter)="item.hover=true" (mouseleave)="item.hover=false">
-              {{item.label}}
-              <mat-icon *ngIf=item.hover (click)="removeLabelTag(item.id)" matChipRemove>cancel</mat-icon>
-            </mat-chip>
-          </mat-chip-list>
-        </div>
-      </div>
-      <div fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
-          <div *ngFor='let item of card.collaborators'>
-              <mat-icon class="material-icons" (click)="openCollaborator()" matTooltip={{item.email}}>account_circle</mat-icon>
-          </div>
+      </mat-chip-list>
+    </div>
+  </div>
+  <div fxLayoutGap='3%' fxLayout="row wrap" fxLayoutAlign="none center">
+    <div *ngFor='let item of card.collaborators'>
+      <mat-icon class="material-icons" (click)="openCollaborator()" matTooltip={{item.email}}>account_circle</mat-icon>
+    </div>
 
-      </div>
-      <div fxFlex='100' fxLayout="row">
-        <app-note-icons class="iconClass" fxFlex=100 *ngIf=!card.isDeleted (removeEvent)="removeEvent1($event)" [show]=fullIcon [card]=card>
-        </app-note-icons>
-        <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent1(true)" [card]=card></app-delete-icons>
-      </div>
-    </mat-card>
+  </div>
+  <div fxFlex='100' fxLayout="row">
+    <app-note-icons class="iconClass" fxFlex=100 *ngIf=!card.isDeleted (removeEvent)="removeEvent1($event)"
+      [show]=fullIcon [card]=card>
+    </app-note-icons>
+    <app-delete-icons *ngIf=card.isDeleted (removeEvent)="removeEvent1(true)" [card]=card></app-delete-icons>
+  </div>
+</mat-card>

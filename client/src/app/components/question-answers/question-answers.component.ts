@@ -12,6 +12,7 @@ export class QuestionAnswersComponent implements OnInit {
   card = new Model();
   image;
   show
+  rate=2
   cardId: any
   question: string = '';
   sub
@@ -28,7 +29,7 @@ export class QuestionAnswersComponent implements OnInit {
       console.log(this.card.questionAndAnswerNotes.length);
       this.show = result['data']['data'][0].questionAndAnswerNotes.length;
       if (this.show != 0) {
-        this.questions = result['data']['data'][0].questionAndAnswerNotes[0].message;
+        this.questions = result['data']['data'][0].questionAndAnswerNotes[0];
       }
     })
     this.image=environment.profileUrl;
@@ -48,5 +49,37 @@ export class QuestionAnswersComponent implements OnInit {
         console.log(result);
       })
     }
+  }
+  rating(data, event) {
+
+    let reqBody = {
+      "rate": event
+    }
+    this.noteService.ratingQuestionAndAnswer(data.id, reqBody).subscribe(result => {
+      // this.getNote();
+      console.log("done",+result);
+    })
+  }
+    averageRating(rateArray) {
+    // this.value = 0;
+    // if (rateArray.length != 0) {
+    //   for (let i = 0; i < rateArray.length; i++) {
+    //     this.value += rateArray[i].rate
+    //   }
+    //   this.avgRate = this.value / rateArray.length;
+    //   return this.avgRate.toFixed(1);
+    // }
+  }
+  checkRating(rateArray) {
+    this.rate = 0;
+    if (rateArray.length == 0) {
+      return true;
+    }
+    for (let i = 0; i < rateArray.length; i++) {
+      if (rateArray[i].userId == localStorage.getItem('userId')) {
+        this.rate = rateArray[i].rate;
+      }
+    }
+    return true;
   }
 }

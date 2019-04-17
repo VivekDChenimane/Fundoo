@@ -27,7 +27,7 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private service: HttpService) { }
 
   ngOnInit() {
-  } 
+  }
   isValid = false;
   email = new FormControl('', [Validators.required, Validators.email]); //Email validation
 
@@ -36,18 +36,18 @@ export class ForgotPasswordComponent implements OnInit {
       this.email.hasError('email') ? 'Not a valid email' :
         '';
   }
- 
+
   passwordReset(email) {
     console.log(email);
     var user = {
-      "email":email
+      "email": email
     }
     this.service.postRequest(user, 'forgot').subscribe((data: any) => {
       console.log(data);
-      
+
       this.isValid = true;
     })
-    
-    
+
+
   }
 }

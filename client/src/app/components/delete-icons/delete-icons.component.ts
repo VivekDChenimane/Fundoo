@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NoteService } from '../../service/note/note.service';
 
 @Component({
@@ -9,30 +9,30 @@ import { NoteService } from '../../service/note/note.service';
 export class DeleteIconsComponent implements OnInit {
   @Input() card: any;
   @Output() removeEvent = new EventEmitter();
-  constructor(private noteService:NoteService) { }
+  constructor(private noteService: NoteService) { }
 
   ngOnInit() {
   }
-  deleteNote(card){
+  deleteNote(card) {
     this.noteService.deleteNote({
-      "isDeleted":true,
-      "noteIdList":[card.id]
-  }).subscribe(message=>{
+      "isDeleted": true,
+      "noteIdList": [card.id]
+    }).subscribe(message => {
       console.log(message);
       this.remove();
-  }); 
+    });
   }
-  remove(){
+  remove() {
     this.removeEvent.emit();
-}
-restoreNote(){
-  this.noteService.trashNote({
-    "isDeleted":false,
-    "noteIdList":[this.card.id]
-}).subscribe(data=>{
-  this.remove();
-  console.log(data);
-},err=>console.log(err))
-}
+  }
+  restoreNote() {
+    this.noteService.trashNote({
+      "isDeleted": false,
+      "noteIdList": [this.card.id]
+    }).subscribe(data => {
+      this.remove();
+      console.log(data);
+    }, err => console.log(err))
+  }
 
 }

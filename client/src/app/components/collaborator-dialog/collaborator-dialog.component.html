@@ -1,50 +1,61 @@
 <div class="collab" fxFlex="column">
-<span mat-dialog-title fxLayout="row" >
-  Collaborators
-</span>
-<mat-divider style="margin-top:-10px"></mat-divider>
-<div mat-dialog-content fxLayout="column" style="overflow: hidden;">
-  <span fxLayout="row">
-    <button mat-icon-button class="icon"><mat-icon >person_outline</mat-icon></button>
-    <div fxLayout="column">
-      <div class="usernameStyle">
-        {{name}}<span style="font-style: italic">(Owner)</span>
-      </div>
-      <div class="emailStyle">
-        {{email}}
-      </div>
-    </div>
+  <span mat-dialog-title fxLayout="row">
+    Collaborators
   </span>
+  <mat-divider style="margin-top:-10px"></mat-divider>
+  <div mat-dialog-content fxLayout="column" style="overflow: hidden;">
+    <span fxLayout="row">
+      <button mat-icon-button class="icon">
+        <mat-icon>person_outline</mat-icon>
+      </button>
+      <div fxLayout="column">
+        <div class="usernameStyle">
+          {{name}}<span style="font-style: italic">(Owner)</span>
+        </div>
+        <div class="emailStyle">
+          {{email}}
+        </div>
+      </div>
+    </span>
 
-  <div *ngFor="let array of collaborators">
-    <div fxLayout="row" fxLayoutAlign="space-around center" style="position: relative;">
-      <button fxFlex=10 mat-icon-button class="icon"><mat-icon>person_outline</mat-icon></button>
+    <div *ngFor="let array of collaborators">
+      <div fxLayout="row" fxLayoutAlign="space-around center" style="position: relative;">
+        <button fxFlex=10 mat-icon-button class="icon">
+          <mat-icon>person_outline</mat-icon>
+        </button>
         <div fxFlex=90 fxLayout="column">
           <div class="usernameStyle">
-                {{array.firstName}} {{array.lastName}}
+            {{array.firstName}} {{array.lastName}}
           </div>
           <div class="emailStyle">
-                {{array.email}}
+            {{array.email}}
           </div>
         </div>
-        <button fxFlex=10 mat-icon-button class="btnCollab" (click)="removeCollaborator(array.userId)"><mat-icon>close</mat-icon></button>
+        <button fxFlex=10 mat-icon-button class="btnCollab" (click)="removeCollaborator(array.userId)">
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
     </div>
-  
-<div fxLayout="row" style="position: relative;">
-  <button mat-icon-button class="icon"><mat-icon>person_add</mat-icon></button>
-  <input matInput [(ngModel)]='collaborator' (keyup)='searchlist(collaborator)' class="emailStyle" placeholder="Enter the email-id..." [matMenuTriggerFor]='menu'>
-  <button mat-icon-button class="btnCollab" (click)="addCollaborator()"><mat-icon>done</mat-icon></button>
-</div>
-<mat-menu #menu='matMenu'>
-<div *ngFor='let array of searchResultList'>
-  <div (click)='setCollaborator(array)'>{{array.email}}</div>
-</div>
 
-</mat-menu>
-</div>
-<div mat-dialog-actions class="actionDialog">
-  <button mat-raised-button class="actionButton" [mat-dialog-close]>Cancel</button>
-  <button mat-raised-button class="actionButton" [mat-dialog-close]>Save</button>
-</div>
+    <div fxLayout="row" style="position: relative;">
+      <button mat-icon-button class="icon">
+        <mat-icon>person_add</mat-icon>
+      </button>
+      <input matInput [(ngModel)]='collaborator' (keyup)='searchlist(collaborator)' class="emailStyle"
+        placeholder="Enter the email-id..." [matMenuTriggerFor]='menu'>
+      <button mat-icon-button class="btnCollab" (click)="addCollaborator()">
+        <mat-icon>done</mat-icon>
+      </button>
+    </div>
+    <mat-menu #menu='matMenu'>
+      <div *ngFor='let array of searchResultList'>
+        <div (click)='setCollaborator(array)'>{{array.email}}</div>
+      </div>
+
+    </mat-menu>
+  </div>
+  <div mat-dialog-actions class="actionDialog">
+    <button mat-raised-button class="actionButton" [mat-dialog-close]>Cancel</button>
+    <button mat-raised-button class="actionButton" [mat-dialog-close]>Save</button>
+  </div>
 </div>
