@@ -16,7 +16,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {  HttpService} from '../../service/http/http.service';
+import { HttpService } from '../../service/http/http.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -25,25 +25,25 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service : HttpService, private router : Router) { }
+  constructor(private service: HttpService, private router: Router) { }
 
   ngOnInit() {
   }
-/**
-   * @description Hide and show password
-   */
-  hide = true; 
+  /**
+     * @description Hide and show password
+     */
+  hide = true;
 
   /**
    * @description email validation 
    */
-  email = new FormControl('', [Validators.required, Validators.email]); 
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   /**
    * @description Password validation
    */
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-  
+
   /**
    * @description Gets mail error message
    */
@@ -51,26 +51,26 @@ export class LoginComponent implements OnInit {
     return this.email.hasError('required') ?
       'You must enter a value' : this.email.hasError('email') ? 'Not a valid email' : '';
   }
-  
+
   /**
    * @description Gets password error message
    */
   getPasswordErrorMessage() {
     return this.password.hasError('required') ? "Can't be empty" : this.password.hasError('minlength') ? 'Wrong password' : '';
   }
-  
+
   /**
    * @description Login after validating the data and checking the database whether the user exists or not
    * @param email 
    * @param password 
    */
-  secureLogin(email, password) { 
+  secureLogin(email, password) {
     var user = {
       "email": email,
       "password": password
     }
     console.log(user);
-    this.service.postRequest('user/login',user).subscribe((data: any)  =>  {
+    this.service.postRequest('user/login', user).subscribe((data: any) => {
       localStorage.setItem('token', data['id']);
       localStorage.setItem('email', data["email"]);
       localStorage.setItem('firstName', data["firstName"])
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('imageUrl', data["imageUrl"]);
       if (data != 'undefined') {
         if (data.id) {
-           this.router.navigate(['home']);
+          this.router.navigate(['home']);
         } else {
           alert("Something went wrong")
         }
@@ -87,16 +87,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-/**
- * @description Navigates to registration page
- */
-  register() { 
+  /**
+   * @description Navigates to registration page
+   */
+  register() {
     this.router.navigate(['registration']);
   }
-  
-/**
- * @description Navigates to forgot password page
- */
+
+  /**
+   * @description Navigates to forgot password page
+   */
   forgot() {
     this.router.navigate(['forgot']);
   }

@@ -8,15 +8,16 @@ import { NoteService } from '../../service/note/note.service'
 })
 export class TrashComponent implements OnInit {
 
-  constructor(public noteService:NoteService) { }
-  cardData:any;
+  constructor(public noteService: NoteService) { }
+  cardData: any;
   ngOnInit() {
     this.getAllTrachCards();
   }
-  getAllTrachCards(){
-    this.noteService.trashNotes().subscribe(data=>{
-      this.cardData= data["data"]["data"];  
+  getAllTrachCards() {
+    this.noteService.trashNotes().subscribe(data => {
+      this.cardData = data["data"]["data"];
       console.log(data);
       return
-    }) }
+    })
+  }
 }

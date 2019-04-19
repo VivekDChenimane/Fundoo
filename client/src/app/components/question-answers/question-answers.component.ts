@@ -10,13 +10,21 @@ import { environment } from 'src/environments/environment';
 })
 export class QuestionAnswersComponent implements OnInit {
   card = new Model();
+  private qID;
+  replyShow:boolean=false;
   image;
+  private open = true;
   show
-  rate=2
+  rate = 2
   cardId: any
   question: string = '';
   sub
   questions
+  replyCount;
+  private down = true;
+  private rID;
+  public editorContent: string ;
+  qA;
   constructor(private routes: ActivatedRoute, public router: Router, public noteService: NoteService) { }
 
   ngOnInit() {
@@ -25,6 +33,7 @@ export class QuestionAnswersComponent implements OnInit {
     });
     this.noteService.getNoteDetails(this.cardId).subscribe(result => {
       this.card = result['data']['data'][0];
+      this.qA = result['data']['data'][0].questionAndAnswerNotes;
       console.log(this.card);
       console.log(this.card.questionAndAnswerNotes.length);
       this.show = result['data']['data'][0].questionAndAnswerNotes.length;
@@ -32,7 +41,7 @@ export class QuestionAnswersComponent implements OnInit {
         this.questions = result['data']['data'][0].questionAndAnswerNotes[0];
       }
     })
-    this.image=environment.profileUrl;
+    this.image = environment.profileUrl;
   }
   close() {
     this.router.navigate(['/home']);
@@ -50,6 +59,15 @@ export class QuestionAnswersComponent implements OnInit {
       })
     }
   }
+  viewReplies(questAns) {
+    this.replyCount = 0;
+    for (let i = 0; i < this.qA.length; i++) {
+      if (questAns.id == this.qA[i].parentId) {
+        this.replyCount++
+      }
+    }
+    return this.replyCount;
+  }
   rating(data, event) {
 
     let reqBody = {
@@ -57,10 +75,10 @@ export class QuestionAnswersComponent implements OnInit {
     }
     this.noteService.ratingQuestionAndAnswer(data.id, reqBody).subscribe(result => {
       // this.getNote();
-      console.log("done",+result);
+      console.log("done", +result);
     })
   }
-    averageRating(rateArray) {
+  averageRating(rateArray) {
     // this.value = 0;
     // if (rateArray.length != 0) {
     //   for (let i = 0; i < rateArray.length; i++) {
@@ -81,5 +99,21 @@ export class QuestionAnswersComponent implements OnInit {
       }
     }
     return true;
+  }
+  replyTo() {
+    let replyRequest = {
+      "message": this.editorContent,
+    }
+    this.noteService.replyQuestionAndAnswer(this.qID, replyRequest).subscribe(response => {
+      // this.getNote();
+    })
+  }
+  replyDown(replyId) {
+    this.down = !this.down;
+    this.rID = replyId;
+  }
+  answer(id) {
+    this.replyShow = !this.replyShow;
+    this.qID = id;
   }
 }

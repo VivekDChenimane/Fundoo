@@ -18,7 +18,7 @@
     </button>
   </div>
 </div>
-<div *ngIf="!remindershow" fxflex="100"  fxLayout="column">
+<div *ngIf="!remindershow" fxflex="100" fxLayout="column">
   <div>
     <button overlapTrigger="true" mat-menu-item>
       <div fxLayout="row" (click)="$event.stopPropagation()">
@@ -36,7 +36,7 @@
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    
+
   </div>
   <div fxLayout="row" fxLayoutAlign="space-around center" (click)="$event.stopPropagation()">
     <mat-form-field>
@@ -55,11 +55,11 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div  fxLayout="row">
-  <div fxFlex="90" fxLayoutAlign="end end">
-    <button (click)="saveReminder()">
+  <div fxLayout="row">
+    <div fxFlex="90" fxLayoutAlign="end end">
+      <button (click)="saveReminder()">
         Save
-    </button>
+      </button>
+    </div>
   </div>
-</div>
 </div>

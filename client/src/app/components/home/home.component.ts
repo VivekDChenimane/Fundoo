@@ -107,10 +107,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
   openLabelNotes(labelName) {
-
     this.router.navigate(['label', labelName]);
-    // })
-
   }
   getLabel() {
     try {
@@ -130,7 +127,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   openLabelDialog() {
     const dialogRef = this.dialog1.open(LabelDialogComponent, {
-      data: this.ArrayOfLabel
+      data: this.ArrayOfLabel,
+      width: 'auto',
+      height: 'auto'
     });
     dialogRef.afterClosed().subscribe(result => {
 

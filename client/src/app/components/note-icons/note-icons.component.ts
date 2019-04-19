@@ -31,10 +31,10 @@ export class NoteIconsComponent implements OnInit {
   @Input() card: any
   @Output() removeEvent = new EventEmitter();
   @Output() addNoteEvent = new EventEmitter();
-  @Input() show=true;
-  labelList:Label
-  addLabel:boolean=true;
-  count :number =0;
+  @Input() show = true;
+  labelList: Label
+  addLabel: boolean = true;
+  count: number = 0;
   model: any;
   colorArray =
     [[
@@ -54,120 +54,121 @@ export class NoteIconsComponent implements OnInit {
       { 'color': '#81D4FA', 'name': 'blue' },
       { 'color': '#0288D1', 'name': 'darkblue' }
     ]]
-  constructor(private noteService:NoteService, private router : Router,public dialog:MatDialog,public dataService:DataService) { }
+  constructor(private noteService: NoteService, private router: Router, public dialog: MatDialog, public dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.currentLabels.subscribe(message => {this.labelList = message})  ;
-    
+    this.dataService.currentLabels.subscribe(message => { this.labelList = message });
+
   }
-  remove($needed){
-           this.removeEvent.emit($needed);
+  remove($needed) {
+    this.removeEvent.emit($needed);
   }
   changeColor(color) {
-    if(this.card.id==undefined){
-      this.card.color=color;
-      return ;
+    if (this.card.id == undefined) {
+      this.card.color = color;
+      return;
     }
-    else{
-      this.card.color=color;
+    else {
+      this.card.color = color;
       this.noteService.updateColor({
         "color": color,
         'noteIdList': [this.card.id]
-      }).subscribe(data =>{
-        console.log(data, "data from update color")},
-        err=>{
-          console.log(err,"err");
+      }).subscribe(data => {
+        console.log(data, "data from update color")
+      },
+        err => {
+          console.log(err, "err");
         })
     }
   }
-  updateNote(){
-    if(this.card.id==undefined){
+  updateNote() {
+    if (this.card.id == undefined) {
       this.addNoteEvent.emit();
-      return ;
+      return;
     }
-    else{ 
-        this.remove(false);
-     }
+    else {
+      this.remove(false);
     }
+  }
 
-  changeArchiveNote(){
-    if(this.card.id==undefined){
-      this.card.isArchived=true;
+  changeArchiveNote() {
+    if (this.card.id == undefined) {
+      this.card.isArchived = true;
       this.addNoteEvent.emit();
-      return ;
+      return;
     }
-    this.card.isArchived=!this.card.isArchived;
-    this.model={
-      noteIdList:[this.card.id],
-      isArchived:this.card.isArchived
+    this.card.isArchived = !this.card.isArchived;
+    this.model = {
+      noteIdList: [this.card.id],
+      isArchived: this.card.isArchived
     }
     console.log("in service");
-    
-    this.noteService.unarchiveNote(this.model).subscribe(message=>{
+
+    this.noteService.unarchiveNote(this.model).subscribe(message => {
       console.log("change archive done");
       console.log(message);
       this.remove(true);
     })
   }
 
-trashNote(){
-  if(this.card.id==undefined){
-    console.log("can't delete creating note");
-    return ;
-  }
-  else{
-  console.log("Card need to be deleted");
-  this.noteService.trashNote({
-    "isDeleted":true,
-    "noteIdList":[this.card.id]
-}).subscribe(data=>{
-  this.remove(true);
-},err=>console.log(err))
-}
-}
-addCollaborator(){
-  const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
-    width: 'auto',
-    height: 'auto',
-    data:{collaborators:this.card.collaborators,
-      id:this.card.id
-    }
-  });
-} 
-addLabelToggle(){
-  console.log("sadfg")
-  this.addLabel=!this.addLabel;
-}
-
-labelToNote(label){
-  console.log(label);
-  console.log(this.card.noteLabels.indexOf(label));
-  this.card.noteLabels.forEach(list => {
-    if(list.id==label.id){
-      console.log("Already label exist");
+  trashNote() {
+    if (this.card.id == undefined) {
+      console.log("can't delete creating note");
       return;
     }
-    // console.log(list)
-  },this.service(label));
- }
-service(label){
-  this.card.noteLabels.push(label);
-  if(this.card.id!=undefined){
-  this.noteService.addLabelToNote(this.card.id,label.id,'').subscribe(message=>{
-    console.log(message);
-  })
-}
-else 
-this.card.labelIdList.push(label.id);
-}
-isSelected(id){
-  this.card.noteLabels.forEach(list => {
-    if(list.id=id){
-      return true;
+    else {
+      console.log("Card need to be deleted");
+      this.noteService.trashNote({
+        "isDeleted": true,
+        "noteIdList": [this.card.id]
+      }).subscribe(data => {
+        this.remove(true);
+      }, err => console.log(err))
     }
-  });
-}
-openQandA(){
-  this.router.navigate(['question&Answers',this.card.id]);
-} 
+  }
+  addCollaborator() {
+    const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+      width: 'auto',
+      height: 'auto',
+      data: {
+        collaborators: this.card.collaborators,
+        id: this.card.id
+      }
+    });
+  }
+  addLabelToggle() {
+    console.log("sadfg")
+    this.addLabel = !this.addLabel;
+  }
+
+  labelToNote(label) {
+    console.log(label);
+    console.log(this.card.noteLabels.indexOf(label));
+    this.card.noteLabels.forEach(list => {
+      if (list.id == label.id) {
+        console.log("Already label exist");
+        return;
+      }
+    }, this.service(label));
+  }
+  service(label) {
+    this.card.noteLabels.push(label);
+    if (this.card.id != undefined) {
+      this.noteService.addLabelToNote(this.card.id, label.id, '').subscribe(message => {
+        console.log(message);
+      })
+    }
+    else
+      this.card.labelIdList.push(label.id);
+  }
+  isSelected(id) {
+    this.card.noteLabels.forEach(list => {
+      if (list.id = id) {
+        return true;
+      }
+    });
+  }
+  openQandA() {
+    this.router.navigate(['question&Answers', this.card.id]);
+  }
 }

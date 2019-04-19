@@ -17,13 +17,13 @@
     box-shadow: 2px 2px 2px 2px #888888;
 
   }
-  .myClass{
-    ::ng-deep .mat-dialog-container{
+//   .myClass{
+//     ::ng-deep .mat-dialog-container{
 
-        padding:24px; 
-        border-radius: 18px!important;
-    }
-  }
+//         padding:24px; 
+//         border-radius: 18px!important;
+//     }
+//   }
   .mat-icon{
     color: rgb(103, 107, 110);
 }
@@ -46,3 +46,10 @@
         }
     }
 }
+// myClass1{
+//     background-color: aqua;
+// }
+// .myClass1 :host::ng-deep .mat-dialog-container{
+//     padding:0%; 
+//     border-radius: 18px!important;
+// }

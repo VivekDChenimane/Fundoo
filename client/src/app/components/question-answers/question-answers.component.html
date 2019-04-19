@@ -1,10 +1,8 @@
 <mat-card>
-
   <div fxLayout="row" fxLayoutAlign="space-between start">
     <div fxFlex=90 fxLayout="column">
       <div class="noteContent" matTooltip="Note Title">{{card.title}} </div>
       <div class="noteContent" matTooltip="Note Description">{{card.description}}</div>
-      <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
     </div>
     <div fxFlex=10 matTooltip="Go back to notes" (click)="close()">
       <button mat-button>Close</button>
@@ -21,31 +19,137 @@
   </div>
 </mat-card>
 <div *ngIf="show!=0">
-  <div fxLayout="row" class="userName" fxLayoutAlign="start start">
+  <div fxLayout="row" fxLayoutAlign="start start">
     <button [ngStyle]="{'background-image':'url(' +image+card.user.imageUrl+ ')','background-size':'cover'}"
       mat-mini-fab></button>
-    <div fxLayout="column"  fxLayoutAlign="space-around start">
+    <div fxLayout="column" fxLayoutAlign="space-around start">
       <div fxLayout="row" fxLayoutAlign="space-around center">
-        <div class="userName">{{card.user.firstName | titlecase}} {{card.user.lastName | titlecase}}</div>
-        <div class="userName">{{card.modifiedDate | date:'medium'}}</div>
+        <div>{{card.user.firstName | titlecase}} {{card.user.lastName | titlecase}}</div>
+        <div>{{card.modifiedDate | date:'medium'}}</div>
       </div>
       <div [innerHTML]="questions.message"></div>
       <div fxLayout="row" fxLayoutAlign="space-around center">
-      <mat-icon matTooltip="Reply">reply</mat-icon>
-      <mat-icon matTooltip="Like">thumb_up_alt</mat-icon>
-      <div> {{questions.like.length}}</div>
-      <div *ngIf="checkRating(questions.rate)">
-        <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" (rateChange)="rating(questions, $event)"></bar-rating>
-    </div>
-    <div>{{averageRating(questions.rate)}}</div>
-    <div>
-            <mat-icon  *ngIf="open==true" (click)="open = !open">keyboard_arrow_down</mat-icon>
-            <mat-icon matTooltip="Hide {{viewReplies(questions)}} replies" class="down" *ngIf="open==false" (click)="open = !open">keyboard_arrow_up</mat-icon>
-    </div>
+        <mat-icon matTooltip="Reply" (click)="answer(questions.id)">reply</mat-icon>
+        <mat-icon matTooltip="Like">thumb_up_alt</mat-icon>
+        <div> {{questions.like.length}}</div>
+        <div *ngIf="checkRating(questions.rate)">
+          <bar-rating matTooltip="Rate" [(rate)]="rate" [max]="5" (rateChange)="rating(questions, $event)"></bar-rating>
+        </div>
+        <div>{{averageRating(questions.rate)}}</div>
+        <div>
+          <mat-icon *ngIf="open==true" (click)="open=!open">keyboard_arrow_down</mat-icon>
+          <mat-icon matTooltip="Hide {{viewReplies(questions)}} replies" *ngIf="open==false"
+            (click)="open = !open">keyboard_arrow_up</mat-icon>
+        </div>
       </div>
       <div *ngIf="show==0 && cardId==card.id">
         <div [froalaEditor] [(froalaModel)]="question"></div>
-        <div><button class="replyButton" (click)="replying()" mat-button>Reply</button> </div>
+        <div><button (click)="replying()" mat-button>Reply</button> </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="replyShow && qID==questions.id">
+    <div fxLayout="row">
+      <div>
+        <button [ngStyle]="{'background-image':'url('+image+card.user.imageUrl+')','background-size':'cover'}"
+          mat-mini-fab>
+        </button>
+      </div>
+      <div fxFlex=80 fxLayout="column" fxLayoutGap="10px">
+        <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+        <div>
+          <button (click)="replyTo()" mat-raised-button>Reply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-left: 50px" *ngFor="let item of qA">
+    <div *ngIf="item.parentId==questions.id && open==false">
+      <div>
+        <div fxLayout="row">
+          <div>
+            <button [ngStyle]="{'background-image':'url('+image+card.user.imageUrl+')','background-size':'cover'}"
+              mat-mini-fab></button>
+          </div>
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayout.xs="column">
+              <div>{{item.user.firstName}} {{item.user.lastName}}</div>
+              <div fxLayout="row " >{{item.modifiedDate | date:'medium'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+              <div [innerHTML]=" item.message"></div>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div>
+                  <mat-icon matTooltip="Reply" (click)="answer(item.id)" >reply</mat-icon>
+                </div>
+                <div fxLayout="row">
+                  <mat-icon matTooltip="Like" (click)="like(item)">thumb_up_alt</mat-icon>
+                  <div > {{item.like.length}}</div>
+                </div>
+                <div *ngIf="checkRating(item.rate)">
+                  <bar-rating matTooltip="Rate" [max]="5" [(rate)]="rate" (rateChange)="rating(item, $event)">
+                  </bar-rating>
+                </div>
+                <div >{{averageRating(item.rate)}}</div>
+                <div>
+                  <mat-icon matTooltip=" View {{viewReplies(item)}} replies" *ngIf="down==true"
+                    (click)="replyDown(item.id)">keyboard_arrow_down</mat-icon>
+                  <mat-icon matTooltip=" Hide {{viewReplies(item)}} replies" *ngIf="down==false"
+                    (click)="replyDown(item.id)">keyboard_arrow_up</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="replyShow && qID==item.id">
+          <div fxLayout="row">
+            <div fxFlex.xs=20 fxFlex.sm=10 fxFlex.md:=10 fxFlex.lg=5 fxFlex.xl=5>
+              <button [ngStyle]="{'background-image':'url('+image+card.user.imageUrl+')','background-size':'cover'}" mat-mini-fab>
+              </button>
+            </div>
+            <div fxFlex=80 fxLayout="column" fxLayoutGap="15px">
+              <div [froalaEditor]="options" [(froalaModel)]="editorContent"></div>
+              <div><button (click)="replyTo()" mat-raised-button>Reply</button> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-left: 40px">
+      <div *ngFor="let item2 of qA">
+        <div *ngIf="item2.parentId==item.id && down==false &&  rID==item.id">
+          <div>
+            <div fxLayout="row">
+              <div>
+                <button [ngStyle]="{'background-image':'url('+image+card.user.imageUrl+')','background-size':'cover'}"
+                  mat-mini-fab></button>
+              </div>
+              <div fxLayout="column">
+                <div fxLayout="row" fxLayout.xs="column">
+                  <div>{{item2.user.firstName}} {{item2.user.lastName}}</div>
+                  <div fxLayout="row">{{item2.modifiedDate|date:'medium'}}</div>
+                </div>
+                <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                  <div [innerHTML]="item2.message"></div>
+                  <div fxLayout="row" fxLayoutGap="10px">
+                    <div>
+                      <mat-icon matTooltip="Reply" (click)="answer(item.id)">reply</mat-icon>
+                    </div>
+                    <div fxLayout=row>
+                      <mat-icon matTooltip="Like" (click)="like(item2)">thumb_up_alt</mat-icon>
+                      <div> {{item2.like.length}}</div>
+                    </div>
+                    <div *ngIf="checkRating(item2.rate)">
+                      <bar-rating matTooltip="Rate" [max]="5" [(rate)]="rate" (rateChange)="rating(item2, $event)">
+                      </bar-rating>
+                    </div>
+                    <div>{{averageRating(item2.rate)}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

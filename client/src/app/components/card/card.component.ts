@@ -4,6 +4,7 @@ import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
 import { NoteService } from '../../service/note/note.service';
 import { DataService } from "../../service/data/data.service";
 import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -26,10 +27,14 @@ export class CardComponent implements OnInit {
   description: any;
   newList
   addCheck
-  constructor(public dialog: MatDialog, private noteService: NoteService, private dataService: DataService) { }
+  question
+  constructor(public dialog: MatDialog, private router: Router, private noteService: NoteService, private dataService: DataService) { }
 
   ngOnInit() {
-    console.log(this.fullIcon)
+    console.log(this.card.questionAndAnswerNotes.length)
+
+    if(this.card.questionAndAnswerNotes.length!>0)
+    this.question=this.card.questionAndAnswerNotes[0].message
   }
   show() {
     this.description = this.card.description;
@@ -49,6 +54,7 @@ export class CardComponent implements OnInit {
     const dialogRef = this.dialog.open(NoteDialogComponent, {
       position: { top: '15.5%' },
       data: card,
+      panelClass: 'myClass1',
 
       // hasBackdrop: false,
       // disableClose: false
@@ -142,6 +148,7 @@ export class CardComponent implements OnInit {
     const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
       panelClass: 'myClass',
       width: 'auto',
+      height:'auto',
       data: {
         collaborators: this.card.collaborators,
         id: this.card.id
@@ -150,5 +157,12 @@ export class CardComponent implements OnInit {
   }
   addList() {
 
+  }
+  openQandA() {
+    this.router.navigate(['question&Answers', this.card.id]);
+  }
+  openLabelNotes(labelName) {
+    this.router.navigate(['label', labelName]);
+    this.removeEvent1(false);
   }
 }

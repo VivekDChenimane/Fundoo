@@ -9,10 +9,10 @@ import { NoteService } from '../../service/note/note.service';
   styleUrls: ['./label-dialog.component.scss']
 })
 export class LabelDialogComponent implements OnInit {
-  
+
   labelName: string;
   ArrayOfLabel: Label[];
-  label:Label;
+  label: Label;
   constructor(public dialogRef: MatDialogRef<LabelDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Label[], public noteService: NoteService) { }
 
@@ -34,22 +34,22 @@ export class LabelDialogComponent implements OnInit {
         }
         this.noteService.noteLabel(label).subscribe(message => {
           console.log(message);
-          this.labelName='';
+          this.labelName = '';
           this.ArrayOfLabel.push(message);
         })
         return;
       }
-    } 
+    }
     catch (error) {
       console.log("Error in add Label" + error);
     };
   }
 
   deleteLabel(labelid) {
-    try{
-      this.noteService.deleteLabel(labelid).subscribe(data=>{
+    try {
+      this.noteService.deleteLabel(labelid).subscribe(data => {
         console.log(data);
-        let count=0;
+        let count = 0;
         this.ArrayOfLabel.forEach(label => {
           if (label.id == labelid) {
             this.ArrayOfLabel.splice(count, 1);
@@ -58,20 +58,20 @@ export class LabelDialogComponent implements OnInit {
             count++;
         });
       })
-    }catch(error){
-      console.log("Errror in delete label"+error);
+    } catch (error) {
+      console.log("Errror in delete label" + error);
     }
 
   }
-  edit(label){
+  edit(label) {
     console.log(label);
     let body = {
       "label": label.label,
       "isDeleted": false,
       "id": label.id,
-      "userId":localStorage.getItem('userid')
+      "userId": localStorage.getItem('userid')
     }
-    this.noteService.updateLabel(label.id,body).subscribe(message=>{
+    this.noteService.updateLabel(label.id, body).subscribe(message => {
       console.log(message);
     })
   }

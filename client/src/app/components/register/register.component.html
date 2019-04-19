@@ -1,66 +1,67 @@
-    
-    <mat-card class="card">
-       <h3><div class="fundoo">
+<mat-card class="card">
+    <h3>
+        <div class="fundoo">
             <span class="f">F</span>
             <span class="u">u</span>
             <span class="n">n</span>
             <span class="d">d</span>
             <span class="o1">o</span>
             <span class="o2">o</span>
-        </div></h3> 
-        <mat-card-header id="createAccount">
-            Create your Fundoo Account
-        </mat-card-header>
-        <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <div class="container">
-                    <mat-form-field appearance="outline">
-                        <mat-label>first name</mat-label>
-                        <input matInput name="firstName" [formControl]="firstName" required>
-                        <mat-error *ngIf="firstName.invalid">{{firstNameErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="container"> 
-                    <mat-form-field appearance="outline">
-                        <mat-label>Last name</mat-label>
-                        <input matInput name="secondName" [formControl]="lastName"
-                            required>
-                        <mat-error *ngIf="lastName.invalid">{{lastNameErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="container">
-                <mat-form-field appearance="outline">
-                    <mat-label>Username</mat-label>
-                    <input matInput name="email" [formControl]="email" required>
-                    <mat-error *ngIf="email.invalid">{{emailErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="container">
-                <mat-form-field appearance="outline">
-                    <mat-label>Phone number</mat-label>
-                    <input matInput name="phone" [formControl]="phone" required>
-                    <mat-error *ngIf="phone.invalid">{{phoneErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <div class="container">
-                    <mat-form-field appearance="outline">
-                        <mat-label>password</mat-label>
-                        <input type="password" matInput name="password" [formControl]="password" required>
-                        <mat-error *ngIf="password.invalid">{{passwordErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="container">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Confirm password</mat-label>
-                        <input type="password" matInput name="repeatPassword" [formControl]="repeatPassword" required>
-                        <mat-error *ngIf="repeatPassword.invalid">{{repeatPasswordErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-        </mat-card-content>
-        <div class="button-register" fxLayoutAlign="center">
-            <button mat-button (click)="getValues(firstName.value,lastName.value,email.value,phone.value,password.value,repeatPassword.value)">Register</button>
         </div>
-    </mat-card>
+    </h3>
+    <mat-card-header id="createAccount">
+        Create your Fundoo Account
+    </mat-card-header>
+    <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+            <div class="container">
+                <mat-form-field appearance="outline">
+                    <mat-label>first name</mat-label>
+                    <input matInput name="firstName" [formControl]="firstName" required>
+                    <mat-error *ngIf="firstName.invalid">{{firstNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="container">
+                <mat-form-field appearance="outline">
+                    <mat-label>Last name</mat-label>
+                    <input matInput name="secondName" [formControl]="lastName" required>
+                    <mat-error *ngIf="lastName.invalid">{{lastNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="container">
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput name="email" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{emailErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="container">
+            <mat-form-field appearance="outline">
+                <mat-label>Phone number</mat-label>
+                <input matInput name="phone" [formControl]="phone" required>
+                <mat-error *ngIf="phone.invalid">{{phoneErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+            <div class="container">
+                <mat-form-field appearance="outline">
+                    <mat-label>password</mat-label>
+                    <input type="password" matInput name="password" [formControl]="password" required>
+                    <mat-error *ngIf="password.invalid">{{passwordErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="container">
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirm password</mat-label>
+                    <input type="password" matInput name="repeatPassword" [formControl]="repeatPassword" required>
+                    <mat-error *ngIf="repeatPassword.invalid">{{repeatPasswordErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card-content>
+    <div class="button-register" fxLayoutAlign="center">
+        <button mat-button
+            (click)="getValues(firstName.value,lastName.value,email.value,phone.value,password.value,repeatPassword.value)">Register</button>
+    </div>
+</mat-card>

@@ -14,7 +14,7 @@ export class ReminderIconComponent implements OnInit {
   dayCount = 0;
   checker: Date = new Date();
   model
-  remindList = [ 
+  remindList = [
     { day: 'today', time: '8:00PM', daycount: 0, timeCount: 20 },
     { day: 'tommorow', time: '8:00AM', daycount: 1, timeCount: 8 },
     { day: 'Next Week', time: '8:00AM', daycount: 7, timeCount: 8 },
@@ -42,7 +42,7 @@ export class ReminderIconComponent implements OnInit {
     }
     if (this.card.id == undefined) {
       this.card.reminder[0] = this.model.reminder;
-    }else{
+    } else {
       this.saveReminder();
 
     }

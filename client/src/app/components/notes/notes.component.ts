@@ -24,7 +24,7 @@ import { NoteService } from '../../service/note/note.service'
 export class NotesComponent implements OnInit, OnChanges {
   //Bifurcate the all cards into Pinned and unpiined and assign it respectively.
   pinNotes = [];
-  unPinNotes =[];
+  unPinNotes = [];
   cardData = [];
 
   constructor(private service: NoteService) { }
@@ -39,10 +39,10 @@ export class NotesComponent implements OnInit, OnChanges {
    */
   getNewNote($event) {
     this.cardData.push($event);
-    if($event["isArchived"]==false){        
-      if($event["isPined"]==false){
+    if ($event["isArchived"] == false) {
+      if ($event["isPined"] == false) {
         this.unPinNotes.push($event);
-        }
+      }
       else
         this.pinNotes.push($event);
     }
@@ -51,14 +51,14 @@ export class NotesComponent implements OnInit, OnChanges {
   ngOnChanges() {
     console.log("Onchanges");
   }
-/**
- * @description To get all the cards before the component display.
- */
+  /**
+   * @description To get all the cards before the component display.
+   */
   getAllCard() {
     this.service.getnotes().subscribe(data => {
       this.cardData = data["data"]["data"];
       // console.log(this.cardData,'card');
-      
+
       // To remove the deleted cards and to sort the cards into pined and unpined.
       this.check();
       return
@@ -67,10 +67,10 @@ export class NotesComponent implements OnInit, OnChanges {
   /**
    * @description To remove the deleted cards and to sort the cards into pined and unpined.
    */
-  check(){
+  check() {
     this.cardData.forEach(element => {
-      if(element["isDeleted"]==false && element["isArchived"]==false){        
-        if(element["isPined"]==false){
+      if (element["isDeleted"] == false && element["isArchived"] == false) {
+        if (element["isPined"] == false) {
           this.unPinNotes.push(element);
         }
         else
