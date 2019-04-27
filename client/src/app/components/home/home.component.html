@@ -18,8 +18,12 @@
           placeholder="search" [style.fontSize.px]="18" class="searchText" autocomplete="off">
       </mat-form-field>
     </div>
+    
     <div fxFlex="25" fxLayoutAlign="end start" class="settingbtn">
-
+      <div>
+        <button aria-label="Toggle sidenav" mat-icon-button aria-label="Toggle sidenav" (click)="navigateCart()">
+          <mat-icon>shopping_cart</mat-icon></button>
+        </div>
       <button mat-icon-button color="basic" id="grid" (click)="changeView()" fxHide.xs matTooltip="grid">
         <mat-icon *ngIf=view>view_stream</mat-icon>
         <mat-icon *ngIf=!view>view_module</mat-icon>

@@ -80,6 +80,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   navigateReminder() {
     this.router.navigate(['reminder']);
   }
+  navigateCart(){
+    this.router.navigate(['cart']);
+
+  }
   /**
    * @description To update the search value to variable in the data service.
    */

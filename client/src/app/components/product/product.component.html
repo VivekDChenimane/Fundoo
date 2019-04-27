@@ -1,0 +1,36 @@
+<mat-toolbar style="background-color: #fb0">fundooNotes</mat-toolbar>
+<div class="margin-top">
+  <div fxFlex.lg="10" fxFlex.xs="10" fxFlex.sm="10" fxFlex.md="10"></div>
+  <div fxFlex.lg="80" fxFlex.xs="80" fxFlex.sm="80" fxFlex.md="80">
+    <div fxLayoutAlign="center center" fxLayoutGap="20px" class="fontSize"> fundooNotes offered. Choose below service to Register.
+
+   </div>
+    <div class="margins-top"></div>
+    <div  fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px" fxLayoutAlign="center center">
+      <div *ngFor="let product of cards"  (click)="selectCards(product)"  (click)="openDialog(product)"  >
+        <div class="shadow" [ngClass]="product.select ? 'select' : 'select'">
+          <mat-card class="break " (click)=cartAdd(product)>
+            <mat-card-title>
+              {{product.price | currency:usd}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              <p class="fontColor">{{product.name}}
+            </mat-card-subtitle>
+            <mat-card-content>
+              <li>{{product.description}}</li>
+
+            </mat-card-content>
+          </mat-card>
+          <div class="whiteFont"> <span >ADD TO CART</span></div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <div _ngcontent-c1="" class="back" (click)="login()" fxlayoutalign="center" ng-reflect-align="center" style="place-content: stretch center; align-items: stretch; flex-direction: row; box-sizing: border-box; display: flex;">Sign in instead</div>
+  </div>
+
+  <div fxFlex.lg="10" fxFlex.xs="10" fxFlex.sm="10" fxFlex.md="10"></div>
+
+</div>

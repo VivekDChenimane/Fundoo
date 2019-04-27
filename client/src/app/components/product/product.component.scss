@@ -1,0 +1,83 @@
+.fontSize
+{
+font-size: 24px;
+color:gray;
+}
+
+.break
+{
+word-break: break-word;
+width:210px; 
+height: 260px;
+margin-top: -8%;
+margin-left: -5%;
+}
+.height
+{
+height:500px
+}
+.margin-top
+{
+padding: 75px;
+}
+.margins-top
+{
+margin-top: 75px;
+}
+.fontColor
+{
+color: #0000ff
+}
+
+.shadow
+{
+height: 350px;
+width: 270px;
+background-color:#5f5f5f;
+}
+.cardClicked
+{
+height: 390px;
+width: 270px;
+background: #fb0;
+}
+
+.secondcard
+{
+word-break: break-word;
+width:220px; 
+height: 300px;
+margin-top: -8%;
+margin-left: -5%;
+}
+
+.whiteFont
+{
+padding: 15px;
+color: white;
+font-weight: bold;
+
+}
+.gray
+{
+color:#5f5f5f;
+}
+.select
+{
+     &:hover{
+    height: 390px;
+    width: 260px;
+         background-color:    #fb0;;}
+
+}
+.notSelect
+{
+    height: 350px;
+    width: 260px;
+    background-color: #5f5f5f;
+}
+.back {
+    color: #0606f8;
+    cursor: pointer;
+    margin: 5px 0px 0px 0px;
+  }

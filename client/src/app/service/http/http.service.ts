@@ -85,4 +85,7 @@ export class HttpService {
     console.log(localStorage.getItem('token'), "token")
     return this.http.post(url, body, httpOptions)
   }
+  getConfig(url) {
+    return this.http.get(environment.baseUrl + url);
+}
 } 

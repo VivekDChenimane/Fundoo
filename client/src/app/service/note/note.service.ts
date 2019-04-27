@@ -97,4 +97,10 @@ export class NoteService {
   likeQuestionAndAnswer(id, data) {
     return this.service.postJSON('questionAndAnswerNotes/like/' + id, data)
   }
+  getServiceOfUser(){
+    return this.service.getConfig('/user/service')
+}
+addtoCart(data){
+  return this.service.postJSON("/productcarts/addToCart",data)
+}
 }

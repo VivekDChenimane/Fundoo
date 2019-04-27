@@ -35,6 +35,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { BarRatingModule } from "ngx-bar-rating";
 import { QuestionAnswersComponent } from './components/question-answers/question-answers.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ProductComponent } from './components/product/product.component';
+import { ConfirmProductComponent } from './components/confirm-product/confirm-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +62,10 @@ import { QuestionAnswersComponent } from './components/question-answers/question
     LabelsComponent,
     CardComponent,
     ImageDialogComponent,
-    QuestionAnswersComponent
+    QuestionAnswersComponent,
+    CartComponent,
+    ProductComponent,
+    ConfirmProductComponent
   ],
   imports: [
     BrowserModule,

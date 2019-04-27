@@ -20,11 +20,15 @@ import { RemindersComponent } from './components/reminders/reminders.component'
 import { LabelsComponent } from './components/labels/labels.component'
 import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
 import { QuestionAnswersComponent } from './components/question-answers/question-answers.component';
+import { CartComponent } from './components/cart/cart.component'
+import { ProductComponent } from './components/product/product.component'
+import { ConfirmProductComponent } from './components/confirm-product/confirm-product.component';
 const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
   {path: 'login',component: LoginComponent},
   {path: 'registration',component: RegisterComponent},
   {path: 'forgot',component: ForgotPasswordComponent},
+  {path:'product',component:ProductComponent},
   {path: '',component: HomeComponent,canActivate:[GuardGuard],children:[
       {path:'home',component:NotesComponent},
       {path:'archive',component:ArchiveComponent},
@@ -32,7 +36,8 @@ const routes: Routes = [
       {path:'search',component:SearchComponent},
       {path:'reminder',component:RemindersComponent},
       {path:'label/:labelName',component:LabelsComponent},
-      {path:'question&Answers/:cardId',component:QuestionAnswersComponent}
+      {path:'question&Answers/:cardId',component:QuestionAnswersComponent},
+      {path:'cart',component:CartComponent}
     ] 
   },
   {
@@ -52,6 +57,11 @@ const routes: Routes = [
   {
     path:'upload-image',
     component:ImageDialogComponent
+  },
+  
+  {
+    path:'confirm-product',
+    component:ConfirmProductComponent
   }
 ];
 @NgModule({

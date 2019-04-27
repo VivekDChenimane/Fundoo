@@ -35,6 +35,7 @@ export class CardComponent implements OnInit {
 
     if(this.card.questionAndAnswerNotes.length!>0)
     this.question=this.card.questionAndAnswerNotes[0].message
+    console.log(this.question,"hjk")
   }
   show() {
     this.description = this.card.description;
