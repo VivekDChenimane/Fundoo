@@ -35,6 +35,9 @@ export class AddNotesComponent implements OnInit {
    * @description To hold the model of the note.
    */
   card: any;
+  show = true;
+  checklistOpen = [];
+
   @Output() newNoteEvent = new EventEmitter();
   constructor(public dialog: MatDialog, private noteService: NoteService) {
     /**

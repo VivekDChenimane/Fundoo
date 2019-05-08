@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NoteService } from '../../service/note/note.service';
 import { Model } from '../../Models/model.model';
 import { environment } from 'src/environments/environment';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-question-answers',
   templateUrl: './question-answers.component.html',
@@ -25,7 +26,7 @@ export class QuestionAnswersComponent implements OnInit {
   private rID;
   public editorContent: string ;
   qA;
-  constructor(private routes: ActivatedRoute, public router: Router, public noteService: NoteService) { }
+  constructor(private _location: Location,private routes: ActivatedRoute, public router: Router, public noteService: NoteService) { }
 
   ngOnInit() {
     this.sub = this.routes.params.subscribe(params => {
@@ -44,7 +45,8 @@ export class QuestionAnswersComponent implements OnInit {
     this.image = environment.profileUrl;
   }
   close() {
-    this.router.navigate(['/home']);
+    // this.router.navigate(['/home']);
+    this._location.back();
   }
   addQuestion() {
     if (this.question != '') {

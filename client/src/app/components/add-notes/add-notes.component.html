@@ -30,6 +30,36 @@
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
+        <!-- --------------------------------------------------checklist-------------------------------- -->
+   
+    <div *ngIf='show==false'>
+      <div *ngFor='let list of checklistOpen'>
+        <div *ngIf='list.status=="open"'>
+        <div fxLayoutAlign='space-between center'>
+          <img src='../../../assets/images/empty_box.svg' (click)="update(list,'close')"><input matInput [(ngModel)]=list.itemName>
+          <div (click)='delete(list)'>
+            <img src='../../../assets/images/wrong_mark.svg'>
+          </div>
+        </div>
+      </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout='row'><img src='../../../assets/images/add_mark.svg'><input matInput [(ngModel)]="list" placeholder="List Here"
+          (keydown)='enter($event,list)'></div>
+      <mat-divider></mat-divider>
+      <div *ngFor='let list of checklistOpen'>
+        <div *ngIf='list.status=="close"'>
+          <div fxLayoutAlign='space-between center'>
+            <img src='../../../assets/images/right_box.svg' class='decorate' (click)="update(list,'open')"><input
+              matInput style="text-decoration:line-through;" [(ngModel)]=list.itemName>
+            <div (click)='delete(list)'>
+              <img src='../../../assets/images/wrong_mark.svg'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br><br>
+    <!-- --------------------------------------------------colaborator--------------------------------------------- -->
     <div *ngIf='card.reminder.length!=0'>
       <mat-chip class="sample" (mouseenter)="cancelIcon=true" (mouseleave)="cancelIcon=false">
         {{card.reminder[0]|date:'medium'}}

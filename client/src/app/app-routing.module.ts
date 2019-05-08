@@ -24,7 +24,7 @@ import { CartComponent } from './components/cart/cart.component'
 import { ProductComponent } from './components/product/product.component'
 import { ConfirmProductComponent } from './components/confirm-product/confirm-product.component';
 const routes: Routes = [
-  {path: '',redirectTo: 'login',pathMatch: 'full'},
+  {path: '',redirectTo: 'product',pathMatch: 'full'},
   {path: 'login',component: LoginComponent},
   {path: 'registration',component: RegisterComponent},
   {path: 'forgot',component: ForgotPasswordComponent},

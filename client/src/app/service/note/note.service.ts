@@ -103,4 +103,7 @@ export class NoteService {
 addtoCart(data){
   return this.service.postJSON("/productcarts/addToCart",data)
 }
+getCartDetails(cartId){
+  return this.service.httpGetData("/productcarts/getCartDetails/"+cartId+"")
+}
 }

@@ -1,3 +1,97 @@
-<p>
-  cart works!
-</p>
+<div fxFlex=100 *ngIf='noCart != undefined' fxLayoutAlign='center center'>
+  <div class="empty"><b>Your Order is Completed</b></div>
+</div>
+
+<div class="main" fxFlex='100' *ngIf='noCart == undefined && selected != undefined '>
+  <div fxLayoutAlign='center start'>
+    <font size='6' color='brown'>Fundoo Cart</font>
+  </div>
+  <div>
+    <div fxLayout="row" fxLayoutGap="2%">
+      <mat-chip-list>
+        <mat-chip style="background-color: #fb0">fundooNotes</mat-chip>
+      </mat-chip-list>
+      <div fxFlex="30" fxLayout="column" fxLayoutGap="5%">
+        <div></div>
+        <div fxLayout="row">
+          <mat-icon [ngClass]="firstCss ? 'cart' : forCss ? 'secndPlace':'thirdPlace'">shopping_cart</mat-icon>
+
+          <mat-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="value"
+            [bufferValue]="bufferValue"></mat-progress-bar>
+        </div>
+      </div>
+    </div>
+    <!-- <div fxLayout="row" fxLayoutGap="2%">
+      <mat-chip-list>
+          <mat-chip style="background-color: #fb0">fundooNotes</mat-chip>
+        </mat-chip-list>
+    <div fxFlex='60' style="margin-left:15px;margin-right: 15px" fxFlex.xs='100'>
+      <div *ngIf='cond=="signin"' > <mat-icon class="material-icons">add_shopping_cart</mat-icon></div>
+      <div *ngIf='cond=="review"'  style="margin-left:48%"> <mat-icon class="material-icons">add_shopping_cart</mat-icon></div>
+      <div *ngIf='cond=="complete"'  style="margin-left:98%"> <mat-icon class="material-icons">add_shopping_cart</mat-icon></div>
+      <div >
+        <mat-progress-bar *ngIf='cond=="signin"' mode="determinate" value="0"></mat-progress-bar>
+        <mat-progress-bar *ngIf='cond=="review"' mode="determinate" value="50"></mat-progress-bar>
+        <mat-progress-bar *ngIf='cond=="complete"' mode="determinate" value="100"></mat-progress-bar>
+      </div>
+    </div>
+  </div> -->
+    <!-- <div fxLayout='row'  fxLayoutAlign="space-between end"  >
+      <div   >signin</div>
+      <div  >review</div>
+      <div  >complete</div>
+    </div> -->
+  </div>
+  <br>
+
+
+  <div style="margin:15px">
+    <h2>Shopping Cart</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout='row' fxLayout.xs='column'>
+    <div fxLayoutAlign.xs='center center'>
+      <div fxLayoutAlign='center start' style="margin-top:25px;margin-left: 23px" class="rate">${{selected.price}}/month</div>
+    </div>
+
+    <div fxLayout.xs='row' fxLayout='row'>
+
+      <div fxLayout='column' style="margin-top:25px;margin-left: 10px">
+        <div>Advance Pack Details</div>
+        <div class="details">
+          <ul>
+            <li>{{selected.description}} </li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:25px" fxLayout='column'>
+        <div><b>price</b></div>
+        <div>$ {{selected.price}}</div>
+      </div>
+      <div style="margin:25px" fxLayout='column'>
+        <div><b>Validity</b></div>
+        <div>per month</div>
+      </div>
+    </div>
+    <div style="margin-top:25px" fxLayoutAlign.xs='center center'>
+      <div class="card" fxLayoutAlign='center center' fxLayout='column' *ngIf='cond != "complete"'>
+        <div>Subtotal(1 item) : $ {{selected.price}} </div>
+        <button *ngIf='cond=="signin"' style="background-color:rgb(134, 134, 189)" mat-botton
+          (click)='cond="review"' (click)='value=50;forCss=true;firstCss=false'>Proceed to Checkout</button>
+        <button *ngIf='cond=="review"' style="background-color:rgb(134, 134, 189)" (click)='placeOrder()'>Place your
+          order</button>
+
+
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <div></div><br>
+
+  <mat-divider></mat-divider>
+  <div *ngIf='cond=="signin"' fxLayoutAlign='end end' style="margin-right:35px"><b>Subtotal(1 item) : $
+      {{selected.price}}</b></div><br>
+  <div *ngIf='cond=="review"'><textarea cols="30" rows="5" placeholder="Enter Your Address Here"
+      [(ngModel)]='address'></textarea></div>
+</div>

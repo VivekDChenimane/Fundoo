@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="answerCard">
   <div fxLayout="row" fxLayoutAlign="space-between start">
     <div fxFlex=90 fxLayout="column">
       <div class="noteContent" matTooltip="Note Title">{{card.title}} </div>
@@ -18,7 +18,7 @@
     <div [innerHTML]="questions.message"></div>
   </div>
 </mat-card>
-<div *ngIf="show!=0">
+<div *ngIf="show!=0" class="answerCard">
   <div fxLayout="row" fxLayoutAlign="start start">
     <button [ngStyle]="{'background-image':'url(' +image+card.user.imageUrl+ ')','background-size':'cover'}"
       mat-mini-fab></button>

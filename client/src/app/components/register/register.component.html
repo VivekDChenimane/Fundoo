@@ -59,7 +59,29 @@
                 </mat-form-field>
             </div>
         </div>
-        <app-product></app-product>
+        <div fxLayout="row" fxLayout.xs="row" fxLayoutGap="30px" fxLayoutAlign="center center">
+            <div *ngFor="let index of cards">
+                <div class="shadow" [ngClass]="prodId==index.id ? 'select' : 'notSelect'">
+                    <mat-card class="break " (click)="selectCards(index)">
+                        <mat-card-title class="currSize">
+                            {{index.price | currency:usd}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            <p class="fontColor">{{index.name}}
+                        </mat-card-subtitle>
+                        <mat-card-content>
+                            <span class="fontSize">{{index.description}}</span>
+                        </mat-card-content>
+                    </mat-card>
+                    <div class="whiteFont" *ngIf="prodId==index.id">
+                        <h5>SELECTED</h5>
+                    </div>
+                    <div class="whiteFont" *ngIf="prodId!=index.id">
+                        <h5>ADD TO CART</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </mat-card-content>
     <div class="button-register" fxLayoutAlign="center">
         <button mat-button

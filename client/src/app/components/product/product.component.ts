@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteService } from '../../service/note/note.service'
+import { CartService } from '../../service/cart/cart.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
 import { ConfirmProductComponent } from '../confirm-product/confirm-product.component'
@@ -11,7 +11,7 @@ import { ConfirmProductComponent } from '../confirm-product/confirm-product.comp
 })
 export class ProductComponent implements OnInit {
 
-  constructor(public noteService:NoteService,public dialog: MatDialog,public router:Router) { }
+  constructor(public dialog: MatDialog,public router:Router,public cartService:CartService,) { }
   private records;
   private clicked = false;
   private cards=[];
@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit {
 
   }
   getServices() {
-    this.records = this.noteService.getServiceOfUser()
+    this.records = this.cartService.getServiceOfUser()
     .subscribe(data => {
       for (var i = 0; i < data["data"].data.length; i++) {
         data["data"].data[i].select = false;
@@ -51,7 +51,7 @@ export class ProductComponent implements OnInit {
   }
   cartAdd(cart) {
     console.log(cart.id)
-    this.noteService.addtoCart(
+    this.cartService.addtoCart(
       {
         "productId": cart.id
       }

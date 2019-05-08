@@ -11,7 +11,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    padding: 5%;
+    padding: 5%;  
 }
 .rowContainer{
     display: flex;
@@ -48,3 +48,46 @@
         color: orangered;
     }
 }
+.shadow
+{
+height: 350px;
+width: 270px;
+background-color:#5f5f5f;
+}
+.select
+{
+  height: 200px;
+  width: 180px;
+    background-color:    #fb0;
+
+}
+.notSelect
+{
+  height: 200px;
+  width: 180px;
+    background-color: #5f5f5f;
+}
+.break
+{
+word-break: break-word;
+width:100px; 
+height: 100px;
+margin-top: -8%;
+margin-left: -5%;
+}
+.currSize{
+    font-size: 12px
+  }
+  .whiteFont
+  {
+  color: white;
+  font-weight: bold;
+  
+  }
+  .fontSize{
+    font-size: 10px;
+  }
+  .fontColor{
+    font-size: 10px;
+    color: #0000ff;
+  }

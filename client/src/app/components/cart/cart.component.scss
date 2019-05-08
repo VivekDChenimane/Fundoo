@@ -1,0 +1,91 @@
+.btn{
+    color: white;
+    background-color: rgb(111, 111, 177);
+    margin-left: 3%;
+}
+.main{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 4%;
+    background-color: rgb(221, 217, 217);
+    border-radius: 25px
+}
+.rate{
+    width: 100px;
+    height: 80px;
+    background-color: rgb(100, 94, 94);
+    border-radius: 5%;
+    color: white;
+    font-size: 18px;
+}
+.details{
+    width: 250px
+}
+.card{
+    width: 250px;
+    height: 80px;
+    background-color: rgb(187, 184, 184);
+    border-radius: 2%
+}
+ 
+@media screen and (max-width:1000px){
+    .rate
+    {
+         width: 100px
+     }
+  
+    .details
+    {
+        width: 150px;
+    }
+    .card
+    {
+       width: 150px     
+    }
+  }
+  @media screen and (max-width:600px){
+      .details{
+          width: 200px
+      }
+      .rate{
+          width: 150px
+      }
+      .card{
+          width: 300px;
+          
+      }
+  }
+  @media screen and (max-width:600px){
+      .main {
+          margin-left: 0px;
+          margin-right: 0px;
+      }
+  }
+  .empty{
+      font-size: 30px;
+  }
+  .secndPlace{
+    margin-top: -9px;
+   margin-left: 142px;
+   z-index: 9;
+   position: absolute;
+
+}
+.cart{
+    margin-top: -9px;
+margin-left: 62px;
+z-index: 9;
+position: absolute;
+}
+.thirdPlace{
+    margin-top: -9px;
+   margin-left: 295px;
+   z-index: 9;
+   position: absolute;
+}
+::ng-deep.mat-progress-bar-fill::after {
+   background-color: grey;
+}
+::ng-deep.mat-progress-bar-buffer {
+   background-color: #DCDCDC;
+}

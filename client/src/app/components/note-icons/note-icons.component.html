@@ -25,8 +25,8 @@
       <mat-icon class="material-icons">image</mat-icon>
     </button></div>
   <div fxFlex='13'><button mat-icon-button (click)="changeArchiveNote()">
-      <mat-icon *ngIf=card.isArchived class="material-icons">unarchive</mat-icon>
-      <mat-icon *ngIf=!card.isArchived class="material-icons">archive</mat-icon>
+      <mat-icon matTooltip="unarchive" *ngIf=card.isArchived class="material-icons">unarchive</mat-icon>
+      <mat-icon matTooltip="archive" *ngIf=!card.isArchived class="material-icons">archive</mat-icon>
     </button></div>
   <div fxFlex='13'><button mat-icon-button [matMenuTriggerFor]="More">
       <mat-icon class="material-icons">more_vert</mat-icon>

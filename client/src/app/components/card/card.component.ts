@@ -28,11 +28,12 @@ export class CardComponent implements OnInit {
   newList
   addCheck
   question
+  display=true;
   constructor(public dialog: MatDialog, private router: Router, private noteService: NoteService, private dataService: DataService) { }
 
   ngOnInit() {
     console.log(this.card.questionAndAnswerNotes.length)
-
+    console.log(this.card);
     if(this.card.questionAndAnswerNotes.length!>0)
     this.question=this.card.questionAndAnswerNotes[0].message
     console.log(this.question,"hjk")
