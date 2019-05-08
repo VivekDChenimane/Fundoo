@@ -31,6 +31,7 @@ export class AddNotesComponent implements OnInit {
    * Default set to true.
    */
   flag = true;
+  flag2=false;
   /**
    * @description To hold the model of the note.
    */
