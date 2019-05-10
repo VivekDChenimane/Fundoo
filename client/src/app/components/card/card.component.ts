@@ -1,3 +1,19 @@
+/******************************************************************************
+ *
+ *  Purpose         : To display a note in the card.
+ *  @description    
+ * 
+ *  @file           : card.component.ts
+ *  @overview       : To display a note in the card.
+ *  @module         : card.ts - This is optional if expeclictly its an npm or local package
+ *  @author         : Vivek D Chenimane <vivekdchenimane.com>
+ *  @version        : 1.0
+ *  @since          : 02-03-2019
+ *
+ ******************************************************************************/
+/**
+ * importing all the file from various module
+ */
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NoteDialogComponent } from '../note-dialog/note-dialog.component';
